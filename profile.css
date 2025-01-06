@@ -1,0 +1,167 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x:hidden ;
+}
+
+               
+               /* navbar */
+
+.navbar{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;   
+    align-items: center;
+    padding: 10px 20px;
+    background-color: wheat;
+}
+
+ #logout{
+    border: 2px solid #ff004c;
+    padding: 5px 10px;
+    border-radius: 25px;
+    background: transparent;
+    color: #ff004c;
+    font-size: clamp(0.7rem, 2vw, 1.2rem);
+}
+
+ #logout:hover{
+    background: #ff004c;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar h1{
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1.1rem, 2.8vw, 2rem);
+    letter-spacing: .1px;
+    font-weight:600;
+}
+
+.navbar a img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-left: 70px;
+    
+}
+
+@media (max-width: 530px){
+    .navbar{
+        padding: 10px 10px;
+    }
+    .navbar a img{
+        height: 65px;
+        width: 65px;
+        margin-left: 10px;
+    }
+}
+
+                         /* toggle button  */
+
+
+
+.switch {
+    position: relative;
+    display: inline-block; 
+    width: 60px; height: 34px; 
+}
+ .switch input {
+     opacity: 0; 
+     width: 0; 
+     height: 0; 
+} 
+    .slider {
+         position: absolute; 
+         cursor: pointer; 
+         top: 0; left: 0; right: 0; bottom: 0; 
+         background-color: grey; 
+         transition: 0.4s; 
+         border-radius: 15px;
+    }
+    .slider:before { 
+        position: absolute; 
+        content: ""; 
+        height: 26px; 
+        width: 26px; 
+        left: 4px; 
+        bottom: 4px; 
+        background-color: white; 
+        transition: 0.4s; 
+        border-radius: 50%;
+    } 
+    input:checked + .slider {
+         background-color: rgb(89, 183, 255); 
+        }
+        
+    input:checked + .slider:before {
+             transform: translateX(26px); 
+            }
+
+                        /* profilecontainer */
+
+
+ 
+
+#profilecontainer{
+    padding-top: 18px;
+    width: 100vw;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; 
+}
+
+#profilecontainer #username{
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+#mail{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 18px;
+}
+#profilecontainer #email h3{
+    padding: 5px;
+} 
+
+#picbtn{
+    position: relative;
+    z-index: 10000;
+    background-color: rgb(0, 149, 255);
+    color: white;
+    padding: 5px 10px ;
+    cursor: pointer;
+    border-radius: 20px;
+    scale: 0.75;
+}
+
+#profilecontainer h3{
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1rem, 1.3vw, 2rem);
+    font-weight: 4px;
+}
+
+#profilecontainer img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 30px rgb(180, 41, 255);
+}
+
+
+
+
+#delete {
+    border: 2px solid #ff004c;
+    padding: 5px 10px;
+    border-radius: 25px;
+    background: #ff004c;
+    color: #ffffff;
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    cursor: pointer;
+} 
