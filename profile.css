@@ -100,12 +100,95 @@
             }
 
                         /* profilecontainer */
+    
+        
+        .dance{
+            width: 180px;
+            height: 180px;
+            overflow: hidden;
+            animation: dance 10s ease-in-out infinite;
+        }
 
+        @keyframes dance_back {
+            0%{
+                transform: rotate(calc(-360deg/7 ));
+                /* box-shadow:  0px 0px 40px rgb(66, 255, 252) ; */
+                border-radius: 5%;
+            }
+            15%{
+                transform: rotate(calc(-2*360deg/7 ));
+                /* box-shadow:  0px 0px 30px rgb(66, 85, 255) ; */
+                border-radius: 35% 10% 35% 10% ;
+            }
+            30%{
+                transform: rotate(calc(-3*360deg/7 ));
+                /* box-shadow:  0px 0px 40px rgb(234, 0, 255) ; */
+                border-radius: 35%;
+            }   
+            50%{
+                transform: rotate(calc(-4*360deg/7 ));
+                /* box-shadow:  0px 0px 30px rgb(255, 1, 1) ; */
+                border-radius: 50%;
+            }
+            70%{
+                transform: rotate(calc(-5*360deg/7 ));
+                /* box-shadow:  0px 0px 40px rgb(255, 236, 66) ; */
+                border-radius: 35%;
+            }
+            85%{
+                transform: rotate(calc(-6*360deg/7 ));
+                /* box-shadow:  0px 0px 30px rgb(142, 255, 66) ; */
+                border-radius: 25% 10% 25% 10% ;
+            }
+            100%{
+                transform: rotate(calc(-8*360deg/7 ));
+                /* box-shadow:  0px 0px 40px rgb(66, 255, 252) ; */
+                border-radius: 5%;
+            }
+        }
+
+        @keyframes dance {
+            0%{
+                transform: rotate(calc(360deg/7 ));
+                box-shadow:  0px 0px 40px rgb(66, 255, 252) ;
+                border-radius: 5%;
+            }
+            15%{
+                transform: rotate(calc(2*360deg/7 ));
+                box-shadow:  0px 0px 30px rgb(66, 85, 255) ;
+                border-radius: 35% 10% 35% 10% ;
+            }
+            30%{
+                transform: rotate(calc(3*360deg/7 ));
+                box-shadow:  0px 0px 40px rgb(234, 0, 255) ;
+                border-radius: 35%;
+            }   
+            50%{
+                transform: rotate(calc(4*360deg/7 ));
+                box-shadow:  0px 0px 30px rgb(255, 1, 1) ;
+                border-radius: 50%;
+            }
+            70%{
+                transform: rotate(calc(5*360deg/7 ));
+                box-shadow:  0px 0px 40px rgb(255, 236, 66) ;
+                border-radius: 35%;
+            }
+            85%{
+                transform: rotate(calc(6*360deg/7 ));
+                box-shadow:  0px 0px 30px rgb(142, 255, 66) ;
+                border-radius: 25% 10% 25% 10% ;
+            }
+            100%{
+                transform: rotate(calc(8*360deg/7 ));
+                box-shadow:  0px 0px 40px rgb(66, 255, 252) ;
+                border-radius: 5%;
+            }
+        }
 
  
 
 #profilecontainer{
-    padding-top: 18px;
+    padding-top: 38px;
     width: 100vw;    
     display: flex;
     flex-direction: column;
@@ -147,10 +230,11 @@
 }
 
 #profilecontainer img{
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    box-shadow: 0px 0px 30px rgb(180, 41, 255);
+    position: relative;
+    translate: -30px -30px;
+    height: 240px;
+    width: 240px;
+    animation: dance_back 10s ease-in-out infinite;
 }
 
 
