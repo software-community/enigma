@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome <%=myuser%></h1>
+    <button id="createQuizBtn">Create New Quiz</button>
+    <form id="createQuizForm" action="">
+
+    </form>
+    <script>
+        let createQuizBtn = document.getElementById('createQuizBtn')
+        let createQuizForm = document.getElementById('createQuizForm')
+        let noOfQuestions = 0
+        createQuizBtn.addEventListener('click',(e)=>{
+            e.preventDefault()
+            createQuizForm.insertAdjacentHTML('afterbegin',`
+            <label for="quizName">Name : </label>
+        <input id="quizName" type="text"><br><br>
+            <label for="q1">Question : </label>
+        <input id="q1" type="text"><br>
+        <label for="a1">Answer : </label>
+        <input id="a1" type="text"><br><br>
+        <button id="addNewQuestion">Add New Question</button>
+        <input type="submit" name="" id="createQuizSubmit" value="Create Quiz">
+            `)
+            noOfQuestions++
+            createQuizBtn.hidden = true
+            let addNewQuestion = document.getElementById('addNewQuestion')
+            addNewQuestion.addEventListener('click',(e)=>{
+                e.preventDefault()
+                addNewQuestion.insertAdjacentHTML('beforebegin',`
+                <label for="q${++noOfQuestions}">Question : </label>
+        <input id="q${noOfQuestions}" type="text"><br>
+        <label for="a${noOfQuestions}">Answer : </label>
+        <input id="a${noOfQuestions}" type="text"><br><br>
+                `)
+            })
+            let createQuizSubmit = document.getElementById('createQuizSubmit')
+            createQuizSubmit.addEventListener('click',async (e)=>{
+                e.preventDefault()
+                let quiz = {
+                    qna:[],
+                    name:document.getElementById('quizName').value,
+                    quizId:Date.now()
+                }
+                for(let i=1;i<=noOfQuestions;i++){
+                    let pair = {
+                        question:document.getElementById(`q${i}`).value,
+                        answer:document.getElementById(`a${i}`).value
+                    }
+                    quiz.qna.push(pair)
+                }
+                await fetch('/quizes/createNewQuiz',{
+                    method:"post",
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify(quiz)
+                })
+                alert("Quiz Created Successfully")
+                location.reload()
+            })
+        })
+        
+    </script>
+</body>
+</html>

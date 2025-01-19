@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Name : <%=quizname%></h2>
+
+    <form action="">
+    
+    <% for(let question of questions){%>
+        <h3>Question : <%=question%></h3>
+        <label for="<%=questions.indexOf(question)%>">Answer</label>
+        <input id="<%=questions.indexOf(question)%>" type="text">
+    <%}%>
+
+    <br><br>
+    <input id='submitbtn' type="submit" value="Submit" onsubmit="check()">
+    </form>
+    <br><br>
+    <p id="score" style="color: red;"></p>
+    <script>
+        let submitbtn = document.getElementById('submitbtn')
+        submitbtn.addEventListener('click',async (e)=>{
+            e.preventDefault()
+            let length = Number.parseInt('<%-questions.length%>')
+            let answers = []
+            for(let i=0;i<length;i++)
+                answers.push(document.getElementById(i).value)
+            let response = await fetch('/quizes/<%-quizId%>/check',{
+                method:"post",
+                headers:{
+                     'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(answers)
+            })
+            let score = await response.text()
+            
+            document.getElementById('score').innerHTML = `Your Score : ${score}`
+
+        })
+    </script>
+</body>
+<script>
+
+
+</script>
+</html>
