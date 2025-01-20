@@ -1,0 +1,417 @@
+/* -----------------setting up the font-------------------- */
+
+* {
+    margin: 0;
+    border: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 5.72vh;
+    font-style: normal;
+}
+
+/* --------------------container code---------------------- */
+
+#container{
+    position: sticky;
+    top: 0;
+    height: 13vh;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.6vh;
+    gap: 2.6vh;
+}
+
+/* --------------------setting alignments--------------------------- */
+
+.logo, .createquiz, .joinquiz, .socials{
+    display: flex;
+    align-items: center;
+}
+
+
+/* --------------------------logo-------------------------- */
+
+.logo img{
+    height: 10.4vh;
+    width: 10.4vh;
+    margin-left: 3.25vh;
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo img:hover{
+    transform: scale(1.1); 
+    box-shadow: 0 0 1.3vh 0.65vh rgba(255, 255, 255, 0.8);
+}
+
+/* -------------------------separator------------------------ */
+
+
+.separator{
+    font-size: 10.4vh;
+    font-weight: lighter;
+    color: aliceblue;
+    margin-bottom: 1.3vh;
+    margin-left: 2.6vh;
+    margin-right: 2.6vh;
+}
+
+
+/* -----------------------create quiz button--------------------------- */
+
+.create{
+    height: 4.35vh;
+    width: 27.4vh;
+    padding:  0.26vh 3.9vh;
+    font-size: 2.21vh;
+    font-weight: 600;
+    border: solid rgb(228, 204, 96);
+    border-radius: 3.9vh;
+    cursor: pointer;
+    background-image: url("create-button.png");
+    background-size: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+}
+
+.create:hover, .join:hover { 
+    transform: scale(1.1); 
+    box-shadow: 0 0 1.3vh 0.65vh rgba(228, 204, 96, 0.8);
+}
+
+
+/* ------------------------join quiz button------------------------ */
+
+.join{
+    height: 4.35vh;
+    width: 27.4vh;
+    padding:  0.26vh 3.9vh;
+    font-size: 2.3vh;
+    font-weight: 600;
+    border: solid rgb(228, 204, 96);
+    border-radius: 3.9vh;
+    cursor: pointer;
+    background-image: url("join-button.png");
+    background-size: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: rgb(255, 255, 255);
+}
+
+
+
+/* -----------------------coloring the icons------------------------ */
+
+.fa-regular, .fa-solid, .fa-comment {
+    color: rgb(228, 204, 96);
+    margin-right: 0.39vh;
+}
+
+
+/* -------------------socials------------------- */
+
+.socials{
+    display: flex;
+    align-items: center;
+}
+
+
+/* ------------------------profile---------------------------- */
+
+.profile{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.profile-pic{
+    height: 6.5vh;
+    width: 6.5vh;
+    border-radius: 50%;
+    border: solid rgb(228, 204, 96);
+    margin-right: 1.3vh;
+
+}
+
+/* ----------------------dropdowns---------------------- */
+
+.menu { 
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item { 
+    display: inline-block; 
+    position: relative; 
+    font-weight: bold;
+    cursor: pointer; 
+    padding: 1.3vh 5.2vh; 
+    font-size: 2.6vh; 
+    color: rgb(127, 212, 233); 
+    z-index: 10;
+} 
+
+.menu-item:hover .dropdown { 
+    max-height: 39vh; 
+    transition: max-height 0.5s ease-in-out;
+    overflow: hidden;
+} 
+
+.dropdown { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    right: 0;
+    z-index: 100;
+    color: white;
+    background-color: black; 
+    border: 0.13vh solid #c443c4; 
+    box-shadow: 0 0.26vh 1.3vh rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
+    max-height: 0; 
+    transition: max-height 0.5s ease-in-out; 
+} 
+
+.dropdown li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+
+.dropdown li a { 
+    height: 6.5vh;
+    width: 100%;
+    padding: 1.95vh 0;
+    text-decoration: none; 
+    color: white; 
+    display: block; 
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+} 
+
+.dropdown li:hover {
+    transform: scale(1.1);
+}
+
+.dropdown li a:hover { 
+    color: black;
+    background-color: #f0f0f0; 
+    font-weight: bold;
+}
+
+#container, .socials, .profile, .menu-item {
+    position: relative; 
+    z-index: 10;
+}
+
+/* -------------------Upcoming Quizzes Section----------------------- */
+
+.upcomingQuizzes{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 39vh;
+    z-index: 1;
+}
+
+#container1 { 
+    position: relative; 
+    top: 1.3vh;
+    width: 156vh; 
+    height: 100%; 
+    overflow: hidden; 
+    z-index: 5;
+
+}
+
+/* ---------------------------Register Button----------------------------- */
+
+.register{
+    position: absolute; 
+    bottom: 2.6vh; 
+    right: 13vh;
+    height: 4.355vh;
+    width: 27.04vh;
+    padding:  0.26vh 3.9vh;
+    font-size: 2.21vh;
+    font-weight: 600;
+    border: solid #c443c4;
+    border-radius: 3.9vh;
+    cursor: pointer;
+    background-color: black;
+    background-size: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+}
+
+.register:hover{
+    transform: scale(1.1); 
+    box-shadow: 0 0 1.3vh 0.65vh rgba(196, 67, 196, 0.8);
+}
+
+/* ----------------------mainline---------------------- */
+
+.mainline{
+    margin-top: 0.26vh;
+    margin-left: 16vh;
+    font-size: 5vh;
+    font-weight: 600;
+}
+
+.mainline2{
+    margin-top: 30px;
+    margin-left: 80px;
+    font-size: 5vh;
+    font-weight: 600;
+}
+
+
+
+/* ---------------------Upcoming Quizzes Banners--------------------- */
+
+.quiz1, .quiz2{
+    position: relative; 
+    width: 100%; 
+    height: 100%;
+    background-color: bisque;
+}
+
+.quiz1, .quiz2 { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%;  
+    animation: slide 10s infinite; 
+} 
+
+.quiz1 { 
+    animation-delay: 0s; 
+} 
+
+.quiz2 { 
+    animation-delay: 5s; 
+} 
+
+@keyframes slide {
+    0% {
+        transform: translateX(100%);
+    }
+    10%, 50%{
+        transform: translateX(0);
+    }
+    60%, 100%{
+        transform: translateX(-100%);
+    }
+}
+
+ .quiz1 img, .quiz2 img { 
+    height: 35.1vh; 
+    margin-left: 2.6vh; 
+    margin-top: 1.95vh; 
+}
+
+/* ----------------------Featured Quizzes-------------------------- */
+
+.featuredQuizzes{
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    height: 230px;
+    width: 900px;
+    margin-top: 10px;
+    margin-left: 80px;
+    z-index: 1;
+}
+
+.fquiz{
+    height: 200px;
+    width: 290px;
+    background-color: rgb(205, 235, 255);
+    text-align: center;
+    border-radius: 10%;
+    position: relative;
+    border-bottom-left-radius: 0; 
+    border-bottom-right-radius: 0%; 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+
+
+#fquiz1{
+    background-image: url("olympics.avif");
+    background-size: cover;
+}
+
+
+.fquiz:hover { 
+    transform: scale(1.3); 
+    z-index: 10;
+} 
+
+.fquizTitleBox{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35%;
+    background-color: white;
+}
+
+.fquizTitle{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    margin: 5px 0px 0px 10px;
+}
+
+.fquizDate{
+    font-size: 12px;
+    text-align: left;
+    margin: 10px 0px 0px 10px;
+    width : 45%;
+}
+
+/* --------------------------Take Quiz Button------------------------------- */
+
+.takeQuiz{
+    position: absolute;
+    font-size: 15px;
+    border-radius: 3.9vh;
+    margin-right: 5px;
+    width: 100px;
+    font-weight: 600;
+    height: 30px;
+    bottom: 8px;
+    right: 10px;
+    cursor: pointer;
+    border-color: rgb(127, 212, 233);
+    color: #c443c4;
+    background: linear-gradient(145deg, transparent, transparent 40%, #c443c4 50%, transparent 60%, transparent); 
+    background-size: 200% 200%; 
+    transition: background-position 0.2s;
+}
+
+.takeQuiz:hover { 
+    background-position: 100% 0; 
+}
+
+/* ---------------------------separator 2------------------------------ */
+
+.separator2{
+    position: relative;
+}
