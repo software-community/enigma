@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/account.css">
+    <link
+     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+</head>
+<body>
+    <!-- topbar -->
+     <div>
+    <div class="navbar">
+        <a href="#"> <img src="WhatsApp Image 2025-01-04 at 16.44.56_83ef7c62.jpg" alt="enigma-logo"> </a>
+        <h1>User Activity</h1> 
+        <button id="logout">logout</button> 
+    </div>
+    </div>
+
+    <!-- lil bit profile for others to see -->
+    <div id="profilecontainer">
+    
+    <div id="prof">
+    <div class="dance">
+        <img  id="dp"  src="WhatsApp Image 2025-01-04 at 16.44.56_83ef7c62.jpg" alt="profile pic">
+    </div>
+    
+    <label for="changing_pic">
+        <input type="file" id="pic" accept="image/*" style="display: none;">
+        <input id="picbtn" type="submit" onclick="document.getElementById('pic').click()" value="change profile pic"> 
+       </label>
+
+    <div id="name">
+        <h1><%= Name %></h1>
+    </div>
+    </div>
+
+    <!-- email notifications -->
+    <div id="email">
+        <h3>Registered Email id : <%= Email %></h3>
+        <h3 id="mail">Enable email notifications 
+            <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label> 
+        </h3>
+                  
+    </div>
+
+    <!-- prev attended quizzes  -->
+
+    <div id="searchbutton">
+        <button id="sort">Sort by</button>
+        <div id="dropdown">
+            <ul>
+            <li class="drop" ><button id="newest">newest</button></li>
+            <li class="drop" id="oldest"><button>oldest</button></li>
+            <li class="drop" id="rank"><button>rank</button></li>
+            <li class="drop" id="starred"><button>starred</button></li>
+            </ul>
+        </div>
+    </div>
+
+      <div style="margin-top: 20px;" class="attended">
+        <h1>prev attended quizes</h1>
+        <table id="attended_table">
+            <thead>
+            <tr>
+                <th>quiz</th>
+                <th>schedule</th>
+                <th>score</th>
+                <th>rank</th>
+                <th>stats</th>
+            </tr>
+        </thead>
+        <tbody id="append_new_data">
+            <% quizzes.forEach(function(quiz) { %>
+            <tr>
+                <td><%= quiz.name %></td>
+                <td><%= quiz.date %></td>
+                <td><%= quiz.score %></td>
+                <td><%= quiz.rank %></td>
+                <td><a href="<%= quiz.statsLink %>">see here</a></td>
+            </tr>
+            <% }); %>
+        </tbody>
+            
+        </table> 
+    </div> 
+
+    <!-- <i class="ri-arrow-down-circle-fill"></i> -->
+
+    <!-- prev hosted quizzes -->
+    <div style="margin-top: 20px;" class="attended">
+        <h1>Previously hosted quizzes</h1>
+        <table id="attended_table">
+            <thead>
+            <tr>
+                <th>quiz</th>
+                <th>schedule</th>
+                <th>participants</th>
+                <th>stats</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% hostedQuizzes.forEach(function(quiz) { %>
+            <tr>
+                <td><%= quiz.name %></td>
+                <td><%= quiz.date %></td>
+                <td><%= quiz.participants %></td>
+                <td><a href="<%= quiz.statsLink %>">view here</a></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- delete acc -->
+    <div>
+        <button id="delete">Delete Account</button><br>
+        <h5>Doing this will remove all your data. This action is irreversible.</h5>
+    </div>
+    </div> 
+    
+
+
+    <script>
+        var sortbtn = document.getElementById('sort') ;
+        var dropdown=document.getElementById('dropdown') ; 
+        
+        sortbtn.onclick = function() {
+            if(dropdown.style.display === 'none'){
+                dropdown.style.display = 'block';
+                // dropdown.style.opacity = 1 ;
+                setTimeout(() => { dropdown.style.opacity = 1; // Fade in 
+                    }, 50);
+            }else{
+                // dropdown.style.display == 'none';
+                dropdown.style.opacity = 0 ; 
+                setTimeout(() => { dropdown.style.display = 'none'; // Hide after fade out 
+                    }, 500)
+            }
+        };
+
+        const pic = document.getElementById('pic');
+        const dp = document.getElementById('dp');
+
+        pic.addEventListener('change' , change_dp);
+        function change_dp(){
+            if (pic.files && pic.files[0]){
+                const reader = new FileReader();
+                
+                reader.onload = function (e){
+                    dp.src = e.target.result; 
+                }; 
+
+                reader.readAsDataURL(pic.files[0]); 
+            }
+        }
+
+        var sort_date = document.getElementById("newest");
+        sort_date.onclick() = function(){
+            var table = document.getElementById("attended_table");
+        };
+
+    </script>
+</body>
+</html>
