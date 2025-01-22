@@ -1,0 +1,36 @@
+Script started on 2025-01-22 16:58:06+05:30 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="136" LINES="10"]
+]0;arpit@arpit-IdeaPad-5-15ITL05:/mnt/659603F16F68784E/Softcom/enigma\]7;file://arpit-IdeaPad-5-15ITL05/mnt/659603F16F68784E/Softcom/enigma\[?2004h]133;D;0\]133;A\]0;arpit@arpit-IdeaPad-5-15ITL05: /mnt/659603F16F68784E/Softcom/enigma[01;32marpit@arpit-IdeaPad-5-15ITL05[00m:[01;34m/mnt/659603F16F68784E/Softcom/enigma[00m$ ]133;B\touch [K[K[Kch .gitin[Kgmo[K[Knore
+[?2004l]133;C\]0;arpit@arpit-IdeaPad-5-15ITL05:/mnt/659603F16F68784E/Softcom/enigma\]7;file://arpit-IdeaPad-5-15ITL05/mnt/659603F16F68784E/Softcom/enigma\[?2004h]133;D;0\]133;A\]0;arpit@arpit-IdeaPad-5-15ITL05: /mnt/659603F16F68784E/Softcom/enigma[01;32marpit@arpit-IdeaPad-5-15ITL05[00m:[01;34m/mnt/659603F16F68784E/Softcom/enigma[00m$ ]133;B\npm instlal [K[K[K[Kall express mongoosh ejs
+[?2004l]133;C\[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K[1mnpm[22m [33mwarn[39m [94mdeprecated[39m inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+[1G[0K⠧[1G[0K⠇[1G[0K[1mnpm[22m [33mwarn[39m [94mdeprecated[39m rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K[1mnpm[22m [33mwarn[39m [94mdeprecated[39m glob@7.2.3: Glob versions prior to v9 are no longer supported
+[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K
+added 246 packages, and audited 247 packages in 16s
+[1G[0K⠦[1G[0K
+[1G[0K⠦[1G[0K30 packages are looking for funding
+[1G[0K⠦[1G[0K  run `npm fund` for details
+[1G[0K⠦[1G[0K
+2 [35m[1mcritical[22m[39m severity vulnerabilities
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+[1G[0K⠦[1G[0K]0;arpit@arpit-IdeaPad-5-15ITL05:/mnt/659603F16F68784E/Softcom/enigma\]7;file://arpit-IdeaPad-5-15ITL05/mnt/659603F16F68784E/Softcom/enigma\[?2004h]133;D;0\]133;A\]0;arpit@arpit-IdeaPad-5-15ITL05: /mnt/659603F16F68784E/Softcom/enigma[01;32marpit@arpit-IdeaPad-5-15ITL05[00m:[01;34m/mnt/659603F16F68784E/Softcom/enigma[00m$ ]133;B\nm[Kpm install nodemon
+[?2004l]133;C\[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K⠦[1G[0K⠧[1G[0K⠇[1G[0K⠏[1G[0K⠋[1G[0K⠙[1G[0K⠹[1G[0K⠸[1G[0K⠼[1G[0K⠴[1G[0K
+added 17 packages, and audited 264 packages in 2s
+[1G[0K⠴[1G[0K
+[1G[0K⠴[1G[0K33 packages are looking for funding
+[1G[0K⠴[1G[0K  run `npm fund` for details
+[1G[0K⠴[1G[0K
+2 [35m[1mcritical[22m[39m severity vulnerabilities
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+[1G[0K⠦[1G[0K]0;arpit@arpit-IdeaPad-5-15ITL05:/mnt/659603F16F68784E/Softcom/enigma\]7;file://arpit-IdeaPad-5-15ITL05/mnt/659603F16F68784E/Softcom/enigma\[?2004h]133;D;0\]133;A\]0;arpit@arpit-IdeaPad-5-15ITL05: /mnt/659603F16F68784E/Softcom/enigma[01;32marpit@arpit-IdeaPad-5-15ITL05[00m:[01;34m/mnt/659603F16F68784E/Softcom/enigma[00m$ ]133;B\touch index.cjs
+[?2004l]133;C\]0;arpit@arpit-IdeaPad-5-15ITL05:/mnt/659603F16F68784E/Softcom/enigma\]7;file://arpit-IdeaPad-5-15ITL05/mnt/659603F16F68784E/Softcom/enigma\[?2004h]133;D;0\]133;A\]0;arpit@arpit-IdeaPad-5-15ITL05: /mnt/659603F16F68784E/Softcom/enigma[01;32marpit@arpit-IdeaPad-5-15ITL05[00m:[01;34m/mnt/659603F16F68784E/Softcom/enigma[00m$ ]133;B\exit
+[?2004l]133;C\exit
+
+Script done on 2025-01-22 17:02:15+05:30 [COMMAND_EXIT_CODE="0"]

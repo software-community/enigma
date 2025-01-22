@@ -1,0 +1,28 @@
+{
+  "name": "enigma",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/software-community/enigma.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/software-community/enigma/issues"
+  },
+  "homepage": "https://github.com/software-community/enigma#readme",
+  "description": "",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongoosh": "^0.0.7",
+    "nodemon": "^3.1.9"
+  }
+}
