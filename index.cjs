@@ -27,6 +27,13 @@ app.route("/account").get(async (req,res)=>{
     
     })
 })
+app.route("/grid").get(async (req,res)=>{
+    res.render("grid.ejs");
+})
+app.route("/footer").get(async (req,res)=>{
+    res.render("footer.ejs");
+})
+
 
 
 app.listen(PORT,console.log("server started at port: ", PORT))

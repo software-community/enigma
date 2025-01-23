@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Grid</title>
+  <link rel="stylesheet" href="css/grid.css">
+</head>
+<body>
+  <p class="reg">Registered Users</p>
+  <button id="clear_all">Clear All Users</button>
+  <div class="user-grid-container">
+    <div id="userGrid" class="grid"></div>
+  </div>
+
+<script>
+  const userDetailsContainer = document.getElementById('userGrid');
+
+  // Retrieve users from localStorage
+  const usersArray = JSON.parse(localStorage.getItem('users')) || [];
+
+  const clearAllButton = document.getElementById('clear_all');
+
+  // Clear all users when the "Clear All" button is clicked
+  clearAllButton.addEventListener('click', function () {
+    usersArray.length = 0;
+    localStorage.removeItem('users');
+    displayUserDetails();
+  });
+
+  function displayUserDetails() {
+    userDetailsContainer.innerHTML = ''; // Clear the container first
+
+    if (usersArray.length === 0) {
+      userDetailsContainer.innerHTML = `<p>No users registered.</p>`;
+      return;
+    }
+
+    usersArray.forEach((user, index) => {
+      const userBox = document.createElement('div');
+      userBox.className = 'user-box';
+      userBox.id = `userBox-${index}`;
+      userBox.innerHTML = `
+        <nav>
+          <h3 style="display: inline-block;">User ${index + 1}</h3>
+          <div class="buttons">
+            <button class="editbutton" data-index="${index}">Edit</button>
+            <button class="delbutton" data-index="${index}">Del</button>
+          </div>
+        </nav>
+        <p><strong>Username:</strong> ${user.name}</p>
+        <p><strong>Contest ID:</strong> ${user.contest}</p>
+        <p><strong>Mode:</strong> ${user.mode}</p>
+        <p><strong>Date of quiz:</strong> ${user.cdate}</p>
+      `;
+      userDetailsContainer.appendChild(userBox);
+    });
+
+    addButtonListeners();
+  }
+
+  function addButtonListeners() {
+    // Edit buttons
+    document.querySelectorAll('.editbutton').forEach(button => {
+      button.addEventListener('click', function () {
+        const index = parseInt(button.getAttribute('data-index'), 10);
+        editUser(index);
+      });
+    });
+
+    // Delete buttons
+    document.querySelectorAll('.delbutton').forEach(button => {
+      button.addEventListener('click', function () {
+        const index = parseInt(button.getAttribute('data-index'), 10);
+        deleteUser(index, this); // Pass the button element
+      });
+    });
+  }
+
+  function deleteUser(index, button) {
+    // Remove user from the array
+    usersArray.splice(index, 1);
+
+    // Update localStorage
+    localStorage.setItem('users', JSON.stringify(usersArray));
+
+    // Remove the box from the DOM
+    const userBox = button.closest('.user-box');
+    if (userBox) userBox.remove();
+
+    displayUserDetails();
+  }
+
+  function editUser(index) {
+    const user = usersArray[index];
+    if (!user) return;
+
+    const newName = prompt('Enter new name:', user.name) || user.name;
+    const newContest = prompt('Enter new Contest ID:', user.contest) || user.contest;
+    const newMode = prompt('Enter new Mode:', user.mode) || user.mode;
+    const newDate = prompt('Enter new Date of quiz:', user.cdate) || user.cdate;
+
+    usersArray[index] = {
+      name: newName,
+      contest: newContest,
+      mode: newMode,
+      cdate: newDate,
+    };
+
+    localStorage.setItem('users', JSON.stringify(usersArray));
+
+    displayUserDetails();
+  }
+
+  displayUserDetails();
+</script>
+</body>
+</html>
