@@ -47,7 +47,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const data = <%= JSON.stringify(data) %>;
+        const data = JSON.stringify(data) ;
 
         const sns = data.map(item => item.sn);
         const times = data.map(item => item.time);
