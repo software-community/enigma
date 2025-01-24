@@ -7,12 +7,18 @@
 </head>
 <body>
     <h1>This is Signup page</h1>
-    <form action="/authsignup" method="post">
-        <label for="user">User : </label>
-        <input type="text" name="user" id="user" autocomplete="off"><br>
-        <label for="pass">Password : </label>
-        <input type="password" name="pass" id="pass"><br>
+    <form action="/auth/signup" method="post">
+        <label for="username">User : </label>
+        <input type="text" name="username" id="username" autocomplete="off"><br>
+        <label for="password">Password : </label>
+        <input type="password" name="password" id="password"><br>
         <input type="submit" name="" id="" value="Signup">
     </form>
+    <br>
+    <% if (messages.error) { %>
+        <div class="error-message">
+          <%= messages.error %> <!-- Displays error message -->
+        </div>
+      <% } %>
 </body>
 </html>

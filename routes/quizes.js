@@ -8,7 +8,7 @@ await client.connect();
 
 router.use(bodyParser.json())
 
-router.post("/", async (req, res) => {
+router.get("/", async (req, res) => {
   const quizes = await client.db("mydb").collection("quizes").find().toArray();
   res.render("quizes_homepage", { quizes });
 });

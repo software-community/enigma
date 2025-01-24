@@ -7,13 +7,19 @@
 </head>
 <body>
     <h1>This is login page</h1>
-    <form action="/authlogin" method="post">
-        <label for="user">Username : </label>
-        <input type="text" name="user" id="user" autocomplete="off"><br>
-        <label for="pass">Password : </label>
-        <input type="password" name="pass" id="pass"><br>
+    <form action="/auth/login" method="post">
+        <label for="username">Username : </label>
+        <input type="text" name="username" id="username" autocomplete="off"><br>
+        <label for="password">Password : </label>
+        <input type="password" name="password" id="password"><br>
         <p id="incorrect" style="color: red;"></p>
         <input type="submit" name="" id="" value="Login">
     </form>
+    <br>
+    <% if (messages.error) { %>
+        <div class="error-message">
+          <%= messages.error %> <!-- Displays error message -->
+        </div>
+      <% } %>
 </body>
 </html>

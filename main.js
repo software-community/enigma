@@ -1,31 +1,50 @@
 import express from 'express'
-import bodyParser from 'body-parser'
-import {login,signup} from './utils.js'
 import quizes from './routes/quizes.js'
+import auth from './routes/auth.js'
+import flash from 'express-flash';
+import session from 'express-session';
+import passport from 'passport';
+
+const store = new session.MemoryStore();
 const app = express()
 const port = 3000
-//const host = '172.23.4.246'
-const host = 'localhost'
 
 app.set('view engine','ejs')
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
+app.use(session({
+    secret: 'my-key',
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+    
+  }));
+app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
+
+
+app.use('/auth',auth)
+app.use('/quizes',quizes)
 
 app.get('/',(req,res)=>{
     res.render('index')
     console.log("New Connection : " + req.ip)
 })
-app.listen(port,host,()=>{
-    console.log(`Listening on ${host}:${port}`)
+app.listen(port,()=>{
+    console.log(`Listening on port ${port}`)
 })
-app.post('/login',(req,res)=>{
-    res.render('login')
+app.get('/login',(req,res)=>{
+    res.render('login',{ messages: req.flash() })
 })
-app.post('/signup',(req,res)=>{
-    res.render('signup')
+app.get('/signup',(req,res)=>{
+    res.render('signup',{ messages: req.flash() })
+})
+app.get('/dashboard',(req,res)=>{
+    if(req.isAuthenticated())
+        res.render('dashboard',{username: req.user.username})
+    else
+        res.render('invalid_session')
 })
 
-app.post('/authlogin',login)
 
-app.post('/authsignup',signup)
 
-app.use('/quizes',quizes)

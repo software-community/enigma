@@ -7,8 +7,19 @@
 </head>
 <body>
     <h1>Home page</h1>
-    <form action="/login" method="post"><input type="submit" value="Login"></form><br>
-    <form action="/signup" method="post"><input type="submit" value="Signup"></form><br>
-    <form action="/quizes" method="post"><input type="submit" value="Quizes"></form>
+    <button onclick="goToLogin()">Login</button><br><br>
+    <button onclick="goToSignUp()">Sign Up</button><br><br>
+    <button onclick="goToQuizes()">Quizes</button><br><br>
+    <script>
+        function goToLogin(){
+            window.location.href = '/login'
+        }
+        function goToSignUp(){
+            window.location.href = '/signup'
+        }
+        function goToQuizes(){
+            window.location.href = '/quizes'
+        }
+    </script>
 </body>
 </html>
