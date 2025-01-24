@@ -18,21 +18,144 @@
     </div>
 
     <!-- quiz headings -->
+    <div id="left">
+        <div id="matter">
     <h1 class="quizname">_Name of the quiz_</h1>
-    <div class="quiz">
-        <h2 class="quizthings">32 January 3939</h2>
-        <h2 class="quizthings">Rank : 22</h2>
-        <h2 class="quizthings">Total participants: </h2>
+        <div class="quiz">
+            <h2 class="quizthings" id="quiz_date">32 January 3939</h2>
+            <h2 class="quizthings" id="quiz_rank">Rank : 22</h2>
+            <h2 class="quizthings" id="participants">Total participants: </h2>
+        </div>
+        </div>
     </div>
 
-    <div class="analysis" >
+    <!-- charts -->
+
+    <div id="right" >
+
+    <!-- chart for time analysis-->
+
         <div class="time_wise">
-            <!-- chart for time analysis with green dots and red dots -->
+            <div class="plot">
+            <canvas id="Time_plot"></canvas> 
         </div>
+        </div>
+
         <div class="question_wise">
-            
+            <h1>Question wise analysis</h1>
+            <div id="question_s">
+            </div>
         </div>
     </div>
+
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        
+
+        const data = [
+    { sn: "Q1", time: 25, verdict: "correct", statement: "What is the capital of France?", option: "Paris, Berlin, London, Madrid", response: "Paris", answer: "Paris" },
+    { sn: "Q2", time: 40, verdict: "incorrect", statement: "Solve for x: 2x + 3 = 7", option: "1, 2, 3, 4", response: "3", answer: "2" },
+    { sn: "Q3", time: 35, verdict: "correct", statement: "Which planet is known as the Red Planet?", option: "Earth, Venus, Mars, Jupiter", response: "Mars", answer: "Mars" },
+    { sn: "Q4", time: 50, verdict: "incorrect", statement: "Name the author of 'To Kill a Mockingbird'.", option: "Harper Lee, J.K. Rowling, Ernest Hemingway, Mark Twain", response: "Mark Twain", answer: "Harper Lee" },
+    { sn: "Q5", time: 30, verdict: "correct", statement: "What is the chemical symbol for water?", option: "H2O, CO2, NaCl, O2", response: "H2O", answer: "H2O" },
+    { sn: "Q6", time: 45, verdict: "correct", statement: "How many continents are there on Earth?", option: "5, 6, 7, 8", response: "7", answer: "7" },
+    { sn: "Q7", time: 20, verdict: "incorrect", statement: "What is the largest ocean on Earth?", option: "Atlantic, Indian, Arctic, Pacific", response: "Atlantic", answer: "Pacific" },
+    { sn: "Q8", time: 55, verdict: "correct", statement: "What is the powerhouse of the cell?", option: "Nucleus, Mitochondria, Ribosome, Endoplasmic Reticulum", response: "Mitochondria", answer: "Mitochondria" },
+    { sn: "Q9", time: 25, verdict: "correct", statement: "Which country is the largest by area?", option: "China, Canada, USA, Russia", response: "Russia", answer: "Russia" },
+    { sn: "Q10", time: 35, verdict: "incorrect", statement: "Who painted the Mona Lisa?", option: "Vincent van Gogh, Pablo Picasso, Leonardo da Vinci, Michelangelo", response: "Pablo Picasso", answer: "Leonardo da Vinci" },
+    { sn: "Q11", time: 30, verdict: "correct", statement: "What is the square root of 144?", option: "10, 12, 14, 16", response: "12", answer: "12" },
+    { sn: "Q12", time: 50, verdict: "incorrect", statement: "What is the boiling point of water in Celsius?", option: "90, 100, 110, 120", response: "90", answer: "100" },
+    { sn: "Q13", time: 45, verdict: "correct", statement: "Who wrote 'Pride and Prejudice'?", option: "Jane Austen, Charles Dickens, George Orwell, Emily Brontë", response: "Jane Austen", answer: "Jane Austen" },
+    { sn: "Q14", time: 40, verdict: "correct", statement: "Which gas do plants primarily use for photosynthesis?", option: "Oxygen, Carbon Dioxide, Nitrogen, Hydrogen", response: "Carbon Dioxide", answer: "Carbon Dioxide" },
+    { sn: "Q15", time: 30, verdict: "incorrect", statement: "What is the currency of Japan?", option: "Dollar, Yen, Euro, Won", response: "Euro", answer: "Yen" },
+    { sn: "Q16", time: 35, verdict: "correct", statement: "What is the largest mammal on Earth?", option: "Elephant, Whale Shark, Blue Whale, Giraffe", response: "Blue Whale", answer: "Blue Whale" },
+    { sn: "Q17", time: 20, verdict: "correct", statement: "What is the smallest prime number?", option: "0, 1, 2, 3", response: "2", answer: "2" },
+    { sn: "Q18", time: 25, verdict: "incorrect", statement: "Which element has the chemical symbol 'O'?", option: "Oxygen, Gold, Osmium, Helium", response: "Gold", answer: "Oxygen" },
+    { sn: "Q19", time: 50, verdict: "correct", statement: "How many hours are there in a day?", option: "12, 24, 36, 48", response: "24", answer: "24" },
+    { sn: "Q20", time: 45, verdict: "incorrect", statement: "Who discovered gravity?", option: "Albert Einstein, Isaac Newton, Galileo, Nikola Tesla", response: "Albert Einstein", answer: "Isaac Newton" },
+    { sn: "Q21", time: 40, verdict: "correct", statement: "Which metal is used to make coins?", option: "Copper, Aluminum, Gold, Platinum", response: "Copper", answer: "Copper" },
+    { sn: "Q22", time: 55, verdict: "correct", statement: "What is the national animal of India?", option: "Lion, Tiger, Elephant, Peacock", response: "Tiger", answer: "Tiger" },
+    { sn: "Q23", time: 30, verdict: "incorrect", statement: "Which continent is also a country?", option: "Asia, Europe, Antarctica, Australia", response: "Antarctica", answer: "Australia" },
+    { sn: "Q24", time: 20, verdict: "correct", statement: "What is the freezing point of water in Celsius?", option: "-1, 0, 1, 2", response: "0", answer: "0" },
+    { sn: "Q25", time: 35, verdict: "incorrect", statement: "Who invented the telephone?", option: "Thomas Edison, Alexander Graham Bell, Nikola Tesla, James Watt", response: "Thomas Edison", answer: "Alexander Graham Bell" },
+    { sn: "Q26", time: 40, verdict: "correct", statement: "Which country has the most population?", option: "India, USA, Russia, China", response: "China", answer: "China" },
+    { sn: "Q27", time: 45, verdict: "correct", statement: "What is the SI unit of temperature?", option: "Kelvin, Celsius, Fahrenheit, Pascal", response: "Kelvin", answer: "Kelvin" },
+    { sn: "Q28", time: 30, verdict: "incorrect", statement: "Which planet is closest to the Sun?", option: "Earth, Venus, Mercury, Mars", response: "Venus", answer: "Mercury" },
+    { sn: "Q29", time: 25, verdict: "correct", statement: "What is the chemical formula for salt?", option: "H2O, NaCl, CO2, O2", response: "NaCl", answer: "NaCl" },
+    { sn: "Q30", time: 50, verdict: "incorrect", statement: "Which is the fastest land animal?", option: "Lion, Tiger, Cheetah, Horse", response: "Tiger", answer: "Cheetah" },
+];
+
+
+        const sns = data.map(item => item.sn);
+        const times = data.map(item => item.time);
+        const backgroundColors = data.map(item => 
+            item.verdict === "correct" ? 'rgba(95, 252, 0, .7)' : 'rgba(255, 20, 9, .6)'
+        );
+
+
+        var ctx = document.getElementById('Time_plot').getContext('2d');
+        var plot = new Chart (ctx , {
+            type : 'bar', 
+            data : {
+                labels : sns, 
+                datasets : [
+                    {
+                        label: "Time taken ",
+                        data : times,
+                        backgroundColor : backgroundColors,
+                        borderWidth: .5,
+                    },{
+                        label: "Trend Line",
+                        type: 'line',
+                        data : times,
+                        borderColor : 'rgba(20, 30 , 240, 1)',
+                        borderWidth : 2.5,
+                        fill: false
+                    }
+                ]
+            }, 
+            options : {
+                responsive : false ,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true, 
+                            text: 'Question number'
+                        }
+                    },
+                    y:{
+                        beginAtZero: true,
+                        title : {
+                            display : true,
+                            text : 'Time taken'
+                        }
+                    }
+                }
+            }
+        })
+
+     
+
+        var container = document.getElementById("question_s");
+
+        for (i of data) {
+            var question = document.createElement('div'); 
+            question.className = "question";
+            question.innerHTML = `<sn>${i.sn}</sn> <h4>${i.statement}</h4> <br>${i.option} <h3>Your answer: ${i.response}</h3> <h3>Correct answer: ${i.answer}</h3>`; 
+            // console.log(`${i.verdict}`);
+            question.style.backgroundColor =  (i.verdict === "correct" ? 'rgba(95, 252, 0, .65)' : 'rgba(255, 20, 9, .45)');
+            container.append(question); 
+        }
+
+    </script>
     
 </body>
 </html>
