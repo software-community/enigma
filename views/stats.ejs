@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/stats.css">
+</head>
+<body>
+    <!-- topbar -->
+    <div>
+        <div class="navbar">
+            <a href="#"> <img src="WhatsApp Image 2025-01-04 at 16.44.56_83ef7c62.jpg" alt="enigma-logo"> </a>
+            <h1>User Activity</h1> 
+            <button id="logout">logout</button> 
+        </div>
+    </div>
+
+    <!-- quiz headings -->
+    <div id="left">
+        <div id="matter">
+            <h1 class="quizname"><%= quizName %></h1>
+            <div class="quiz">
+                <h2 class="quizthings" id="quiz_date"><%= quizDate %></h2>
+                <h2 class="quizthings" id="quiz_rank">Rank : <%= quizRank %></h2>
+                <h2 class="quizthings" id="participants">Total participants: <%= totalParticipants %></h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- charts -->
+    <div id="right" >
+        <!-- chart for time analysis-->
+        <div class="time_wise">
+            <div class="plot">
+                <canvas id="Time_plot"></canvas> 
+            </div>
+        </div>
+
+        <div class="question_wise">
+            <h1>Question wise analysis</h1>
+            <div id="question_s">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const data = <%= JSON.stringify(data) %>;
+
+        const sns = data.map(item => item.sn);
+        const times = data.map(item => item.time);
+        const backgroundColors = data.map(item => 
+            item.verdict === "correct" ? 'rgba(95, 252, 0, .7)' : 'rgba(255, 20, 9, .6)'
+        );
+
+        var ctx = document.getElementById('Time_plot').getContext('2d');
+        var plot = new Chart (ctx , {
+            type : 'bar', 
+            data : {
+                labels : sns, 
+                datasets : [
+                    {
+                        label: "Time taken ",
+                        data : times,
+                        backgroundColor : backgroundColors,
+                        borderWidth: .5,
+                    },{
+                        label: "Trend Line",
+                        type: 'line',
+                        data : times,
+                        borderColor : 'rgba(20, 30 , 240, 1)',
+                        borderWidth : 2.5,
+                        fill: false
+                    }
+                ]
+            }, 
+            options : {
+                responsive : false ,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true, 
+                            text: 'Question number'
+                        }
+                    },
+                    y:{
+                        beginAtZero: true,
+                        title : {
+                            display : true,
+                            text : 'Time taken'
+                        }
+                    }
+                }
+            }
+        });
+
+        var container = document.getElementById("question_s");
+
+        for (let i of data) {
+            var question = document.createElement('div'); 
+            question.className = "question";
+            question.innerHTML = `<sn>${i.sn}</sn> <h4>${i.statement}</h4> <br>${i.option} <h3>Your answer: ${i.response}</h3> <h3>Correct answer: ${i.answer}</h3>`; 
+            question.style.backgroundColor =  (i.verdict === "correct" ? 'rgba(95, 252, 0, .65)' : 'rgba(255, 20, 9, .45)');
+            container.append(question); 
+        }
+    </script>
+</body>
+</html>

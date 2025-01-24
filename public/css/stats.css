@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x:hidden ;
+    font-family: 'Montserrat' , monospace;
+}
+
+            
+            /* navbar */
+
+.navbar{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;   
+    align-items: center;
+    padding: 10px 20px;
+    background-color: wheat;
+}
+
+#logout{
+    border: 2px solid #ff004c;
+    padding: 5px 10px;
+    border-radius: 25px;
+    background: transparent;
+    color: #ff004c;
+    font-size: clamp(0.7rem, 2vw, 1.2rem);
+}
+
+#logout:hover{
+    background: #ff004c;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar h1{
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1.1rem, 2.8vw, 2rem);
+    letter-spacing: .1px;
+    font-weight:600;
+}
+
+.navbar a img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-left: 70px;
+    border: 2px , solid , wheat ; 
+}
+
+@media (max-width: 530px){
+    .navbar{
+    padding: 10px 10px;
+    }
+    .navbar a img{
+    height: 65px;
+    width: 65px;
+    margin-left: 10px;
+    }
+}
+
+
+@media (min-width: 850px) {
+    body{
+        height: 100vh;
+    }
+    #right{
+        margin-left: 30vw;
+        margin-top: -10vh;
+        /* position: absolute; */
+        /* margin-top: 10vh; */
+        /* z-index: -1; */
+    }
+    #left{
+        height: max-content;
+        /* margin-top: 50vh; */
+        position: sticky;
+        z-index: 1;
+        top: 40vh;
+    }
+    #matter{
+        width: 23vw;
+    }
+    
+}
+
+    /* quizthings */
+    #matter{
+        margin: -10px 20px 0 20px;
+    }
+    #matter .quizname{
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        letter-spacing: .1rem;
+        font-weight: 600;
+        margin: 30px 0 10px 0;
+    }
+    #matter .quizthings{
+        font-size: clamp(.9rem, 1.5vw, 1.5rem);
+        letter-spacing: .1rem;
+        font-weight: 600;
+        margin: 10px 0;
+        
+    }
+
+/* plots */
+
+.plot{
+    overflow-x: scroll;
+    margin: 5vh 20px;
+}
+#Time_plot{
+    min-height: 50vh;
+}
+
+.question_wise h1{
+    font-size: clamp(1.5rem, 4rem ,1.5vw);
+    letter-spacing: .05rem;
+    font-weight: 450;
+    text-align: center;
+    margin: 10px 0;
+}
+#question_s{
+    margin: 10px 5px 5px 13px;
+}
+.question{
+    margin: 7px 0px;
+    border-radius: 10px;   
+}
+.question sn{
+    margin: 4px 10px;
+    font-weight: 650;
+}
+.question h4{
+    margin: 10px 10px;
+    font-weight: 600;
+    font-size: clamp(1.2rem , 2rem , 1vw);
+    word-spacing: .1rem;
+}
+.question h3{
+    margin: 5px 10px;
+    font-weight: 650;
+    font-size: clamp(1rem , 1.5rem , 1vw);
+}
