@@ -55,4 +55,12 @@ app.route("/stats").get(async (req,res)=>{
     })
 })
 
+app.route("/login").get(async (req,res)=>{
+    res.render("login_page.ejs")
+})
+app.route("/signup").get(async (req,res)=>{
+    res.render("sign_up.ejs", {
+        userName: "JohnDoe"
+    })
+})
 app.listen(PORT,console.log("server started at port: ", PORT))
