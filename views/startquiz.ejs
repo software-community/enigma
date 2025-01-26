@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%=quizname%></h1>
+    <button onclick="continueAsGuest()">Continue as Guest</button>
+    <button onclick="continueAsUser()">Continue to Login</button>
+    <script>
+        let quizname = '<%-quizname%>'
+        let quizId = '<%-quizId%>'
+        async function continueAsGuest(){
+            let guestname = prompt("Enter a Guest Name")
+            let myform = document.createElement('form')
+                myform.setAttribute('method','post')
+                myform.setAttribute('action','/quizes/quiz')
+                myform.hidden = true
+                myform.insertAdjacentHTML('afterbegin',`
+                <input type="text" name="quizId" id="quizId" value="${quizId}">
+                <input type="text" name="quizname" id="quizname" value="${quizname}">
+                <input type="text" name="mode" id="mode" value="guest">
+                <input type="text" name="name" id="name" value="${guestname}">
+                `)
+                document.body.appendChild(myform)
+                myform.submit()
+        }
+        async function continueAsUser() {
+            let myform = document.createElement('form')
+                myform.setAttribute('method','post')
+                myform.setAttribute('action','/quizes/continueAsUser')
+                myform.hidden = true
+                myform.insertAdjacentHTML('afterbegin',`
+                <input type="text" name="quizId" id="quizId" value="${quizId}">
+                <input type="text" name="quizname" id="quizname" value="${quizname}">
+                <input type="text" name="mode" id="mode" value="user">
+                `)
+                document.body.appendChild(myform)
+                myform.submit()
+        }
+    </script>
+</body>
+</html>

@@ -11,6 +11,26 @@
     <form id="createQuizForm" action="">
 
     </form>
+
+    <h3>Quizes Created by You</h3>
+
+    <% if(quizesCreated.length !=0) { %>
+    <table border="1">
+        <thead>
+            <th>Quiz Name</th>
+            <th>No. of Questions</th>
+            <th>View</th>
+        </thead>
+        <% for(let quiz of quizesCreated){%>
+            <tr>
+                <td><%=quiz.name%></td>
+                <td><%=quiz.qna.length%></td>
+                <td><a class="viewResultLinks" href="" id="<%=quiz.quizId%>">View</a></td>
+            </tr>
+        <%}%>
+    </table>
+    <% } %>
+
     <script>
         let createQuizBtn = document.getElementById('createQuizBtn')
         let createQuizForm = document.getElementById('createQuizForm')
@@ -45,7 +65,8 @@
                 let quiz = {
                     qna:[],
                     name:document.getElementById('quizName').value,
-                    quizId:Date.now()
+                    quizId:Date.now(),
+                    author: '<%-username %>'
                 }
                 for(let i=1;i<=noOfQuestions;i++){
                     let pair = {
@@ -59,12 +80,28 @@
                     headers:{
                         'Content-Type':'application/json'
                     },
-                    body:JSON.stringify(quiz)
+                    body:JSON.stringify({quiz, username: '<%-username %>'})
                 })
                 alert("Quiz Created Successfully")
                 location.reload()
             })
         })
+
+        let viewResultLinks = document.getElementsByClassName('viewResultLinks')
+        for(let link of viewResultLinks){
+            link.addEventListener('click',(e)=>{
+                e.preventDefault()
+                let myform = document.createElement('form')
+                myform.setAttribute('method','post')
+                myform.setAttribute('action','/quizes/quizResult')
+                myform.hidden = true
+                myform.insertAdjacentHTML('afterbegin',`
+                <input type="text" name="quizId" id="quizId" value="${link.id}">
+                `)
+                document.body.appendChild(myform)
+                myform.submit()
+            })
+        }
         
     </script>
 </body>

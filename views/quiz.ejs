@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Welcome <%=name%></h1>
     <h2>Name : <%=quizname%></h2>
 
     <form action="">
@@ -29,12 +30,12 @@
             let answers = []
             for(let i=0;i<length;i++)
                 answers.push(document.getElementById(i).value)
-            let response = await fetch('/quizes/<%-quizId%>/check',{
+            let response = await fetch('/quizes/check',{
                 method:"post",
                 headers:{
                      'Content-Type': 'application/json'
                 },
-                body:JSON.stringify(answers)
+                body:JSON.stringify({answers, name: '<%-name%>', quizId: '<%-quizId%>'})
             })
             let score = await response.text()
             

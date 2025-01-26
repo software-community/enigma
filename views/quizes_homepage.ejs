@@ -25,9 +25,18 @@
         const quizes = JSON.parse(`<%- JSON.stringify(quizes) %>`);
         for(let quiz of quizes){
             let link = document.getElementById((quiz.quizId).toString())
-            link.addEventListener('click',(e)=>{
+            link.addEventListener('click',async (e)=>{
                 e.preventDefault()
-                window.location.href = window.location.href+'/'+quiz.quizId
+                let myform = document.createElement('form')
+                myform.setAttribute('method','post')
+                myform.setAttribute('action','/quizes/startquiz')
+                myform.hidden = true
+                myform.insertAdjacentHTML('afterbegin',`
+                <input type="text" name="quizId" id="quizId" value="${link.id}">
+                <input type="text" name="quizname" id="quizname" value="${quiz.name}">
+                `)
+                document.body.appendChild(myform)
+                myform.submit()
             })
         }
     </script>

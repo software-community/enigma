@@ -5,18 +5,23 @@ import flash from 'express-flash';
 import session from 'express-session';
 import passport from 'passport';
 
+import { MongoClient } from "mongodb";
+const client = new MongoClient("mongodb://localhost:27017");
+await client.connect();
+
 const store = new session.MemoryStore();
 const app = express()
 const port = 3000
 
 app.set('view engine','ejs')
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
 app.use(session({
     secret: 'my-key',
     resave: false,
     saveUninitialized: false,
-    store: store,
-    
+
+    store: store
   }));
 app.use(flash())
 app.use(passport.initialize())
@@ -39,12 +44,17 @@ app.get('/login',(req,res)=>{
 app.get('/signup',(req,res)=>{
     res.render('signup',{ messages: req.flash() })
 })
-app.get('/dashboard',(req,res)=>{
-    if(req.isAuthenticated())
-        res.render('dashboard',{username: req.user.username})
+app.get('/dashboard',async (req,res)=>{
+    if(req.isAuthenticated()){
+        const quizesCreatedId = (await client.db('mydb').collection('users').findOne({username: req.user.username})).quizesCreated
+        const quizesCollection = client.db('mydb').collection('quizes')
+        let quizesCreated = []
+        if(quizesCreatedId)
+        for(let Id of quizesCreatedId)
+            quizesCreated.push(await quizesCollection.findOne({quizId: Id}))
+        
+        res.render('dashboard',{username: req.user.username, quizesCreated})
+    }
     else
-        res.render('invalid_session')
+        res.render('invalid_request')
 })
-
-
-
