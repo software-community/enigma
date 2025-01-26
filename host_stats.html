@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="host_stats.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+</head>
+<body>
+    <!-- topbar -->
+    <div>
+        <div class="navbar">
+            <a href="#"> <img src="WhatsApp Image 2025-01-04 at 16.44.56_83ef7c62.jpg" alt="enigma-logo"> </a>
+            <h1>User Activity</h1> 
+            <button id="logout">logout</button> 
+        </div>
+    </div>
+
+    <!-- quizthings -->
+     <div id="left">
+    <div id="matter">
+        <h1 class="quizname">_Name of the quiz_</h1>
+            <div class="quiz">
+                <h2 class="quizthings" id="quiz_date">32 January 3939</h2>
+                <h2 class="quizthings" id="quiz_time">15:00 - 16:00</h2>
+                <h2 class="quizthings" id="participants">Total participants: 122</h2>
+            </div>
+    </div>
+    </div>
+
+    <div id="right">
+    <!-- ranklist -->
+     <div class="ranklist">
+        <table id="list">
+            <tr>
+                <th>Name</th>
+                <th>Rank</th>
+                <th>Score</th> 
+            </tr>
+            <tr>
+                <td>ram</td>
+                <td>1</td>
+                <td>100</td>
+            </tr><tr>
+                <td>ram</td>
+                <td>1</td>
+                <td>100</td>
+            </tr><tr>
+                <td>ram</td>
+                <td>1</td>
+                <td>100</td>
+            </tr><tr>
+                <td>ram</td>
+                <td>1</td>
+                <td>100</td>
+            </tr><tr>
+                <td>ram</td>
+                <td>1</td>
+                <td>100</td>
+            </tr><tr>
+                <td>ram</td>
+                <td>1</td>
+                <td>100</td>
+            </tr>
+        </table>
+
+        <!-- icons for navigation in rank list -->
+        <div class="icon">
+        <div id="prev_page"><h1> <i class="ri-arrow-left-circle-line"></i> prev page</h1></div>
+        <div id="next_page"><h1>next page <i class="ri-arrow-right-circle-line"></i></h1></div>
+        </div>
+        </div>
+
+
+     <!-- dropdown for everyquestion -->
+        <div id="ques_list">
+        </div>
+    </div>
+
+    
+     <!-- logic for ranklist 15 ppl arrow -->
+
+      
+      
+        
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        
+
+        // code for ranklist
+
+        // code for adding questions into the page 
+        const data = [ 
+            {sn: 1, statement: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nulla dolore, reprehenderit fugiat autem nihil, hic corporis, explicabo quae excepturi beatae ea nesciunt nam nemo delectus quis. Consectetur, doloremque eveniet", option:" i dont know " , type:"single_correct" ,  correctly_answered: 12, wrongly_answered: 2, not_answered: 3},
+            {sn: 2, statement: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nulla dolore, reprehenderit fugiat autem nihil, hic corporis, explicabo quae excepturi beatae ea nesciunt nam nemo delectus quis. Consectetur, doloremque eveniet", option:" i dont know " , type:"single_correct" ,  correctly_answered: 12, wrongly_answered: 2, not_answered: 3},
+            {sn: 3, statement: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nulla dolore, reprehenderit fugiat autem nihil, hic corporis, explicabo quae excepturi beatae ea nesciunt nam nemo delectus quis. Consectetur, doloremque eveniet", option:" i dont know " , type:"single_correct" ,  correctly_answered: 12, wrongly_answered: 2, not_answered: 3},
+            {sn: 4, statement: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nulla dolore, reprehenderit fugiat autem nihil, hic corporis, explicabo quae excepturi beatae ea nesciunt nam nemo delectus quis. Consectetur, doloremque eveniet", option:" i dont know " , type:"single_correct" ,  correctly_answered: 12, wrongly_answered: 2, not_answered: 3},
+            {sn: 5, statement: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nulla dolore, reprehenderit fugiat autem nihil, hic corporis, explicabo quae excepturi beatae ea nesciunt nam nemo delectus quis. Consectetur, doloremque eveniet", option:" i dont know " , type:"single_correct" ,  correctly_answered: 12, wrongly_answered: 2, not_answered: 3},
+            {sn: 6, statement: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nulla dolore, reprehenderit fugiat autem nihil, hic corporis, explicabo quae excepturi beatae ea nesciunt nam nemo delectus quis. Consectetur, doloremque eveniet", option:" i dont know " , type:"single_correct" ,  correctly_answered: 12, wrongly_answered: 2, not_answered: 3},
+            {sn: 7, statement: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nulla dolore, reprehenderit fugiat autem nihil, hic corporis, explicabo quae excepturi beatae ea nesciunt nam nemo delectus quis. Consectetur, doloremque eveniet", option:" i dont know " , type:"single_correct" ,  correctly_answered: 12, wrongly_answered: 2, not_answered: 3},
+            {sn: 8, statement: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nulla dolore, reprehenderit fugiat autem nihil, hic corporis, explicabo quae excepturi beatae ea nesciunt nam nemo delectus quis. Consectetur, doloremque eveniet", option:" i dont know " , type:"single_correct" ,  correctly_answered: 12, wrongly_answered: 2, not_answered: 3},
+        ]; 
+
+        var ques_list = document.getElementById("ques_list");
+
+        for(i of data){
+            var drop = document.createElement("div");
+            drop.className = "dropdown"; 
+            drop.innerHTML = `<h1>Q${i.sn}<i class="ri-arrow-right-wide-line"></i> </h1>`;
+            
+            var temp = document.createElement("div");
+            temp.className = "drop_matter";
+            if(i.type === "single_correct"){
+            temp.innerHTML = `<h1>${i.statement}</h1>`;
+            }
+
+            var canvas = document.createElement("canvas");
+            var plot = new Chart(canvas.getContext('2d') , {
+                type: 'pie',
+                data: {
+                    labels: ['correctly answered', 'incorrectly answered', 'not answered'],
+                    datasets: [{
+                        label: 'Question wise analysis',
+                        data: [i.correctly_answered, i.wrongly_answered, i.not_answered],
+                        backgroundColor: [
+                            'rgb(60, 62, 170)',
+                            'rgb(153, 0, 163)',
+                            'rgb(170, 170, 170)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
+                options:{
+                    responsive: true,
+                }
+            } )
+
+
+            temp.appendChild(canvas);
+            drop.appendChild(temp);
+            ques_list.appendChild(drop);
+        }
+
+
+        // code for animating dropdowns
+        var memory = null  ; 
+        var dropdown = document.getElementsByClassName("dropdown");
+        for (var i = 0 ; i < dropdown.length ; i++){
+
+            dropdown[i].querySelector('h1').addEventListener("click", function(){
+
+                var drop_matter = this.parentElement.getElementsByClassName("drop_matter")[0];
+                var icon = this.querySelector('i'); //Finding the icon tag inside the h1 tag
+
+                if(drop_matter.style.display === "block"){
+                        drop_matter.style.opacity = 0 ; 
+                        drop_matter.style.translate = "0 -20px";
+                        icon.className = "ri-arrow-right-wide-line";
+                        this.style.transform = "scale(1)";
+                        this.parentElement.style.borderBottom = "none";
+                        this.parentElement.style.borderTop = "none";
+
+                    setTimeout(() => {
+                    drop_matter.style.display = "none";
+                }, 500);
+                }
+                else{
+                    drop_matter.style.display = "block";
+                    icon.className = "ri-arrow-down-wide-line";
+                    this.parentElement.style.borderTop = "1px solid black";
+                    this.parentElement.style.borderBottom = "1px solid black";
+                    // this.style.transform = "scale(1.3)";
+                    // this.style.padding = "10% 10% 10% 10%";
+                        setTimeout(() => {
+                        drop_matter.style.opacity = 1 ; 
+                        drop_matter.style.translate = "0 0";
+                }, 0);
+                
+                }
+                if (memory !== null && memory !== this.parentElement){
+                    memory.getElementsByClassName("drop_matter")[0].style.display = "none";
+                    memory.querySelector('i').className = "ri-arrow-right-wide-line";
+                    memory.querySelector("h1").style.transform = "scale(1)";
+                    drop_matter.style.opacity = 0 ; 
+                    drop_matter.style.translate = "0 -20px";
+                    memory.style.borderBottom = "none";
+                    memory.style.borderTop = "none";
+                }
+                memory = this.parentElement;
+                })
+        }
+    
+    </script>
+</body>
