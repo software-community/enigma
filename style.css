@@ -5,22 +5,28 @@
     border: border-box;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 5.72vh;
+    font-weight: normal;
     font-style: normal;
 }
 
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100vw; 
+}
 /* --------------------container code---------------------- */
 
 #container{
-    position: sticky;
-    top: 0;
+    /* position: sticky;
+    top: 0; */
+    width: 100vw;
     height: 13vh;
     background-color: black;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2.6vh;
+    /* padding: 0 2.6vw; */
     gap: 2.6vh;
 }
 
@@ -34,10 +40,20 @@
 
 /* --------------------------logo-------------------------- */
 
+.logo{
+    height:  11vh;
+    width: 6.55%;
+    padding-left: 3%;
+}
+
+.logo a{
+    height: 100%;
+    width: 100%
+}
+
 .logo img{
-    height: 10.4vh;
-    width: 10.4vh;
-    margin-left: 3.25vh;
+    height: 100%;
+    width: 100%;
     border-radius: 50%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -55,8 +71,8 @@
     font-weight: lighter;
     color: aliceblue;
     margin-bottom: 1.3vh;
-    margin-left: 2.6vh;
-    margin-right: 2.6vh;
+    margin-left: 1.57%;
+    margin-right: 1.57%;
 }
 
 
@@ -64,14 +80,14 @@
 
 .create{
     height: 4.35vh;
-    width: 27.4vh;
-    padding:  0.26vh 3.9vh;
-    font-size: 2.21vh;
+    width: 16vw;
+    padding:  0.26vh 11%;
+    font-size: 105%;
     font-weight: 600;
     border: solid rgb(228, 204, 96);
     border-radius: 3.9vh;
     cursor: pointer;
-    background-image: url("create-button.png");
+    background-image: url("dashboard_assets/create-button.png");
     background-size: cover;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: white;
@@ -81,6 +97,7 @@
     transform: scale(1.1); 
     box-shadow: 0 0 1.3vh 0.65vh rgba(228, 204, 96, 0.8);
 }
+
 
 
 /* ------------------------join quiz button------------------------ */
@@ -94,7 +111,7 @@
     border: solid rgb(228, 204, 96);
     border-radius: 3.9vh;
     cursor: pointer;
-    background-image: url("join-button.png");
+    background-image: url("dashboard_assets/join-button.png");
     background-size: cover;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: rgb(255, 255, 255);
@@ -233,7 +250,7 @@
 #container1 { 
     position: relative; 
     top: 1.3vh;
-    width: 156vh; 
+    width: 85%; 
     height: 100%; 
     overflow: hidden; 
     z-index: 5;
@@ -320,7 +337,8 @@
 }
 
  .quiz1 img, .quiz2 img { 
-    height: 35.1vh; 
+    height: 90%; 
+    width: 40%;
     margin-left: 2.6vh; 
     margin-top: 1.95vh; 
 }
@@ -331,16 +349,16 @@
     display: flex; 
     justify-content: space-around; 
     align-items: center; 
-    height: 230px;
-    width: 900px;
-    margin-top: 10px;
-    margin-left: 80px;
+    height: 34vh;
+    width: 63%;
+    margin-top: 1.47vh;
+    margin-left: 5.6%;
     z-index: 1;
 }
 
 .fquiz{
-    height: 200px;
-    width: 290px;
+    height: 86%;
+    width: 32%;
     background-color: rgb(205, 235, 255);
     text-align: center;
     border-radius: 10%;
@@ -353,7 +371,7 @@
 
 
 #fquiz1{
-    background-image: url("olympics.avif");
+    background-image: url("dashboard_assets/olympics.avif");
     background-size: cover;
 }
 
