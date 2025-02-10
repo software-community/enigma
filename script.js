@@ -36,3 +36,18 @@ document.querySelectorAll('.takeQuiz').forEach(button => {
     });
 });
 
+
+// document.getElementById('friendsButton').addEventListener('click', function() {
+//     document.getElementById('friendsWindow').style.display = 'block';
+// });
+
+// document.getElementById('closeButton').addEventListener('click', function() {
+//     document.getElementById('friendsWindow').style.display = 'none';
+// });
+
+// // Optionally, close the friends window if clicking outside of it
+// window.addEventListener('click', function(event) {
+//     if (event.target === document.getElementById('friendsWindow')) {
+//         document.getElementById('friendsWindow').style.display = 'none';
+//     }
+// });

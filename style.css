@@ -9,25 +9,60 @@
     font-style: normal;
 }
 
+body{
+    background: hsla(294, 100%, 55%, 1);
+
+    background: linear-gradient(135deg, hsla(294, 100%, 55%, 1) 0%, hsla(197, 100%, 63%, 1) 100%);
+
+    background: -moz-linear-gradient(135deg, hsla(294, 100%, 55%, 1) 0%, hsla(197, 100%, 63%, 1) 100%);
+
+    background: -webkit-linear-gradient(135deg, hsla(294, 100%, 55%, 1) 0%, hsla(197, 100%, 63%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E81CFF", endColorstr="#40C9FF", GradientType=1 );
+}
+
+/* .golden-strip {
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 300px;
+    height: 30px;
+    background: linear-gradient(45deg, #ffd700, #ffcc00); /* Golden gradient */
+    transform: rotate(45deg);
+    animation: move-strip 10s linear infinite;
+}
+
+@keyframes move-strip {
+    from {
+        top: -100px;
+        left: -100px;
+    }
+    to {
+        top: 100vh;
+        left: 100vw;
+    }
+} */
+
 html, body{
     margin: 0;
     padding: 0;
     width: 100vw; 
+    overflow-x: hidden;
 }
 /* --------------------container code---------------------- */
 
 #container{
     /* position: sticky;
     top: 0; */
-    width: 100vw;
+    width: 100;
     height: 13vh;
     background-color: black;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    /* padding: 0 2.6vw; */
-    gap: 2.6vh;
+    padding: 0 2.6vw;
+    gap: 2.4vw;
 }
 
 /* --------------------setting alignments--------------------------- */
@@ -41,20 +76,17 @@ html, body{
 /* --------------------------logo-------------------------- */
 
 .logo{
-    height:  11vh;
-    width: 6.55%;
+    /* height:  11vh; */
+    /* width: 6.55%; */
     padding-left: 3%;
 }
 
-.logo a{
-    height: 100%;
-    width: 100%
-}
-
 .logo img{
-    height: 100%;
-    width: 100%;
+    /* height: clamp(90px , 150px , 12vh); */
+    /* width: 100%; */
+    max-height: 12vh;
     border-radius: 50%;
+    
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -80,15 +112,18 @@ html, body{
 
 .create{
     height: 4.35vh;
-    width: 16vw;
+    width: 14.5vw;
     padding:  0.26vh 11%;
-    font-size: 105%;
+    font-size: clamp(50% , 1.3vw , 105%);
     font-weight: 600;
     border: solid rgb(228, 204, 96);
     border-radius: 3.9vh;
     cursor: pointer;
-    background-image: url("dashboard_assets/create-button.png");
-    background-size: cover;
+    background: hsla(300, 51%, 86%, 1);
+    background: linear-gradient(0deg, hsla(300, 51%, 86%, 1) 0%, hsla(300, 52%, 52%, 1) 80%);
+    background: -moz-linear-gradient(0deg, hsla(300, 51%, 86%, 1) 0%, hsla(300, 52%, 52%, 1) 80%);
+    background: -webkit-linear-gradient(0deg, hsla(300, 51%, 86%, 1) 0%, hsla(300, 52%, 52%, 1) 80%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#EECBEE", endColorstr="#C443C4", GradientType=1 );
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: white;
 }
@@ -104,15 +139,18 @@ html, body{
 
 .join{
     height: 4.35vh;
-    width: 27.4vh;
-    padding:  0.26vh 3.9vh;
-    font-size: 2.3vh;
+    width: 14.5vw;
+    padding: 0.26vh 11%; 
+    font-size: clamp(50% , 1.3vw , 105%);
     font-weight: 600;
     border: solid rgb(228, 204, 96);
     border-radius: 3.9vh;
     cursor: pointer;
-    background-image: url("dashboard_assets/join-button.png");
-    background-size: cover;
+    background: hsla(207, 65%, 81%, 1);
+    background: linear-gradient(0deg, hsla(207, 65%, 81%, 1) 0%, hsla(212, 85%, 50%, 1) 80%);
+    background: -moz-linear-gradient(0deg, hsla(207, 65%, 81%, 1) 0%, hsla(212, 85%, 50%, 1) 80%);
+    background: -webkit-linear-gradient(0deg, hsla(207, 65%, 81%, 1) 0%, hsla(212, 85%, 50%, 1) 80%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B0D2EE", endColorstr="#1378EC", GradientType=1 );
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: rgb(255, 255, 255);
 }
@@ -168,7 +206,7 @@ html, body{
     font-weight: bold;
     cursor: pointer; 
     padding: 1.3vh 5.2vh; 
-    font-size: 2.6vh; 
+    font-size: clamp(50% , 1.3vw , 105%);; 
     color: rgb(127, 212, 233); 
     z-index: 10;
 } 
@@ -348,17 +386,20 @@ html, body{
 .featuredQuizzes{
     display: flex; 
     justify-content: space-around; 
+    flex-direction: row;
     align-items: center; 
-    height: 34vh;
-    width: 63%;
+    height: 40vh;
+    width: clamp(350px, 63%, 1300px);
     margin-top: 1.47vh;
     margin-left: 5.6%;
     z-index: 1;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .fquiz{
-    height: 86%;
-    width: 32%;
+    height: 80%;
+    width: clamp(250px, 32%, 400px);
     background-color: rgb(205, 235, 255);
     text-align: center;
     border-radius: 10%;
@@ -366,6 +407,8 @@ html, body{
     border-bottom-left-radius: 0; 
     border-bottom-right-radius: 0%; 
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    flex-shrink: 0;
+    margin-right: 3%;
 }
 
 
@@ -373,12 +416,13 @@ html, body{
 #fquiz1{
     background-image: url("dashboard_assets/olympics.avif");
     background-size: cover;
+    margin-left: 5%;
 }
 
 
 .fquiz:hover { 
-    transform: scale(1.3); 
-    z-index: 10;
+    transform: scale(1.12); 
+    z-index: 100;
 } 
 
 .fquizTitleBox{
@@ -432,4 +476,434 @@ html, body{
 
 .separator2{
     position: relative;
+}
+
+/* Friends Button */
+/* .friends-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.friends-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.friends-button i {
+    font-size: 24px;
+} */
+
+/* -----------------------Friends Window------------------------------ */
+
+#friendsWindow{
+    bottom: 50px;
+    right: 50px;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    height: 500px;
+    width: 350px;
+    background: linear-gradient(to bottom, black 15%, white 15%);
+    z-index: 10000;
+    border-radius: 5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0);
+}
+
+
+/* ----------------------------Friends Window Headline---------------------------- */
+.fa-circle-dot{
+    color: rgb(55, 190, 43);
+}
+
+.friends-headline{
+    position: relative;
+    top: 4%;
+    font-size: 24px;
+    color: white;
+}
+
+/* ----------------------------Search Box--------------------------------- */
+
+.friends-search-box{
+    position: relative;
+    top: 12%;
+    background-color: rgb(230, 231, 231);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#userInput{
+    position: relative;
+    font-size: 20px;
+    width: 200px;
+    background-color: rgb(230, 231, 231);
+    border: 1px solid rgb(230, 231, 231);
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+#search-button{
+    padding: 11px 20px;
+    font-size: 20px;
+    border: none;
+    background-color: rgb(230, 231, 231);
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.fa-magnifying-glass{
+    color: #777575;
+}
+
+/* ----------------------------Friends List--------------------------------- */
+
+.friends-list {
+    position: relative;
+    top: 13%;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    width: 85%;
+    height: 60%;
+    overflow-y: auto;
+}
+
+/* ---------------------------Friend List Item---------------------------- */
+
+.friend-item {
+    display: flex;
+    flex-direction: row;
+    height: 15%;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.friend-name{
+    font-size: 18px;
+    margin: auto auto auto 5%;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.friend-name:hover{
+    text-decoration: underline;
+}
+
+.friend-profile-pic{
+    height: 100%;    
+    border-radius: 50%;
+    margin-left: 1px;
+}
+
+.friend-item:last-child {
+    border-bottom: none;
+}
+
+.fa-message{
+    position: relative;
+    font-size: 18px;
+    color: black;
+    margin: 80% auto auto 20%;
+}
+
+/* ----------------------------Close Button------------------------------- */
+.fa-circle-xmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    transition: transform 0.2s ease;
+}
+
+.fa-circle-xmark:hover {
+    transform: scale(1.2);
+    color: red; 
+}
+
+/* ------------------------------footer--------------------------------- */
+
+#footer {
+    position: relative;
+    bottom: 0;
+    background-color: #222;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 2rem;
+    z-index: 1000;
+  }
+  
+  .footer-1,
+  .footer-2,
+  .footer-3,
+  .footer-4 {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .footer-1 h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00b4d8;
+  }
+  
+  .footer-links {
+    text-align: left;
+    color: #aaa;
+  }
+  
+  .footer-links h4 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-links a {
+    color: #00b4d8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover {
+    color: #90e0ef;
+  }
+  
+  .footer-2 h3,
+  .footer-2 h4 {
+    margin-bottom: 0.5rem;
+    color: #f0f0f0;
+  }
+  
+  .footer-3 iframe {
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    margin-top: 1rem;
+  }
+  
+  .footer-4 {
+    text-align: center;
+  }
+  
+  .footer-4 h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #f0f0f0;
+  }
+  
+  .footer-4 h4 {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #aaa;
+  }
+  
+  .footer-4-2 {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .footer-icons {
+    width: 32px;
+    height: 32px;
+    fill: #00b4d8;
+    transition: transform 0.3s ease, fill 0.3s ease;
+  }
+  
+  .footer-icons:hover {
+    transform: scale(1.2);
+    fill: #90e0ef;
+  }
+  
+  @media (max-width: 768px) {
+    #footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+  
+    .footer-1,
+    .footer-2,
+    .footer-3,
+    .footer-4 {
+        flex: none;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+  
+    .footer-3 iframe {
+        max-width: 100%;
+        height: 250px;
+    }
+  
+    .footer-4-2 {
+        gap: 1rem;
+    }
+  }
+
+/* --------------------------Sidebar-Navbar----------------------------- */
+.sidebar-navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 13vh;
+    width: 100%;
+    background-color: black;
+}
+
+#sidebar-button{
+    color: white;
+    font-size: 5vh;
+    font-weight: lighter;
+}
+
+
+/* ------------------------------------------------ */
+#container {
+    display: flex;
+}
+
+.sidebar-navbar {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    #container {
+        display: none;
+    }
+
+    .sidebar-navbar{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        height: 13vh;
+        width: 100%;
+        background-color: black;
+        flex-wrap: wrap;
+    }
+    
+    .fa-bars{
+        color: white;
+        font-size: 5vh;
+        font-weight: lighter;
+    }
+    
+    .logo1{
+        padding: auto;
+    }
+    .logo1 img{
+        max-height: 12vh;
+        border-radius: 50%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .logo1 img:hover{
+        transform: scale(1.1); 
+        box-shadow: 0 0 1.3vh 0.65vh rgba(255, 255, 255, 0.8);
+    }
+    
+    .profile-pic1{
+        height: 6.5vh;
+        width: 6.5vh;
+        border-radius: 50%;
+        border: solid rgb(228, 204, 96);
+        margin-right: 1.3vh;
+    }
+}
+
+.join-quiz-page{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.join-quiz-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 60%;
+    width: 30%;
+    background-color: white;
+    border-radius: 8%;
+}
+
+.join-quiz-title{
+    font-size: 4vh;
+    font-weight: 700;
+}
+
+.join-quiz-input{
+    width: 80%;
+    font-size: 120%;
+}
+
+.join-button button{
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    cursor: pointer;
+    font-size: 3vh;
+}
+
+.join-button{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -20%;
+    height: 6vh;
+    width: 14.5vw; 
+    font-size: clamp(50% , 1.3vw , 105%);
+    font-weight: 600;
+    border: solid rgb(228, 204, 96);
+    border-radius: 3.9vh;
+    cursor: pointer;
+    background: hsla(207, 65%, 81%, 1);
+    background: linear-gradient(0deg, hsla(207, 65%, 81%, 1) 0%, hsla(212, 85%, 50%, 1) 80%);
+    background: -moz-linear-gradient(0deg, hsla(207, 65%, 81%, 1) 0%, hsla(212, 85%, 50%, 1) 80%);
+    background: -webkit-linear-gradient(0deg, hsla(207, 65%, 81%, 1) 0%, hsla(212, 85%, 50%, 1) 80%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B0D2EE", endColorstr="#1378EC", GradientType=1 );
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: rgb(255, 255, 255);
 }
