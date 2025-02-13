@@ -640,17 +640,17 @@
 
 }
 
-
-/* Corrected input selector */
+/* General styling for all inputs */
 input[type="text"],
 input[type="time"],
 input[type="date"],
 input[type="file"],
 input[type="number"] {
   flex: 1;
+  width: 100%;
   padding: 12px;
   border: 2px solid rgba(255, 255, 255, 0.5);
-  margin: 10px 0; /* Combines top and bottom margins */
+  margin: 10px 0;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -658,26 +658,62 @@ input[type="number"] {
   font-size: 16px;
   outline: none;
   transition: all 0.3s ease-in-out;
+  text-align: center; /* Keep text alignment same */
 }
 
-/* Corrected placeholder selector */
-input[type="text"]::placeholder,
-input[type="time"]::placeholder,
-input[type="date"]::placeholder,
-input[type="file"]::placeholder,
-input[type="number"]::placeholder {
+/* Placeholder text */
+input::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Corrected focus selector */
-input[type="text"]:focus,
-input[type="time"]:focus,
-input[type="date"]:focus,
-input[type="file"]:focus,
-input[type="number"]:focus {
+/* Focus effects */
+input:focus {
   border-color: rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Hide default file input */
+input[type="file"] {
+  display: none;
+}
+
+/* Custom file input button */
+.questionInput-image + label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap; /* Ensures "Display Image" stays in one line */
+}
+
+/* Hover effect */
+.questionInput-image + label:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Active effect */
+.questionInput-image:focus + label,
+.questionInput-image:active + label {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Custom text change when a file is selected */
+.questionInput-image + label::after {
+  content: "Attach A Display Image for the Quiz";
+}
+
+.questionInput-image:valid + label::after {
+  content: "File Selected!";
 }
 
 
@@ -800,6 +836,7 @@ color: white; /* Optional: Change text color for better contrast */
   scroll-behavior: smooth;
   width: 100%;
   scrollbar-width: none;
+  transition: transform 0.4s ease-in-out;
 }
 
 .quiz-slide {
@@ -809,6 +846,8 @@ color: white; /* Optional: Change text color for better contrast */
   padding: 20px;
   border-radius: 15px;
   text-align: center;
+  transition: transform 0.4s ease-in-out;
+
 }
 
 .quiz-slide.active {
@@ -837,24 +876,6 @@ color: white; /* Optional: Change text color for better contrast */
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-
-.questionInput-image::-webkit-file-upload-button {
-  font-size: 15px;
-  border-radius: 3.9vh;
-  font-weight: 600;
-  cursor: pointer;
-  border-color: rgb(127, 212, 233);
-  color: #c443c4;
-  background: linear-gradient(145deg, transparent, transparent 40%, #c443c4 50%, transparent 60%, transparent); 
-  background-size: 200% 200%; 
-  transition: background-position 0.2s;
-}
-
-.questionInput-image::-webkit-file-upload-button:hover {
-  background: #d7e8f6;
-  border-color: #6f90a0;
-  transform: translateY(-1px);
-}
 
 
 
@@ -893,26 +914,60 @@ color: white; /* Optional: Change text color for better contrast */
 
 @media (max-width: 768px) {
   .quiz-wrapper-container {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      align-items: flex-start; /* Aligns content to the left */
+      justify-content: flex-start;
+      width: 100%;
   }
 
   #quiz-container {
-    width: 90%; /* Prevents overflow */
-    margin: 20px auto;
+      width: 100%; /* Ensures full width */
+      margin: 10px 0; /* Prevents unwanted centering */
+      justify-content: flex-start;
   }
 
   .quiz-info-slide-horizontal {
-    flex-direction: column;
-    gap: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Aligns text to the left */
+      width: 100%;
+      gap: 5px;
+  }
+
+  .quiz-info-slide-horizontal input {
+      width: 100%; /* Makes input boxes occupy full width */
+      max-width: 100%; /* Prevents any shrinking */
+      box-sizing: border-box; /* Ensures padding doesn’t affect width */
+  }
+
+  .quiz-info-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Align text to the left */
+      justify-content: flex-start;
+      width: 100%;
+  }
+
+  /* Keep the ADD QUESTIONS button centered */
+  .quiz-info-slide-horizontal-button {
+      width: 100%;
+      display: flex;
+      justify-content: center; /* Keeps button centered */
+  }
+
+  #addQuestions {
+      text-align: center;
+      width: auto; /* Keeps its normal width */
   }
 
   #prevBtn,
   #nextBtn {
-    font-size: 16px;
-    padding: 6px 10px;
+      font-size: 16px;
+      padding: 6px 10px;
+      align-self: flex-start; /* Pushes buttons to the left */
   }
 }
+
 
 @media (max-width: 480px) {
   .quiz-slide h1 {
