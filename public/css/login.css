@@ -659,7 +659,7 @@ input[type="number"] {
   outline: none;
   transition: all 0.3s ease-in-out;
   text-align: center; /* Keep text alignment same */
-}
+  }
 
 /* Placeholder text */
 input::placeholder {
@@ -673,10 +673,21 @@ input:focus {
   box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
 }
 
+
 /* Hide default file input */
 input[type="file"] {
   display: none;
 }
+
+/* Remove the default date icon in Chrome/Safari */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Converts dark icons to white */
+  opacity: 1;
+  cursor: pointer;
+}
+
+
 
 /* Custom file input button */
 .questionInput-image + label {
@@ -692,6 +703,8 @@ input[type="file"] {
   font-size: 16px;
   transition: all 0.3s ease-in-out;
   white-space: nowrap; /* Ensures "Display Image" stays in one line */
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Hover effect */
@@ -725,23 +738,31 @@ input.glow {
 
 
 .optionLetters {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
-  background-color: #f8a464;
-  color: black;
-  border: none;
-  border-radius: 4px; /* Slightly rounded corners */
-  display: flex;
-  align-items: center;
+  display: inline-flex;
   justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: #f8a464;
+  color: white;
+  font-weight: bold;
   font-size: 14px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .optionLetters:hover {
-transform: scale(1.1);
+  transform: scale(1.1);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
 }
+
+.optionLetters:active {
+  transform: scale(0.95);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 
 .optionLetters-clicked {
 background-color: limegreen !important; /* Highlight color for clicked state */
@@ -750,7 +771,8 @@ color: white; /* Optional: Change text color for better contrast */
 
 
 .questionInput {
-  width: 580px; /* Set a maximum width */
+  max-width: 730px; /* Set a maximum width */
+  margin-bottom: 30px;
 }
 
 .quiz-info-slide-horizontal{
@@ -840,13 +862,12 @@ color: white; /* Optional: Change text color for better contrast */
 }
 
 .quiz-slide {
-  display: none;
   flex: 0 0 100%; /* Ensure each slide takes full width */
   box-sizing: border-box;
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-  transition: transform 0.4s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 
 }
 
@@ -902,17 +923,14 @@ color: white; /* Optional: Change text color for better contrast */
 
 
 
-/* Ensuring form elements adjust properly */
-@media (max-width: 1024px) {
-  .questionInput {
-    width: 100%; /* Allows inputs to scale properly */
-  }
-  .questionInput-image {
-      width: 100%; /* Allows inputs to scale properly */
-    }
-}
+
 
 @media (max-width: 768px) {
+
+
+#prevBtn, #nextBtn{
+  display: none;
+}
   .quiz-wrapper-container {
       flex-direction: column;
       align-items: flex-start; /* Aligns content to the left */
@@ -957,7 +975,6 @@ color: white; /* Optional: Change text color for better contrast */
 
   #addQuestions {
       text-align: center;
-      width: auto; /* Keeps its normal width */
   }
 
   #prevBtn,
