@@ -261,11 +261,15 @@
 
     /* tables */
 
+.tab{
+    
+}
+    
 .attended{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    max-height: 55vh;
+    /* max-height: 55vh; */
     align-items: center;
     overflow-y: auto;
 }
@@ -279,35 +283,49 @@
     padding: 10px;
 }
 
-#attended_table{
+.icon{
+    width: 70vw;
+    display: flex;
+    justify-content: space-between;
+}
+.icon h1{
+    font-size: clamp(.9rem, 1.5vw, 2rem);
+    letter-spacing: clamp(.02rem,.04rem);
+    font-weight: 600;
+    margin: 10px 0 10px 0;
+}
+#prev_page1,#next_page1,#prev_page2,#next_page2{
+    cursor: pointer;
+}
+
+#attended_table,#hosted_table{
     /* width: 100%; */
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
+    background-color: rgb(255, 240, 143);
     border: 1.5px solid black;
+    border-radius: 10px;
 }
 
-#attended_table tr:nth-child(odd){
-    background-color: rgba(205, 205, 205, 0.551);
-}
-
-#attended_table tr:hover{
-    background-color: rgba(255, 239, 8, 0.433);
-}
-
-#attended_table tbody td{
+#attended_table td,#hosted_table td{
     padding: 3vw 1.2vw;
     text-align: center;
-    border-right: 1.5px solid black;
+    /* border-right: 1.5px solid black; */
     font-size: clamp( 10px , 20px , 3.5vw);
 }
 
-#attended_table thead th{
-    background-color: white;
+#attended_table th,#hosted_table th{
+    background-color: rgb(254, 166, 166);
     font-size: clamp( 10px , 20px , 3.5vw);
     font-family: "Montserrat";
+    border-radius: 20px;
+    scale: 0.9;
     padding: clamp(5px , 50px , 3vw) ;
     text-align: center;
-    border-right: 1.5px solid black;
+    /* border-right: 1.5px solid black; */
     text-transform: capitalize;
+}
+#hosted_table{
+    max-width: 80vw;
 }
 
 #searchbutton #sort{

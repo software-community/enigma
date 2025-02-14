@@ -160,6 +160,9 @@
     font-weight: 600;
     margin: 10px 0 10px 0;
 }
+#prev_page,#next_page{
+    cursor: pointer;
+}
 
 @media (max-width: 800px) {
     body{
