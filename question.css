@@ -75,8 +75,14 @@ body{
 }
 #faltu2{
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav{
+    display: flex;
     justify-content: space-between;
     align-items: space-between;
+    width: 80vw;
 }
 
 #prevBtn, #nextBtn {

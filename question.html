@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="question.css">
-    <link rel="stylesheet" href="public/css/login.css">
+    <!-- <link rel="stylesheet" href="public/css/login.css"> -->
     <!-- <link rel="stylesheet" href="login.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link
@@ -154,143 +154,125 @@
 
 // Array of question objects
 const quizData = [
-      {
-        ques_no: "Ques1",
-        statement: "Lorem ipsum dolor sit ammilique incidunt optio sapiente enim dolorem debitis, quia in molestiae? Inventore, officia. Fuga hic ea cumque culpa?",
-        options: [
-          "all options below this are correct",
-          "the option above this is correct",
-          "the option below this is wrong",
-          "all options above this are wrong"
-        ]
-      },
-      {
-        ques_no: "Ques2",
-        statement: "What is the capital of France?",
-        options: [
-          "Berlin",
-          "London",
-          "Paris",
-          "Madrid"
-        ]
-      },
-      {
-        ques_no: "Ques3",
-        statement: "Which planet is known as the Red Planet?",
-        options: [
-          "Venus",
-          "Mars",
-          "Jupiter",
-          "Saturn"
-        ]
-      }
-    ];
+  {
+    ques_no: "Ques1",
+    statement: "Lorem ipsum dolor sit ammilique incidunt optio sapiente enim dolorem debitis, quia in molestiae? Inventore, officia. Fuga hic ea cumque culpa?",
+    options: [
+      "all options below this are correct",
+      "the option above this is correct",
+      "the option below this is wrong",
+      "all options above this are wrong"
+    ]
+  },
+  {
+    ques_no: "Ques2",
+    statement: "What is the capital of France?",
+    options: [
+      "Berlin",
+      "London",
+      "Paris",
+      "Madrid"
+    ]
+  },
+  {
+    ques_no: "Ques3",
+    statement: "Which planet is known as the Red Planet?",
+    options: [
+      "Venus",
+      "Mars",
+      "Jupiter",
+      "Saturn"
+    ]
+  }
+];
 
-    // Track the current visible question index
-    let currentQuestionIndex = 0;
+// Current question index
+let currentQuestionIndex = 0;
 
-    // Function to render quiz questions
-    function renderQuiz() {
-      const container = document.getElementById("add_here");
-      container.innerHTML = ""; // Clear any previous content
+// Function to render a single question based on index
+function renderQuiz() {
+  const container = document.getElementById("add_here");
+  container.innerHTML = ""; // Clear previous question
 
-      quizData.forEach((question, qIndex) => {
-        // Create a container div for each question with class "question"
-        const questionDiv = document.createElement("div");
-        questionDiv.className = "question";
-        // Add the "active" class to only the first question
-        if(qIndex === 0) {
-          questionDiv.classList.add("active");
-        }
+  const question = quizData[currentQuestionIndex];
 
-        // Create and append the question number element
-        const quesNo = document.createElement("h1");
-        quesNo.className = "ques_no";
-        quesNo.textContent = question.ques_no;
-        questionDiv.appendChild(quesNo);
+  // Create a container div for the question
+  const questionDiv = document.createElement("div");
+  questionDiv.className = "question";
 
-        // Create and append the statement element
-        const statementDiv = document.createElement("div");
-        statementDiv.className = "statement";
-        statementDiv.textContent = question.statement;
-        questionDiv.appendChild(statementDiv);
+  // Create question number element
+  const quesNo = document.createElement("h1");
+  quesNo.className = "ques_no";
+  quesNo.textContent = question.ques_no;
+  questionDiv.appendChild(quesNo);
 
-        // Create the options container
-        const optionsDiv = document.createElement("div");
-        optionsDiv.className = "option_s";
+  // Create question statement
+  const statementDiv = document.createElement("div");
+  statementDiv.className = "statement";
+  statementDiv.textContent = question.statement;
+  questionDiv.appendChild(statementDiv);
 
-        question.options.forEach((optionText, oIndex) => {
-          // Create a unique id for each option (e.g., "option_1_2")
-          const optionId = `option_${qIndex + 1}_${oIndex + 1}`;
-          // Radio buttons for each question share the same name (e.g., "opt_1")
-          const optionName = `opt_${qIndex + 1}`;
+  // Create options container
+  const optionsDiv = document.createElement("div");
+  optionsDiv.className = "option_s";
 
-          // Create the label element
-          const label = document.createElement("label");
-          label.setAttribute("for", optionId);
+  question.options.forEach((optionText, oIndex) => {
+    const optionId = `option_${currentQuestionIndex + 1}_${oIndex + 1}`;
+    const optionName = `opt_${currentQuestionIndex + 1}`;
 
-          // Create the inner option div with the required classes
-          const optionDiv = document.createElement("div");
-          optionDiv.className = `option${oIndex + 1} option`;
+    const label = document.createElement("label");
+    label.setAttribute("for", optionId);
 
-          // Create the radio input
-          const radioInput = document.createElement("input");
-          radioInput.type = "radio";
-          radioInput.id = optionId;
-          radioInput.name = optionName;
-          radioInput.className = "bait";
+    const optionDiv = document.createElement("div");
+    optionDiv.className = `option${oIndex + 1} option`;
 
-          // Append the radio input and option text into the option div
-          optionDiv.appendChild(radioInput);
-          optionDiv.appendChild(document.createTextNode(optionText));
+    const radioInput = document.createElement("input");
+    radioInput.type = "radio";
+    radioInput.id = optionId;
+    radioInput.name = optionName;
+    radioInput.className = "bait";
 
-          // Append the option div to the label, then the label to the options container
-          label.appendChild(optionDiv);
-          optionsDiv.appendChild(label);
-        });
+    optionDiv.appendChild(radioInput);
+    optionDiv.appendChild(document.createTextNode(" " + optionText));
 
-        // Append the options container to the question container
-        questionDiv.appendChild(optionsDiv);
-        // Append the question container to the main container
-        container.appendChild(questionDiv);
-      });
+    label.appendChild(optionDiv);
+    optionsDiv.appendChild(label);
+  });
+
+  questionDiv.appendChild(optionsDiv);
+  container.appendChild(questionDiv);
+}
+
+// Function to navigate between questions
+function showQuestion(index) {
+  if (index >= 0 && index < quizData.length) {
+    currentQuestionIndex = index;
+    renderQuiz(); // Rerender quiz with new question
+  }
+}
+
+// Set up navigation buttons
+function setupNavigation() {
+  document.getElementById("prevBtn").addEventListener("click", function (event) {
+    event.preventDefault();
+    if (currentQuestionIndex > 0) {
+      showQuestion(currentQuestionIndex - 1);
     }
+  });
 
-    // Function to show only the question at the given index
-    function showQuestion(index) {
-      const questions = document.querySelectorAll(".question");
-      // Remove "active" class from all questions (hide them)
-      questions.forEach(q => q.classList.remove("active"));
-      // Add "active" class to the current question
-      if (questions[index]) {
-        questions[index].classList.add("active");
-      }
+  document.getElementById("nextBtn").addEventListener("click", function (event) {
+    event.preventDefault();
+    if (currentQuestionIndex < quizData.length - 1) {
+      showQuestion(currentQuestionIndex + 1);
     }
+  });
+}
 
-    // Setup navigation for the "prev" and "next" buttons
-    function setupNavigation() {
-      document.getElementById("prevBtn").addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent default button behavior
-        if (currentQuestionIndex > 0) {
-          currentQuestionIndex--;
-          showQuestion(currentQuestionIndex);
-        }
-      });
-
-      document.getElementById("nextBtn").addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent default button behavior
-        if (currentQuestionIndex < quizData.length - 1) {
-          currentQuestionIndex++;
-          showQuestion(currentQuestionIndex);
-        }
-      });
-    }
-
-    // Initialize the quiz once the DOM is fully loaded
-    document.addEventListener("DOMContentLoaded", function() {
-      renderQuiz();
-      setupNavigation();
-    });
+// Initialize the quiz on page load
+document.addEventListener("DOMContentLoaded", function () {
+  renderQuiz();
+  setupNavigation();
+});
 
 // Function to start the timer
 
