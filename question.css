@@ -1,0 +1,308 @@
+body{
+    margin: 0;
+    margin-top: 5vh;
+    padding: 0;
+    font-family: "Montserrat","monospace";
+}
+
+.sidebar{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3vh;
+}
+
+.Quizname h1{
+    text-align: center;
+    font-size: clamp(2.5rem,3rem,7vh);
+    letter-spacing: .25rem;
+    font-weight: 350;
+    text-transform: uppercase ;
+}
+
+#main .statement{
+    margin: 8vh 5vw 3vh 0;
+    text-align: center;
+    font-size: clamp(1.35rem,1.7rem,2.7vw);
+    letter-spacing: .05vh;
+    font-weight: 490;
+    word-spacing: .3vw;
+}
+.custom{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+    background-color: rgba(237, 237, 237, 0.771);
+    border: .3px solid grey;
+}
+.option .check{
+    display: none;
+}
+.option_s{
+    margin-top: clamp(60px,150px,5vh);
+    margin-left: 3vw;
+}
+#main .option{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: clamp(1.2rem,1.5rem,2.7vw);
+    letter-spacing: .05vh;
+    font-weight: 450;
+    margin: 3vh;
+}
+#main label{
+    cursor: pointer;
+}
+ /* Timer container styling */
+ .timer-container {
+    background: #ffffff;
+    padding: 10px 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+
+  /* Timer display styling */
+  .timer {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Message styling */
+  .message {
+    margin-top: 5px;
+    font-size: 18px;
+    color: #666;
+  }
+
+/* Hide the default radio buttons */
+.option_s input[type="radio"] {
+    display: none;
+  }
+
+  /* Make the entire label clickable and provide left padding for the custom radio */
+  .option_s label {
+    position: relative;
+    padding-left: 35px; /* space for the custom radio */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; /* spacing between options */
+  }
+
+  /* Create the custom radio circle using the label's pseudo-element */
+  .option_s label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(196, 196, 196); /* default grey circle */
+    border: 3.5px solid white; /* white border */
+    box-sizing: border-box;
+    margin-left: 10px;
+  }
+  
+
+  /* When the radio input is checked, change the circle to light green */
+  .option_s label:has(input:checked)::before {
+    background-color: rgba(8, 255, 53, 0.826);
+  }
+  .option_s label:has(input:checked) {
+    background-color: rgba(8, 255, 53, 0.826);
+    border-radius: 13px;
+  }
+  
+
+.faltu{
+    display: flex;
+    justify-content: right;align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    margin-right: 10vw;
+    margin-bottom: 30px;
+}
+  #submit{
+    font-size: 20px;
+    padding: 7px 13px;
+    color: white;
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  #footer {
+    position: relative;
+    bottom: 0;
+    background-color: #222;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 2rem;
+    z-index: 1000;
+    }
+    
+    .footer-1,
+    .footer-2,
+    .footer-3,
+    .footer-4 {
+    flex: 1;
+    min-width: 200px;
+    }
+    
+    .footer-1 h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00b4d8;
+    }
+    
+    .footer-links {
+    text-align: left;
+    color: #aaa;
+    }
+    
+    .footer-links h4 {
+    color: white;
+    margin-bottom: 1rem;
+    }
+    
+    .footer-links ul {
+    list-style: none;
+    padding: 0;
+    }
+    
+    .footer-links li {
+    margin-bottom: 0.5rem;
+    }
+    
+    .footer-links a {
+    color: #00b4d8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+    color: #90e0ef;
+    }
+    
+    .footer-2 h3,
+    .footer-2 h4 {
+    margin-bottom: 0.5rem;
+    color: #f0f0f0;
+    }
+    
+    .footer-3 iframe {
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    margin-top: 1rem;
+    }
+    
+    .footer-4 {
+    text-align: center;
+    }
+    
+    .footer-4 h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #f0f0f0;
+    }
+    
+    .footer-4 h4 {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #aaa;
+    }
+    
+    .footer-4-2 {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    }
+    
+    .footer-icons {
+    width: 32px;
+    height: 32px;
+    fill: #00b4d8;
+    transition: transform 0.3s ease, fill 0.3s ease;
+    }
+    
+    .footer-icons:hover {
+    transform: scale(1.2);
+    fill: #90e0ef;
+    }
+    
+    @media (max-width: 768px) {
+    #footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-1,
+    .footer-2,
+    .footer-3,
+    .footer-4 {
+        flex: none;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer-3 iframe {
+        max-width: 100%;
+        height: 250px;
+    }
+    
+    .footer-4-2 {
+        gap: 1rem;
+    }
+    }
+    
+    .about-us{
+    margin: 5%;
+    margin-bottom: 8.5%;
+    display: flex;
+    flex-direction: column;
+    }
+  
+@media (min-width:800px) {
+    .sidebar{
+        display: block;
+    }
+    .small_screen{
+        display: none;
+    }
+    #main{
+    margin-left: 25vw;
+    margin-right: 5vw;
+    }
+
+}
+@media (max-width:800px) {
+    .small_screen{
+        display: block;
+    }
+    .sidebar{
+        display: none;
+    }
+    #main {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+}
