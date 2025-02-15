@@ -964,7 +964,7 @@ html, body{
     align-items: center;
     width: clamp(280px, 80%, 20000px);
     font-weight: 600;
-    margin-bottom: 30%;
+    margin-bottom: 0%;
 }
 
 .join-quiz-input input[type="text"] {
@@ -982,7 +982,13 @@ html, body{
     width: 200px; /* Set your desired width */
     padding: 10px; /* Optional padding for better appearance */
     font-size: 80%;
-  }
+}
+
+.not-found-message{
+    font-size: 2vh;
+    color: red;
+    margin-bottom: 10%;
+}
 
   
 
