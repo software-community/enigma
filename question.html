@@ -36,45 +36,37 @@
     </div> -->
 
     <!-- navigation for small screens -->
-    <div class="small_screen"><select name="questions" id="ques">
+    <!-- <div class="small_screen"><select name="questions" id="ques">
         <option value="">ques1</option>
         <option value="">ques2</option>
         <option value="">ques3</option>
         <option value="">ques4</option>
-    </select></div>
+    </select></div> -->
 
     <!-- questions portal -->
+     <div id="yuhi">
     <div id="main">
-
-        <div class="prev_q"></div>
-        <div class="next_q"></div>
 
         <!-- form element for final submission of test -->
         <form action="">
-
             <div id="add_here">
-                <div class="statement">Lorem ipsum dolor sit ammilique incidunt optio sapiente enim dolorem debitis, quia in molestiae? Inventore, officia. Fuga hic ea cumque culpa?</div>
-                <div class="option_s">
-            <label  for="option_1_1"> <div class="option1 option">
-                <input type="radio" id="option_1_1" name="opt_1" class="bait">all options below this are correct
-            </div></label>
-            <label  for="option_1_2"><div class="option2 option">
-                <input type="radio" id="option_1_2" name="opt_1" class="bait"> the option above this is correct
-            </div></label>
-            <label  for="option_1_3"><div class="option3 option">
-                <input type="radio" id="option_1_3" name="opt_1" class="bait">the option below this is wrong
-            </div></label>
-            <label  for="option_1_4"><div class="option4 option">
-                <input type="radio" id="option_1_4"name="opt_1" class="bait">all options above this are wrong
-            </div></label>
+              <!-- Questions will be dynamically rendered here -->
+            </div>
+            <div class="faltu">
+              <input type="submit" value="Submit quiz" id="submit">
+              <!-- <div class="undo_selection">undo selection</div> -->
+            </div>
+          </form>
+        </div>
+        
+    </div>
+    <div id="faltu2">
+        <div class="nav">
+        <button id="prevBtn">←</button>
+        <button id="nextBtn">→</button>
         </div>
     </div>
-        <div class="faltu">
-        <input type="submit" value="Submit quiz" id="submit">
-        <div class="undo_selection">undo selection</div>
-        </div>
-    </form>
-    </div>
+
     
     <!-- <div id="footer">
         <div class="footer-1">
@@ -160,84 +152,146 @@
 
     <script>  
 
-    const questions = [
-    {
-        statement: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+// Array of question objects
+const quizData = [
+      {
+        ques_no: "Ques1",
+        statement: "Lorem ipsum dolor sit ammilique incidunt optio sapiente enim dolorem debitis, quia in molestiae? Inventore, officia. Fuga hic ea cumque culpa?",
         options: [
-            { id: "option_1", text: "all options below this are correct" },
-            { id: "option_2", text: "the option above this is correct" },
-            { id: "option_3", text: "the option below this is wrong" },
-            { id: "option_4", text: "all options above this are wrong" }
+          "all options below this are correct",
+          "the option above this is correct",
+          "the option below this is wrong",
+          "all options above this are wrong"
         ]
-    },
-    {
-        statement: "Vivamus lacinia odio vitae vestibulum vestibulum.",
+      },
+      {
+        ques_no: "Ques2",
+        statement: "What is the capital of France?",
         options: [
-            { id: "option_1", text: "all options below this are correct" },
-            { id: "option_2", text: "the option above this is correct" },
-            { id: "option_3", text: "the option below this is wrong" },
-            { id: "option_4", text: "all options above this are wrong" }
+          "Berlin",
+          "London",
+          "Paris",
+          "Madrid"
         ]
-    },
-    {
-        statement: "Cras venenatis metus et libero tincidunt, at tincidunt lorem feugiat.",
+      },
+      {
+        ques_no: "Ques3",
+        statement: "Which planet is known as the Red Planet?",
         options: [
-            { id: "option_1", text: "all options below this are correct" },
-            { id: "option_2", text: "the option above this is correct" },
-            { id: "option_3", text: "the option below this is wrong" },
-            { id: "option_4", text: "all options above this are wrong" }
+          "Venus",
+          "Mars",
+          "Jupiter",
+          "Saturn"
         ]
-    }
-];
+      }
+    ];
 
-    // rendering questions
-    function renderQuestions() {
-            const container = document.getElementById("add_here");
-            container.innerHTML = ""; // Clear previous content
+    // Track the current visible question index
+    let currentQuestionIndex = 0;
 
-            questions.forEach((question, qIndex) => {
-                const questionDiv = document.createElement("div");
-                questionDiv.classList.add("question");
+    // Function to render quiz questions
+    function renderQuiz() {
+      const container = document.getElementById("add_here");
+      container.innerHTML = ""; // Clear any previous content
 
-                // Add the statement
-                const statementDiv = document.createElement("div");
-                statementDiv.classList.add("statement");
-                statementDiv.textContent = question.statement;
-                questionDiv.appendChild(statementDiv);
-
-                // Create options
-                const optionsDiv = document.createElement("div");
-                optionsDiv.classList.add("option_s");
-
-                question.options.forEach((optionText, oIndex) => {
-                    const optionId = `option_${qIndex + 1}_${oIndex + 1}`;
-                    const optionName = `opt_${qIndex + 1}`;
-
-                    const label = document.createElement("label");
-                    label.setAttribute("for", optionId);
-
-                    const optionDiv = document.createElement("div");
-                    optionDiv.classList.add(`option${oIndex + 1}`, "option");
-
-                    const radio = document.createElement("input");
-                    radio.setAttribute("type", "radio");
-                    radio.setAttribute("id", optionId);
-                    radio.setAttribute("name", optionName);
-                    radio.classList.add("bait");
-
-                    optionDiv.appendChild(radio);
-                    optionDiv.appendChild(document.createTextNode(" " + optionText));
-                    label.appendChild(optionDiv);
-                    optionsDiv.appendChild(label);
-                });
-
-                questionDiv.appendChild(optionsDiv);
-                container.appendChild(questionDiv);
-            });
+      quizData.forEach((question, qIndex) => {
+        // Create a container div for each question with class "question"
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "question";
+        // Add the "active" class to only the first question
+        if(qIndex === 0) {
+          questionDiv.classList.add("active");
         }
 
+        // Create and append the question number element
+        const quesNo = document.createElement("h1");
+        quesNo.className = "ques_no";
+        quesNo.textContent = question.ques_no;
+        questionDiv.appendChild(quesNo);
 
-     
+        // Create and append the statement element
+        const statementDiv = document.createElement("div");
+        statementDiv.className = "statement";
+        statementDiv.textContent = question.statement;
+        questionDiv.appendChild(statementDiv);
+
+        // Create the options container
+        const optionsDiv = document.createElement("div");
+        optionsDiv.className = "option_s";
+
+        question.options.forEach((optionText, oIndex) => {
+          // Create a unique id for each option (e.g., "option_1_2")
+          const optionId = `option_${qIndex + 1}_${oIndex + 1}`;
+          // Radio buttons for each question share the same name (e.g., "opt_1")
+          const optionName = `opt_${qIndex + 1}`;
+
+          // Create the label element
+          const label = document.createElement("label");
+          label.setAttribute("for", optionId);
+
+          // Create the inner option div with the required classes
+          const optionDiv = document.createElement("div");
+          optionDiv.className = `option${oIndex + 1} option`;
+
+          // Create the radio input
+          const radioInput = document.createElement("input");
+          radioInput.type = "radio";
+          radioInput.id = optionId;
+          radioInput.name = optionName;
+          radioInput.className = "bait";
+
+          // Append the radio input and option text into the option div
+          optionDiv.appendChild(radioInput);
+          optionDiv.appendChild(document.createTextNode(optionText));
+
+          // Append the option div to the label, then the label to the options container
+          label.appendChild(optionDiv);
+          optionsDiv.appendChild(label);
+        });
+
+        // Append the options container to the question container
+        questionDiv.appendChild(optionsDiv);
+        // Append the question container to the main container
+        container.appendChild(questionDiv);
+      });
+    }
+
+    // Function to show only the question at the given index
+    function showQuestion(index) {
+      const questions = document.querySelectorAll(".question");
+      // Remove "active" class from all questions (hide them)
+      questions.forEach(q => q.classList.remove("active"));
+      // Add "active" class to the current question
+      if (questions[index]) {
+        questions[index].classList.add("active");
+      }
+    }
+
+    // Setup navigation for the "prev" and "next" buttons
+    function setupNavigation() {
+      document.getElementById("prevBtn").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent default button behavior
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          showQuestion(currentQuestionIndex);
+        }
+      });
+
+      document.getElementById("nextBtn").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent default button behavior
+        if (currentQuestionIndex < quizData.length - 1) {
+          currentQuestionIndex++;
+          showQuestion(currentQuestionIndex);
+        }
+      });
+    }
+
+    // Initialize the quiz once the DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      renderQuiz();
+      setupNavigation();
+    });
+
 // Function to start the timer
 
     // Set the exam duration in seconds (e.g., 60 minutes = 3600 seconds)
