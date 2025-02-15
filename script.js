@@ -203,6 +203,37 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTable();
   });
   
-  
-  
-  
+  document.addEventListener("DOMContentLoaded", function () {
+    const sidebar = document.getElementById("sidebar");
+    const sidebarButton = document.getElementById("sidebar-button");
+    const dropdown = document.querySelector(".s-dropdown");
+    const dropdownToggle = document.getElementById("dropdown-toggle");
+
+    // Toggle Sidebar
+    sidebarButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        sidebar.classList.toggle("open");
+        event.stopPropagation(); // Prevents triggering the document click event
+    });
+
+    // Toggle Dropdown
+    dropdownToggle.addEventListener("click", function (event) {
+        event.preventDefault();
+        dropdown.classList.toggle("active");
+        event.stopPropagation(); // Prevents triggering the document click event
+    });
+
+    // Close Sidebar when clicking outside
+    document.addEventListener("click", function (event) {
+        if (!sidebar.contains(event.target) && !sidebarButton.contains(event.target)) {
+            sidebar.classList.remove("open");
+        }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+        if (!dropdown.contains(event.target) && !event.target.closest(".s-dropdown")) {
+            dropdown.classList.remove("active");
+        }
+    });
+});
