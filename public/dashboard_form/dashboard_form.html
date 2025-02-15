@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dashboard.css">
+  <title>Form</title>
+</head>
+<body>
+<!--<form id="userForm" action="" method="post">-->
+  <form id="userForm">
+    <fieldset class="fields">
+      <legend>INPUT DETAILS</legend>
+      
+      <label for="handlename">Enter User handle: </label>
+      <input id="handlename" type="text" name="handle" required>
+
+      <br>
+      <br>
+      <label for="CID">Enter Contest ID: </label>
+      <input id="CID" type="text" name="contestID" required>
+
+        <br>
+        <br>
+      <label for="player_mode">Player mode:</label>
+      <select id="player_mode">
+        <option value="Multi player">Multi Player</option>
+        <option value="Single player">Single Player</option>
+      </select>
+
+      <br>
+        <br>
+      <label for="date">Date of Quiz: </label>
+      <input id="date" type="date" required>
+      <br>
+      <br>
+        <button type="submit" id="subm">SUBMIT</button>
+
+    </fieldset>
+
+  </form>
+
+ 
+  
+<script>
+    const userForm = document.getElementById('userForm');
+    const userDetailsContainer = document.getElementById('userDetailsContainer');
+    
+    let usersArray = JSON.parse(localStorage.getItem('users')) || [];
+
+// Handle form submission
+userForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  
+  const name = document.getElementById('handlename').value;
+  const contest = document.getElementById('CID').value;
+  const mode= document.getElementById('player_mode').value;
+  const cdate = document.getElementById('date').value;
+  
+  const user = {name,contest,mode,cdate};
+
+  usersArray.push(user);
+  localStorage.setItem('users', JSON.stringify(usersArray));
+
+  displayUserDetails();
+
+  // clear the form
+  userForm.reset();
+  alert('User registered successfully!');
+
+  
+});
+  subm.addEventListener('click', () => {
+  window.location.href = 'grid.html';
+});
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/style_dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <div id="container" class="navbar">
+    <div class="logo">
+        <a href="/">
+            <img src="/common_assets/enigma-logo.jpg" alt="enigma">
+        </a>
+    </div>
+
+    <div class="separator">
+        |
+    </div>
+
+    <div class="createquiz">
+        <a href="#">
+            <form action="/quizes/create">
+            <button class="create">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Create a quiz
+            </button>
+        </form>
+        </a>
+    </div>
+
+    <div class="joinquiz">
+        <a href="#">
+            <form action="/quizes/join">
+            <button class="join">
+                <i class="fa-regular fa-clipboard"></i>
+                Join a quiz                 
+            </button>
+        </form>
+        </a>
+    </div>
+
+    <div class="socials">
+        <nav>
+            <ul class="menu">
+                <li class="menu-item">
+                    <i class="fa-regular fa-comment"></i>
+                    Socials
+                    <ul class="dropdown">
+                        <li><a href="#">Friends</a></li>
+                        <li><a href="#">Leaderboard</a></li>
+                        <li><a href="#">Club</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <% if (typeof username !== "undefined") { %>
+    <div class="profile">
+        <img src="/profilePics/<%='profile-'+username%>" onerror="this.onerror=null; this.src='/dashboard_assets/profile-pic.jpg';" alt="profile" class="profile-pic">
+        <nav>
+            <ul class="menu">
+                <li class="menu-item">
+                    Hey, <%=username%>!
+                    <ul class="dropdown">
+                        <li><form id="profile" action="/profile"></form>
+                            <a href="profile" onclick="document.getElementById('profile').submit(); return false;">My Profile</a></li>
+                        <li>
+                            <form id="logout" action="/auth/logout"></form>
+                            <a href="logout" onclick="document.getElementById('logout').submit(); return false;">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <% } else { %>
+        <div class="profile">
+            <nav>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <form action="/login" method="get">
+                        <button>Login</button>
+                    </form>
+                    </li>
+                    <li class="menu-item">
+                        <form action="/signup" method="get">
+                        <button>SignUp</button>
+                    </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <% } %>
+</div>

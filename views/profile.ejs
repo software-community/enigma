@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/account.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    
+    <%- include('navbar') %>
+
+    <!-- lil bit profile for others to see -->
+    <div id="profilecontainer">
+    
+      <div id="prof">
+      <div>
+          <img  id="dp"  src="profilePics/<%='profile-'+username%>" onerror="this.onerror=null; this.src='dashboard_assets/profile-pic.jpg';" alt="profile pic">
+      </div>
+      
+      <label for="changing_pic">
+          <input type="file" id="pic" accept="image/*" style="display: none;">
+          <input id="picbtn" type="submit" onclick="document.getElementById('pic').click()" value="change profile pic"> 
+         </label>
+
+        
+          <h1><%= username %></h1>
+
+          </div>
+        
+      
+
+      <!-- email notifications -->
+      <div id="email">
+        <h3>Registered Email id : <%= email %></h3>
+        <h3 id="mail">
+          Enable email notifications
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </h3>
+      </div>
+
+      <div style="margin-top: 20px" class="attended">
+        <h1>prev attended quizes</h1>
+
+        <% if(quizesTaken.length !=0) { %>
+        <table id="attended_table" class="tab">
+          <thead>
+            <tr>
+              <th>quiz</th>
+              <th>Date</th>
+              <th>score</th>
+              <th>stats</th>
+            </tr>
+          </thead>
+          <tbody id="append_new_data">
+          </tbody>
+        </table>
+        <div class="icon">
+          <div id="prev_page1"><h1> <i class="ri-arrow-left-circle-line"></i> prev page</h1></div>
+          <div id="next_page1"><h1>next page <i class="ri-arrow-right-circle-line"></i></h1></div>
+          </div>
+          </div> 
+        <% } else {%>
+        <p>You have not given any quizes yet</p>
+        <%}%>
+      </div>
+
+      <div style="margin-top: 20px" class="attended">
+        <h1>Previously hosted quizzes</h1>
+
+        <% if(quizesCreated.length !=0) { %>
+          <table id="hosted_table">
+          <thead>
+            <tr>
+              <th>quiz</th>
+              <th>schedule</th>
+              <th>participants</th>
+              <th>stats</th>
+            </tr>
+          </thead>
+          <tbody id="append_new_data2">
+          </tbody>
+        </table>
+        <div class="icon">
+          <div id="prev_page2"><h1> <i class="ri-arrow-left-circle-line"></i> prev page</h1></div>
+          <div id="next_page2"><h1>next page <i class="ri-arrow-right-circle-line"></i></h1></div>
+          </div>
+      </div> 
+        <% } else {%>
+        <p>You have not created any quizes yet</p>
+        <%}%>
+      </div>
+
+      <div style="margin-top: 20px" class="attended">
+        <h1>Scheduled Quizzes</h1>
+
+        <% if(quizesScheduled.length !=0) { %>
+        <table id="attended_table">
+          <thead>
+            <tr>
+              <th>quiz</th>
+              <th>schedule</th>
+              <th>participants</th>
+              <th>stats</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tbody id="append_new_data3">
+            </tbody>
+        </table>
+        <div class="icon">
+          <div id="prev_page3"><h1> <i class="ri-arrow-left-circle-line"></i> prev page</h1></div>
+          <div id="next_page3"><h1>next page <i class="ri-arrow-right-circle-line"></i></h1></div>
+          </div>
+      </div> 
+        <% } else {%>
+        <p>You have not scheduled any quizes yet</p>
+        <%}%>
+      </div>
+
+      <!-- delete acc -->
+      <div>
+        <button id="delete">Delete Account</button><br />
+        <h5>
+          Doing this will remove all your data. This action is irreversible.
+        </h5>
+      </div>
+    </div>
+
+    <script>
+            const quizesTaken = JSON.parse('<%-JSON.stringify(quizesTaken)%>')
+    
+    const quizData = quizesTaken.map((quizTaken)=>{
+      return { quiz: quizTaken.quiz.name, schedule: "XX-XX-20XX", score: quizTaken.score, quizId:quizTaken.quiz.quizId }
+    })
+    const rowsPerPage1 = 8;
+    let currentPage1 = 0;
+    function populateQuizList() {
+        const tableBody = document.getElementById("append_new_data");
+        tableBody.innerHTML = "";
+        const start = currentPage1 * rowsPerPage1;
+        const end = start + rowsPerPage1;
+        const paginatedList = quizData.slice(start, end);
+        paginatedList.forEach(quiz => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${quiz.quiz}</td>
+                <td>${quiz.schedule}</td>
+                <td>${quiz.score}</td>
+                <td><form
+                  id="taken${quiz.quizId}"
+                  action="/quizes/stats"
+                  method="post"
+                  hidden
+                >
+                  <input
+                    type="text"
+                    name="quizId"
+                    id="quizId"
+                    value="${quiz.quizId}"
+                  />
+                </form>
+                <a
+                  href="Stats"
+                  onclick="document.getElementById('taken${quiz.quizId}').submit(); return false;"
+                  >View Stats</a
+                ></td>
+            `;
+            tableBody.appendChild(row);
+        });
+        updateButtonState1();
+    }
+    function updateButtonState1() {
+        document.getElementById("prev_page1").style.opacity = currentPage1 === 0 ? "0.3" : "1";
+        document.getElementById("next_page1").style.opacity = (currentPage1 + 1) * rowsPerPage1 >= quizData.length ? "0.5" : "1";
+    }
+    function nextPage1() {
+        if ((currentPage1 + 1) * rowsPerPage1 < quizData.length) {
+            currentPage1++;
+            populateQuizList();
+        }
+    }
+    function prevPage1() {
+        if (currentPage1 > 0) {
+            currentPage1--;
+            populateQuizList();
+        }
+    }
+    document.getElementById("next_page1").addEventListener("click", nextPage1);
+    document.getElementById("prev_page1").addEventListener("click", prevPage1);
+    window.onload = populateQuizList;
+    // code for hosted_table
+    const quizesCreated = JSON.parse('<%-JSON.stringify(quizesCreated)%>')
+    const hostedData = quizesCreated.map((quiz)=>{
+      return { quiz: quiz.name, schedule: quiz.date, participants:quiz.takers ? quiz.takers.length : 0, quizId:quiz.quizId }
+    })
+    const rowsPerPage2 = 8;
+    let currentPage2 = 1;
+    function renderHostedTable() {
+        const tbody = document.getElementById("append_new_data2");
+        tbody.innerHTML = "";
+        
+        const start = (currentPage2 - 1) * rowsPerPage2;
+        const end = start + rowsPerPage2;
+        const paginatedItems = hostedData.slice(start, end);
+        paginatedItems.forEach(item => {
+            const row = `<tr>
+                <td>${item.quiz}</td>
+                <td>${item.schedule}</td>
+                <td>${item.participants}</td>
+                <td><form
+                  id="created${item.quizId}"
+                  action="/quizes/quizResult"
+                  method="post"
+                  hidden
+                >
+                  <input
+                    type="text"
+                    name="quizId"
+                    id="quizId"
+                    value="${item.quizId}"
+                  />
+                </form>
+                <a
+                  href="Stats"
+                  onclick="document.getElementById('created${item.quizId}').submit(); return false;"
+                  >View Stats</a
+                ></td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+        document.getElementById("prev_page2").style.opacity = currentPage2 === 1 ? "0.3" : "1";
+        document.getElementById("next_page2").style.opacity = end >= hostedData.length ? "0.3" : "1";
+    }
+    document.getElementById("prev_page2").addEventListener("click", () => {
+        if (currentPage2 > 1) {
+            currentPage2--;
+            renderHostedTable();
+        }
+    });
+    document.getElementById("next_page2").addEventListener("click", () => {
+        if (currentPage2 * rowsPerPage2 < hostedData.length) {
+            currentPage2++;
+            renderHostedTable();
+        }
+    });
+    renderHostedTable();
+
+    //code for scheduled quizes
+    const quizesScheduled = JSON.parse('<%-JSON.stringify(quizesScheduled)%>')
+    const scheduledData = quizesScheduled.map((quiz)=>{
+      return { quiz: quiz.name, schedule: quiz.date, participants:quiz.takers ? quiz.takers.length : 0, quizId:quiz.quizId }
+    })
+    const rowsPerPage3 = 8;
+    let currentPage3 = 1;
+    function renderScheduledTable() {
+        const tbody = document.getElementById("append_new_data3");
+        tbody.innerHTML = "";
+        
+        const start = (currentPage3 - 1) * rowsPerPage3;
+        const end = start + rowsPerPage3;
+        const paginatedItems = scheduledData.slice(start, end);
+        paginatedItems.forEach(item => {
+            const row = `<tr>
+                <td>${item.quiz}</td>
+                <td>${item.schedule}</td>
+                <td>${item.participants}</td>
+                <td><form
+                  id="created${item.quizId}"
+                  action="/quizes/quizResult"
+                  method="post"
+                  hidden
+                >
+                  <input
+                    type="text"
+                    name="quizId"
+                    id="quizId"
+                    value="${item.quizId}"
+                  />
+                </form>
+                <a
+                  href="Stats"
+                  onclick="document.getElementById('created${item.quizId}').submit(); return false;"
+                  >View Stats</a
+                ></td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+        document.getElementById("prev_page3").style.opacity = currentPage3 === 1 ? "0.3" : "1";
+        document.getElementById("next_page3").style.opacity = end >= scheduledData.length ? "0.3" : "1";
+    }
+    document.getElementById("prev_page3").addEventListener("click", () => {
+        if (currentPage3 > 1) {
+            currentPage3--;
+            renderScheduledTable();
+        }
+    });
+    document.getElementById("next_page3").addEventListener("click", () => {
+        if (currentPage3 * rowsPerPage3 < scheduledData.length) {
+            currentPage3++;
+            renderScheduledTable();
+        }
+    });
+    renderScheduledTable();
+            
+            var dropdown=document.getElementById('dropdown') ;
+
+            const pic = document.getElementById('pic');
+        const dp = document.getElementById('dp');
+
+        pic.addEventListener('change' , change_dp);
+        async function change_dp(){
+            if (pic.files && pic.files[0]){
+                const reader = new FileReader();
+                
+                reader.onload = function (e){
+                    dp.src = e.target.result; 
+                }; 
+
+                reader.readAsDataURL(pic.files[0]); 
+                let formData = new FormData()
+                formData.append("profile",pic.files[0])
+                await fetch('/uploadProfilePic',{
+            method: "POST",
+            body: formData,
+        })
+            }
+        }
+    </script>
+  </body>
+</html>

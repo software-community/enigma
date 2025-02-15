@@ -55,18 +55,30 @@ router.post('/signup',async (req,res)=>{
     
     if(await usersCollection.findOne({username: myusername})){
         req.flash('error','User Already Exists')
-        res.redirect('/signup')
+        res.redirect('../signup')
         return
     }
 
     const salt = crypto.randomBytes(16).toString('hex')
     const hashedPassword = crypto.pbkdf2Sync(mypassword, salt, 100000, 32, 'sha256').toString('hex');
 
-    usersCollection.insertOne({"username": myusername,"hashedPassword": hashedPassword,"salt": salt})
-    res.render('index')
+    usersCollection.insertOne({"username": myusername,"hashedPassword": hashedPassword,"salt": salt, "quizesCreated":[], "taken":[]})
+    res.redirect('../login')
     console.log(myusername + " just created an account")
     
     client.close()
+})
+
+router.get('/logout',(req,res)=>{
+    if(req.isAuthenticated()){
+        req.logout((err)=>{
+            if(err)
+                return next(err)
+        })
+        res.redirect('../')
+    }
+    else
+        res.render('invalid_request')
 })
 
 export default router

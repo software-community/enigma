@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Quiz</title>
+
+</head>
+<body>
+
+    <%- include('navbar') %>
+    <br><br>
+    <form action="" method="post">
+        <label for="quizId">Quiz ID : </label>
+        <input type="text" name="quizId" id="quizId"><br><br>
+        <input id="submit" type="submit" value="Join">
+    </form>
+    <p id="error" style="color: red;"></p>
+    <script>
+        document.getElementById('submit').onclick = async (e)=>{
+            e.preventDefault()
+            const quizId = document.getElementById('quizId').value
+            const response = await fetch('/quizes/joinQuiz',{
+                method:"post",
+                headers: {
+                "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ quizId: quizId })
+            })
+            if(response.status==200){
+                const quizDetails = await response.json()
+                let myform = document.createElement('form')
+                myform.setAttribute('action','/quizes/startquiz')
+                myform.setAttribute('method','post')
+                myform.innerHTML = `<input id="quizId" name="quizId" type="text" value="${quizDetails.quizId}">
+                    <input id="quizname" name="quizname" type="text" value="${quizDetails.quizname}">`
+                myform.hidden = true
+                document.body.appendChild(myform)
+                myform.submit()
+            }
+            else
+            document.getElementById('error').innerHTML = "Quiz Not Found"
+        }
+    </script>
+</body>
+</html>

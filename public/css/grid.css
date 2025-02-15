@@ -1,0 +1,66 @@
+
+#userGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.user-box{
+  background: linear-gradient(to bottom,pink,salmon,beige);
+  font-family: Montserrat,Arial;
+  padding: 6px;
+  line-height: 5px;
+  box-shadow: 2px 2px 5px rgb(247, 95, 95);
+  border-radius: 14px;
+}
+
+body{
+  background-image: linear-gradient(to bottom,black,white);
+  background-repeat: no-repeat;
+}
+
+#clear_all{
+  padding: 3px;
+  margin-bottom: 7px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  width: 85px;
+
+}
+
+button:hover{
+  box-shadow: 2px 2px 5px black;
+}
+
+button:active{
+  background-color: white;
+  color: black;
+}
+
+.reg{
+  text-align: center;
+   font-size: larger;
+   color: white;
+   text-decoration: underline;
+
+}
+
+nav{
+  display: flex;
+  justify-content:space-between;
+}
+
+.buttons{
+  display: flex;
+  align-items: center;
+
+}
+
+.buttons button{
+  margin: 3px;
+  height:45%;
+  border-radius: 7px;
+  background-color: black;
+  color: white;
+}

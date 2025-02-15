@@ -1,9 +1,10 @@
+<!-- filepath: /mnt/659603F16F68784E/Softcom/enigma/index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Homepage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style_dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,24 +48,23 @@
     <div class="mainline2">
         Featured Quizzes
     </div>
-
-    <div class="featuredQuizzes">
     <% if(featuredQuizes) { %>
+    <div class="featuredQuizzes">
         <% for(let quiz of featuredQuizes) { %>
-        <div id="fquiz<%=featuredQuizes.indexOf(quiz)+1%>" class="fquiz">
-            <div class="fquizTitleBox">
-                <div class="fquizTitle"><%=quiz.quizname%></div>
-                <div class="fquizDate">Held on XX-XX-20XX</div>
-                <form id="<%=quiz.quizId%>" action="/quizes/startquiz" method="post" hidden>
-                    <input id="quizId" name="quizId" type="text" value="<%=quiz.quizId%>">
-                    <input id="quizname" name="quizname" type="text" value="<%=quiz.quizname%>">
-                </form>
-                <a href="quiz" onclick="document.getElementById('<%=quiz.quizId%>').submit(); return false;"><button class="takeQuiz">Take Quiz</button></a>
+            <div id="fquiz<%=featuredQuizes.indexOf(quiz)+1%>" class="fquiz">
+                <div class="fquizTitleBox">
+                    <div class="fquizTitle"><%=quiz.quizname%></div>
+                    <div class="fquizDate">Held on XX-XX-20XX</div>
+                    <form id="<%=quiz.quizId%>" action="/quizes/startquiz" method="post" hidden>
+                        <input id="quizId" name="quizId" type="text" value="<%=quiz.quizId%>">
+                        <input id="quizname" name="quizname" type="text" value="<%=quiz.quizname%>">
+                    </form>
+                    <a href="quiz" onclick="document.getElementById('<%=quiz.quizId%>').submit(); return false;"><button class="takeQuiz">Take Quiz</button></a>
+                </div>
             </div>
-        </div>
-        <% } %>
-    <% } %>
+            <% } %>
     </div>
+    <% } %>
     <script src="/script/script_dashboard.js"></script>
 
     <div class="separator2">

@@ -14,6 +14,7 @@
         let quizId = '<%-quizId%>'
         async function continueAsGuest(){
             let guestname = prompt("Enter a Guest Name")
+            if(guestname){
             let myform = document.createElement('form')
                 myform.setAttribute('method','post')
                 myform.setAttribute('action','/quizes/quiz')
@@ -26,6 +27,7 @@
                 `)
                 document.body.appendChild(myform)
                 myform.submit()
+            }
         }
         async function continueAsUser() {
             let myform = document.createElement('form')

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Final</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/create.css" />
+  </head>
+  <body>
+
+    <%- include('navbar') %>
+
+    <div class="quiz-wrapper-container">
+      <button id="prevBtn">←</button>
+      <div id="quiz-container">
+        <div id="quiz-wrapper">
+          <div class="quiz-slide" id="setup-slide">
+            <h1>Quiz Details</h1>
+            <div class="quiz-info-slide">
+              <form action="/login" method="post" id="createQuestions">
+                <div class="quiz-info-slide-horizontal">
+                    <h2>Title:</h2>
+                    <input
+                      type="text"
+                      id="quizName"
+                      placeholder="Enter Quiz Title"
+                      class="questionInput"
+                      required
+                    />
+                  </div>
+                  <div class="quiz-info-slide-horizontal">
+                    <h2>Date:</h2>
+                    <input
+                      type="date"
+                      id="date"
+                      placeholder="Enter Quiz Date"
+                      class="questionInput"
+                      required
+                    />
+                  </div>
+                  <div class="quiz-info-slide-horizontal">
+                    <h2>Time:</h2>
+                    <input
+                      type="time"
+                      id="time"
+                      placeholder="Enter Quiz Time"
+                      class="questionInput"
+                      required
+                    />
+                  </div>
+                  <div class="quiz-info-slide-horizontal">
+                    <h2>Hours:</h2>
+                    <input
+                      type="number"
+                      id="hours"
+                      placeholder="Enter Quiz Duration"
+                      class="questionInput"
+                      required
+                    />
+                  </div>
+                  <div class="quiz-info-slide-horizontal">
+                    <h2>Mins:</h2>
+                    <input
+                      type="number"
+                      id="mins"
+                      placeholder="Enter Quiz Duration"
+                      class="questionInput"
+                      required
+                    />
+                  </div>
+                  <div class="quiz-info-slide-horizontal">
+                    <h2>Image:</h2>
+                    <input type="file" name="quizImage" id="quizImage" class="questionInput-image" accept="image/*" required />
+                    <label for="quizImage"></label>
+                </div>
+                <div class="quiz-info-slide-horizontal">
+                  <h2>No. Of Questions:</h2>
+                  <input
+                    type="number"
+                    id="NumQuestions"
+                    placeholder="Enter The Number Of Questions"
+                    class="questionInput"
+                    min="1"
+                    required
+                  />
+                </div>
+            </br>
+            <br>
+                <div class="quiz-info-slide-horizontal-button">
+                  <button
+                    id="addQuestions"
+                    type="button"
+                  >
+                    NEXT
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- <button id="createQuizSubmit">Create Quiz</button> -->
+        <p id="error" style="color: red;"></p>
+        <div class="quiz-info-slide-horizontal-button">
+          <button
+            id="createQuizSubmit"
+            type="button"
+          >
+            CREATE QUIZ
+          </button>
+        </div>
+      </div>
+      <button id="nextBtn">→</button>
+    </div>
+
+    <%-include('footer')%>
+
+    <form id="redir" action="/quizes/quizResult" method="post" hidden>
+      <input type="text" name="quizId" id="redir_quizId" value="">
+    </form>
+  </body>
+<script>document.addEventListener("DOMContentLoaded", function () {
+  const quizWrapper = document.getElementById("quiz-wrapper");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  let currentSlideIndex = 0;
+
+  // Function to show a specific slide
+  function showSlide(index) {
+      const slides = document.querySelectorAll(".quiz-slide");
+      if (index >= slides.length) index = 0; // Loop to the first slide
+      if (index < 0) index = slides.length - 1; // Loop to the last slide
+
+      // Hide all slides
+      slides.forEach((slide) => (slide.style.display = "none"));
+
+       // Show the current slide
+    slides[index].style.display = "block";
+    slides[index].scrollIntoView({ behavior: "smooth", block: "center" });
+    currentSlideIndex = index;
+    // Disable/enable buttons based on the current slide
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === slides.length - 1;
+}
+
+  // Function to generate questions
+  function generateQuestions() {
+      const numQuestions = parseInt(document.getElementById("NumQuestions").value, 10);
+      const error = document.getElementById('error')
+      // Validate the number of questions and name
+      
+      if(document.getElementById("quizName").value==""){
+        error.innerHTML="Please enter a valid name"
+        return
+      }
+      else if (numQuestions < 1) {
+          error.innerHTML = "Please enter a valid number of questions"
+          return;
+      }
+      else
+        error.innerHTML=""
+
+      // Clear existing slides (except the setup slide)
+      const slides = document.querySelectorAll(".quiz-slide");
+      slides.forEach((slide, index) => {
+          if (index !== 0) {
+              slide.remove(); // Remove all slides except the setup slide
+          }
+      });
+
+      // Generate new slides
+      for (let i = 1; i <= numQuestions; i++) {
+          let slide = document.createElement("div");
+          slide.className = "quiz-slide";
+          slide.innerHTML = `
+        <h1>Question ${i}</h1>
+        <input type="text" class="questionInput" id="Question${i}" placeholder="Enter Question ${i}" required />
+        <input type="text" id="Q${i}-correct" value="" hidden> 
+        ${["A", "B", "C", "D"]
+          .map(
+              (opt) => `
+          <div class="option">
+            <button id="Q${i}-option${opt}" class="optionLetters">${opt}</button>
+            <input type="text" id="Q${i}-option${opt}-input" placeholder="Option ${opt}" required />
+          </div>
+        `
+          )
+          .join("")}
+      `;
+          quizWrapper.appendChild(slide);
+      }
+
+      // Attach event listeners to the newly created buttons
+      attachButtonListeners();
+
+      // Show the first question slide
+      showSlide(1); // Skip the setup slide (index 0)
+  }
+
+  // Function to attach event listeners to buttons
+  function attachButtonListeners() {
+      const buttons = document.querySelectorAll(".optionLetters");
+
+      buttons.forEach((button) => {
+          button.addEventListener("click", function () {
+              const input = this.nextElementSibling; // Get corresponding input field
+
+              if (input && input.tagName.toLowerCase() === "input") {
+                  // Extract question ID (e.g., "Q1-optionA" → "Q1")
+                  const questionId = this.id.split("-")[0];
+                  
+                  //syed-change value of correct option input field
+                  document.getElementById(`Q${questionId[1]}-correct`).value=this.id.slice(9)
+
+                  // Remove 'glow' from all inputs in this question
+                  document
+                      .querySelectorAll(`input[id^='${questionId}-']`)
+                      .forEach((inp) => {
+                          inp.classList.remove("glow");
+                      });
+
+                  // Remove 'optionLetters-clicked' from all buttons in this question
+                  document
+                      .querySelectorAll(`.optionLetters[id^='${questionId}-']`)
+                      .forEach((btn) => {
+                          btn.classList.remove("optionLetters-clicked");
+                      });
+
+                  // Highlight the selected input
+                  input.classList.add("glow");
+
+                  // Highlight the selected button
+                  this.classList.add("optionLetters-clicked");
+
+                  // Automatically focus on the input field
+                  input.focus();
+              }
+          });
+      });
+  }
+
+  // Event listener for the "Add Questions" button
+  document.getElementById("addQuestions").addEventListener("click", generateQuestions);
+
+  // Event listener for the "Next" button
+  nextBtn.addEventListener("click", () => {
+      showSlide(currentSlideIndex + 1);
+  });
+
+  // Event listener for the "Previous" button
+  prevBtn.addEventListener("click", () => {
+      showSlide(currentSlideIndex - 1);
+  });
+
+  // Touch swipe functionality
+  let touchStartX = 0;
+  let touchEndX = 0;
+  quizWrapper.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+  });
+
+  quizWrapper.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+
+      if (touchStartX > touchEndX + 50) {
+          showSlide(currentSlideIndex + 1); // Swipe left
+      } else if (touchStartX < touchEndX - 50) {
+          showSlide(currentSlideIndex - 1); // Swipe right
+      }
+  });
+
+  // Show the initial setup slide
+  showSlide(currentSlideIndex);
+});
+
+let createQuizSubmit = document.getElementById('createQuizSubmit')
+createQuizSubmit.addEventListener('click',async (e)=>{
+                e.preventDefault()
+                
+                const error = document.getElementById('error')
+      
+                if(document.getElementById("quizName").value==""){
+                  error.innerHTML="Please enter a valid name"
+                  return
+                }
+                else if (document.getElementById("NumQuestions").value < 1) {
+                  error.innerHTML = "Please enter a valid number of questions"
+                  return;
+                }
+                else
+                  error.innerHTML=""
+                
+                let quiz = {
+                    qna:[],
+                    name:document.getElementById('quizName').value,
+                    quizId:Date.now(),
+                    date:document.getElementById('date').value,
+                    time:document.getElementById('time').value,
+                    hours:document.getElementById('hours').value,
+                    mins:document.getElementById('mins').value,
+                    author: '<%-username %>',
+                    takers:[]
+                }
+                if(!quiz.date || !quiz.time){
+                    const date = new Date()
+                    quiz.date = `${date.getFullYear()}-${date.getMonth()+1 < 10 ? ('0'+(date.getMonth()+1)) : (date.getMonth()+1)}-${date.getDate() < 10 ? ('0'+(date.getDate())) : (date.getDate())}`
+                    quiz.time = `${date.getHours()}:${date.getMinutes()}`
+                }
+                if(!quiz.hours)
+                quiz.hours = "0"
+                if(!quiz.mins)
+                quiz.mins = "0"
+                let noOfQuestions = document.getElementById('NumQuestions').value
+                for(let i=1;i<=noOfQuestions;i++){
+                    let pair = {
+                        question:document.getElementById(`Question${i}`).value,
+                        optionA:document.getElementById(`Q${i}-optionA-input`).value,
+                        optionB:document.getElementById(`Q${i}-optionB-input`).value,
+                        optionC:document.getElementById(`Q${i}-optionC-input`).value,
+                        optionD:document.getElementById(`Q${i}-optionD-input`).value,
+                        correctOption:document.getElementById(`Q${i}-correct`).value,
+                        correctlyAnswered:0,
+                        incorrectlyAnswered:0,
+                        notAnswered:0
+                    }
+                    if(pair.question==""){
+                      error.innerHTML = "Please enter valid questions"
+                      return
+                    }
+                    else if(pair.optionA=="" || pair.optionB=="" || pair.optionC=="" || pair.optionD==""){
+                      error.innerHTML = "Please enter valid options for all questions"
+                      return
+                    }
+                    else if(pair.correctOption==""){
+                      error.innerHTML = "Please choose correct option for all questions"
+                      return
+                    }
+                    else
+                      error.innerHTML = ""
+                    quiz.qna.push(pair)
+                }
+                await fetch('/quizes/createNewQuiz',{
+                    method:"post",
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({quiz, username: '<%-username %>'})
+                })
+                
+                let formData = new FormData()
+                formData.append("quizId",quiz.quizId)
+                formData.append("quizImage",document.getElementById('quizImage').files[0])
+                await fetch('/quizes/uploadQuizBanner',{
+              method: "POST",
+              body: formData
+          })
+                alert("Quiz Created Successfully")
+                
+                //Redirect to host_stats
+                document.getElementById('redir_quizId').value = quiz.quizId
+                document.getElementById('redir').submit()
+            })
+
+  </script>
+</html>

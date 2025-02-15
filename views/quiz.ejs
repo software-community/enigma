@@ -6,9 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome <%=name%></h1>
-    <h2>Name : <%=quizname%></h2>
 
+    <%- include('navbar') %>
+    <br><br>
+    <h1>Welcome <%=name%></h1>
+    <h2 id="quizname">Name : <%=quizname%></h2>
+    <br>
+    <p id="timer"></p>
+    <br>
     <form action="">
     
     <% for(let question of questions){%>
@@ -26,6 +31,7 @@
         let submitbtn = document.getElementById('submitbtn')
         submitbtn.addEventListener('click',async (e)=>{
             e.preventDefault()
+            let takenId = Date.now()
             let length = Number.parseInt('<%-questions.length%>')
             let answers = []
             for(let i=0;i<length;i++)
@@ -35,13 +41,46 @@
                 headers:{
                      'Content-Type': 'application/json'
                 },
-                body:JSON.stringify({answers, name: '<%-name%>', quizId: '<%-quizId%>'})
+                body:JSON.stringify({answers, name: '<%-name%>', quizId: '<%-quizId%>', takenId})
             })
-            let score = await response.text()
             
-            document.getElementById('score').innerHTML = `Your Score : ${score}`
-
+            let goToStats = document.createElement('form')
+            goToStats.setAttribute('method','post')
+            goToStats.setAttribute('action','/quizes/stats')
+            goToStats.hidden = true
+            goToStats.insertAdjacentHTML('afterbegin',`<input
+                    type="text"
+                    name="quizId"
+                    id="quizId"
+                    value="<%=quizId%>"
+                  />`)
+            document.body.appendChild(goToStats)
+            goToStats.submit()
         })
+        const hours = Number.parseInt(JSON.parse(' <%- JSON.stringify(hours) %>'))
+        const mins = Number.parseInt(JSON.parse(' <%- JSON.stringify(mins) %>'))
+        const seconds = hours*3600 + mins*60
+
+        if(seconds>0){
+            setTimeout(()=>submitbtn.click(),seconds*1000)
+            let hours_left = hours
+            let mins_left = mins
+            let seconds_left = 0
+            setInterval(()=>{
+                if(seconds_left==0){
+                    if(mins_left==0){
+                        hours_left--
+                        mins_left = 59
+                    }
+                    else
+                        mins_left--
+                    seconds_left = 59
+                }
+                else
+                    seconds_left--
+                document.getElementById('timer').innerHTML=`${hours_left < 10 ? '0'+hours_left : hours_left} : ${mins_left < 10 ? '0'+mins_left : mins_left} : ${seconds_left < 10 ? '0'+seconds_left : seconds_left}`
+            },1000)
+        }
     </script>
 </body>
 <script>
