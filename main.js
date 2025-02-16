@@ -47,10 +47,17 @@ app.get('/',async (req,res)=>{
         // const featuredQuizes = quizes.map((quiz)=>{
         //     return {quizname:quiz.name, quizId:quiz.quizId}
         // })
-        let featuredQuizes = []
-        for(let i=0;i<3;i++)
-            featuredQuizes.push({quizname:quizes[i].name, quizId:quizes[i].quizId})
-        res.render('homepage',{featuredQuizes})
+        let pastQuizes = []
+        pastQuizes = quizes.map((quiz)=>{
+            let sum = 0
+            let avg = 0
+            for(let taker of quiz.takers)
+                sum = sum+taker.score
+            if(quiz.takers.length!=0)
+                avg = (sum/quiz.takers.length).toFixed(2)
+            return {quizname: quiz.name, quizId: quiz.quizId, date:quiz.date, avg:avg, length: quiz.qna.length }
+        })
+        res.render('homepage',{pastQuizes})
     }
     // console.log("New Connection : " + req.ip)
 })
@@ -75,12 +82,17 @@ app.get('/dashboard',async (req,res)=>{
         // const featuredQuizes = quizes.map((quiz)=>{
         //     return {quizname:quiz.name, quizId:quiz.quizId}
         // })
-        let featuredQuizes = []
-        if(quizes.length!=0){
-        for(let i=0;i<3;i++)
-            featuredQuizes.push({quizname:quizes[i].name, quizId:quizes[i].quizId})
-    }
-        res.render('dashboard',{username: req.user.username, featuredQuizes})
+        let pastQuizes = []
+        pastQuizes = quizes.map((quiz)=>{
+            let sum = 0
+            let avg = 0
+            for(let taker of quiz.takers)
+                sum = sum+taker.score
+            if(quiz.takers.length!=0)
+                avg = (sum/quiz.takers.length).toFixed(2)
+            return {quizname: quiz.name, quizId: quiz.quizId, date:quiz.date, avg:avg, length: quiz.qna.length }
+        })
+        res.render('dashboard',{username: req.user.username, pastQuizes})
     }
     else
         res.redirect('/login')
@@ -111,7 +123,6 @@ app.get('/profile',async (req,res)=>{
                 quiz.date = date
                 quiz.time = time
             }
-        
             if(date < currentDate || (date==currentDate && time<=currentTime))
                 quizesCreated.push({name:quiz.name,quizId:quiz.quizId,date:quiz.date,takers:quiz.takers})
             else

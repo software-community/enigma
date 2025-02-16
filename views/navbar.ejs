@@ -4,7 +4,68 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <div id="container" class="navbar">
+<% if (typeof username !== "undefined") { %>
+<div class="sidebar-navbar">
+    <a href="#" id="sidebar-button">
+        <div class="hamburger">
+            <i id="sb" class="fa-solid fa-bars"></i>
+        </div>
+    </a>
+
+    <div class="logo1">
+        <a href="/">
+            <img src="/common_assets/enigma-logo.jpg" alt="enigma">
+        </a>
+    </div>
+
+    <div class="profile">
+        <a href="#">
+            <img src="/profilePics/<%='profile-'+username%>" onerror="this.onerror=null; this.src='/dashboard_assets/profile-pic.jpg';" alt="profile" class="profile-pic">
+        </a>
+    </div>
+</div>
+
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li class="quiz-buttons-li"><div class="createquiz">
+            <a href="#">
+                <form action="/quizes/create">
+                <button class="s-create">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Create a quiz
+                </button>
+            </form>
+            </a>
+        </div></li>
+
+        <li class="quiz-buttons-li"><div class="joinquiz">
+            <a href="join-quiz.html">
+                <form action="/quizes/join">
+                <button class="s-join">
+                    <i class="fa-regular fa-clipboard"></i>
+                    Join a quiz                 
+                </button>
+            </form>
+            </a>
+        </div></li>
+
+        <li class="s-dropdown">
+        <a href="#" id="dropdown-toggle">Socials <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="s-dropdown-menu">
+            <li><a href="#">Friends</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#">Club</a></li>
+        </ul>
+        </li>
+        <li><form id="logout" action="/auth/logout"></form>
+            <a href="logout" onclick="document.getElementById('logout').submit(); return false;">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Log Out</a></li>
+        </li>
+    </ul>
+</div>
+
+<div id="container" class="navbar">
     <div class="logo">
         <a href="/">
             <img src="/common_assets/enigma-logo.jpg" alt="enigma">
@@ -18,22 +79,22 @@
     <div class="createquiz">
         <a href="#">
             <form action="/quizes/create">
-            <button class="create">
-                <i class="fa-solid fa-pen-to-square"></i>
-                Create a quiz
-            </button>
-        </form>
+                <button class="create">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Create a quiz
+                </button>
+            </form>
         </a>
     </div>
 
     <div class="joinquiz">
-        <a href="#">
+        <a href="join-quiz.html">
             <form action="/quizes/join">
-            <button class="join">
-                <i class="fa-regular fa-clipboard"></i>
-                Join a quiz                 
-            </button>
-        </form>
+                <button class="join">
+                    <i class="fa-regular fa-clipboard"></i>
+                    Join a quiz                 
+                </button>
+            </form>
         </a>
     </div>
 
@@ -53,7 +114,6 @@
         </nav>
     </div>
 
-    <% if (typeof username !== "undefined") { %>
     <div class="profile">
         <img src="/profilePics/<%='profile-'+username%>" onerror="this.onerror=null; this.src='/dashboard_assets/profile-pic.jpg';" alt="profile" class="profile-pic">
         <nav>
@@ -73,22 +133,138 @@
             </ul>
         </nav>
     </div>
-    <% } else { %>
-        <div class="profile">
+</div>
+<% } else { %>
+    <div class="sidebar-navbar">
+        <a href="#" id="sidebar-button">
+            <div class="hamburger">
+                <i id="sb" class="fa-solid fa-bars"></i>
+            </div>
+        </a>
+
+        <div class="logo1">
+            <a href="/">
+                <img src="/common_assets/enigma-logo.jpg" alt="enigma">
+            </a>
+        </div>
+
+        <!-- <div class="profile">
+            <a href="#">
+                <img src="common_assets/profile-pic.jpg" alt="profile" class="profile-pic1">
+            </a>
+        </div> -->
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li class="quiz-buttons-li"><div class="createquiz">
+                <a href="#">
+                    <form action="/quizes/create">
+                        <button class="s-create">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            Create a quiz
+                        </button>
+                    </form>
+                </a>
+            </div></li>
+
+            <li class="quiz-buttons-li"><div class="joinquiz">
+                <a href="join-quiz.html">
+                    <form action="/quizes/join">
+                        <button class="s-join">
+                            <i class="fa-regular fa-clipboard"></i>
+                            Join a quiz                 
+                        </button>
+                    </form>
+                </a>
+            </div></li>
+
+            <li class="s-dropdown">
+            <a href="#" id="dropdown-toggle">Socials <i class="fa-solid fa-chevron-down"></i></a>
+            <ul class="s-dropdown-menu">
+                <li><a href="#">Friends</a></li>
+                <li><a href="#">Leaderboard</a></li>
+                <li><a href="#">Club</a></li>
+            </ul>
+            </li>
+            <li><form id="login" action="/login" method="get"></form>
+                <a href="#" onclick="document.getElementById('login').submit(); return false;">
+                Login
+                </a>
+            </li>
+            <li><form id="signup" action="/signup" method="get"></form>
+                <a href="#" onclick="document.getElementById('signup').submit(); return false;">
+                Signup
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="container" class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="/common_assets/enigma-logo.jpg" alt="enigma">
+            </a>
+        </div>
+
+        <div class="separator">
+            |
+        </div>
+
+        <div class="createquiz">
+            <a href="#">
+                <form action="/quizes/create">
+                <button class="create">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Create a quiz
+                </button>
+            </form>
+            </a>
+        </div>
+
+        <div class="joinquiz">
+            <a href="join-quiz.html">
+                <form action="/quizes/join">
+                <button class="join">
+                    <i class="fa-regular fa-clipboard"></i>
+                    Join a quiz                 
+                </button>
+            </form>
+            </a>
+        </div>
+
+        <div class="socials">
             <nav>
                 <ul class="menu">
                     <li class="menu-item">
-                        <form action="/login" method="get">
-                        <button>Login</button>
-                    </form>
-                    </li>
-                    <li class="menu-item">
-                        <form action="/signup" method="get">
-                        <button>SignUp</button>
-                    </form>
+                        <i class="fa-regular fa-comment"></i>
+                        Socials
+                        <ul class="dropdown">
+                            <li><a href="#">Friends</a></li>
+                            <li><a href="#">Leaderboard</a></li>
+                            <li><a href="#">Club</a></li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
         </div>
-        <% } %>
-</div>
+
+        <div class="login-signup">
+            <form id="login" action="/login" method="get">
+            <button class="login-button">
+                Login
+            </button>
+        </form>
+            <div class="separator2">
+            |
+            </div>
+            <form id="signup" action="/signup" method="get">
+            <button class="signup-button">
+                Signup
+            </button>
+        </form>
+        </div>
+    </div>
+    <script src="/script/script_dashboard"></script>
+    <script src="/script/script1.js"></script>
+<% } %>

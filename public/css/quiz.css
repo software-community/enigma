@@ -1,48 +1,15 @@
-/* -----------------setting up the font-------------------- */
-
-* {
-    margin: 0;
-    border: border-box;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: normal;
-    font-style: normal;
-}
-
 body{
-    background: hsla(294, 100%, 55%, 1);
-
-    background: linear-gradient(135deg, hsla(294, 100%, 55%, 1) 0%, hsla(197, 100%, 63%, 1) 100%);
-
-    background: -moz-linear-gradient(135deg, hsla(294, 100%, 55%, 1) 0%, hsla(197, 100%, 63%, 1) 100%);
-
-    background: -webkit-linear-gradient(135deg, hsla(294, 100%, 55%, 1) 0%, hsla(197, 100%, 63%, 1) 100%);
-
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E81CFF", endColorstr="#40C9FF", GradientType=1 );
-}
-
-@keyframes move-strip {
-    from {
-        top: -100px;
-        left: -100px;
-    }
-    to {
-        top: 100vh;
-        left: 100vw;
-    }
-} */
-
-html, body{
     margin: 0;
+    /* margin-top: 5vh; */
     padding: 0;
-    width: 100vw; 
-    overflow-x: hidden;
+    font-family: "Montserrat","monospace";
 }
+
+
+
 /* --------------------container code---------------------- */
 
 #container{
-    /* position: sticky;
-    top: 0; */
     width: 100;
     height: 13vh;
     background-color: black;
@@ -52,6 +19,8 @@ html, body{
     justify-content: space-between;
     padding: 0 2.6vw;
     gap: 2.4vw;
+    position: sticky !important;
+    top: 0;
 }
 
 /* --------------------setting alignments--------------------------- */
@@ -262,286 +231,192 @@ html, body{
 }
 
 
-/* ----------------------mainline---------------------- */
 
-.mainline2{
-    margin-left: clamp(10px, 5.5vw, 200px);
-    font-size: clamp(30px, 2.5vw, 50px);
-    font-weight: 600;
-}
-
-/* ----------------------Featured Quizzes-------------------------- */
-
-.featuredQuizzes{
-    display: flex; 
-    justify-content: space-around; 
-    flex-direction: row;
-    align-items: center; 
-    height: 40vh;
-    width: clamp(350px, 85%, 1300px);
-    margin-top: 1.47vh;
-    margin-left: 5.6%;
-    z-index: 1;
-    overflow-x: scroll;
-    overflow-y: hidden;
-}
-
-.featuredQuizzesWrapper {
-    overflow: hidden; /* Hide the overflow content */
-    width: 100%;
-}
-
-
-.fquiz{
-    height: 80%;
-    width: clamp(300px, 28.7%, 800px);
-    background-color: rgb(205, 235, 255);
+.Quizname h1{
     text-align: center;
-    border-radius: 10%;
-    position: relative;
-    border-bottom-left-radius: 0; 
-    border-bottom-right-radius: 0%; 
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    flex-shrink: 0;
-    margin-right: 3%;
+    font-size: clamp(2.5rem,3rem,7vh);
+    letter-spacing: .25rem;
+    font-weight: 350;
+    text-transform: uppercase ;
 }
-
-
-
-#fquiz1{
-    background-image: url("dashboard_assets/olympics.avif");
-    background-size: cover;
-    margin-left: 5%;
+#main{
+    width: 80vw;
 }
-
-
-.fquiz:hover { 
-    transform: scale(1.12); 
-    z-index: 100;
-} 
-
-.fquizTitleBox{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 35%;
-    background-color: white;
+#main .statement{
+    margin: 8vh 5vw 3vh 0;
+    text-align: center;
+    font-size: clamp(1.35rem,1.7rem,2.7vw);
+    letter-spacing: .05vh;
+    font-weight: 490;
+    word-spacing: .3vw;
 }
-
-.fquizTitle{
-    font-size: 18px;
-    font-weight: bold;
-    text-align: left;
-    margin: 5px 0px 0px 10px;
-}
-
-.fquizDate{
-    font-size: 12px;
-    text-align: left;
-    margin: 10px 0px 0px 10px;
-    width : 45%;
-}
-
-/* --------------------------Take Quiz Button------------------------------- */
-
-.takeQuiz{
-    position: absolute;
-    font-size: 15px;
-    border-radius: 3.9vh;
-    margin-right: 5px;
-    width: 100px;
-    font-weight: 600;
+.custom{
+    display: inline-block;
+    width: 30px;
     height: 30px;
-    bottom: 8px;
-    right: 10px;
+
+    border-radius: 50%;
+    background-color: rgba(237, 237, 237, 0.771);
+    border: .3px solid grey;
+}
+.ques_no{
+    color: #00b4d8;
+}
+.option .check{
+    display: none;
+}
+.option_s{
+    margin-top: clamp(60px,150px,5vh);
+    margin-left: 3vw;
+}
+#main .option{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: clamp(1.2rem,1.5rem,2.7vw);
+    letter-spacing: .05vh;
+    font-weight: 450;
+    margin: 3vh;
+}
+#yuhi{
+    margin: 5vh 5vw 5vh 5vw;
+    border-radius: 10px;
+    background-color: #2a2a3d;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#main label{
+    cursor: pointer;
+}
+#faltu2{
+    position: absolute;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
+    width: 80vw;
+}
+
+
+#prevBtn, #nextBtn {
+    padding: 8px 12px;
+    font-size: 18px;
+    border-radius: 50%;
     cursor: pointer;
     border-color: rgb(127, 212, 233);
     color: #c443c4;
     background: linear-gradient(145deg, transparent, transparent 40%, #c443c4 50%, transparent 60%, transparent); 
     background-size: 200% 200%; 
     transition: background-position 0.2s;
-}
-
-.takeQuiz:hover { 
-    background-position: 100% 0; 
-}
-
-/* ---------------------------separator 2------------------------------ */
-
-.separator2{
-    position: relative;
-}
-
-/* Friends Button */
-/* .friends-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #007bff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.friends-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-.friends-button i {
-    font-size: 24px;
-} */
-
-/* -----------------------Friends Window------------------------------ */
-
-#friendsWindow{
-    bottom: 50px;
-    right: 50px;
-    position: fixed;
-    flex-direction: column;
-    align-items: center;
-    display: flex;
-    height: 500px;
-    width: 350px;
-    background: linear-gradient(to bottom, black 15%, white 15%);
-    z-index: 10000;
-    border-radius: 5%;
-    box-shadow: 0 0 10px rgba(0, 0, 0);
-}
-
-
-/* ----------------------------Friends Window Headline---------------------------- */
-.fa-circle-dot{
-    color: rgb(55, 190, 43);
-}
-
-.friends-headline{
-    position: relative;
-    top: 4%;
-    font-size: 24px;
-    color: white;
-}
-
-/* ----------------------------Search Box--------------------------------- */
-
-.friends-search-box{
-    position: relative;
-    top: 12%;
-    background-color: rgb(230, 231, 231);
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    margin: 0 auto;
-}
-
-#userInput{
-    position: relative;
-    font-size: 20px;
-    width: 200px;
-    background-color: rgb(230, 231, 231);
-    border: 1px solid rgb(230, 231, 231);
-    border-radius: 5px 0 0 5px;
-    outline: none;
-}
-
-#search-button{
-    padding: 11px 20px;
-    font-size: 20px;
-    border: none;
-    background-color: rgb(230, 231, 231);
-    color: white;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-}
-
-.fa-magnifying-glass{
-    color: #777575;
-}
-
-/* ----------------------------Friends List--------------------------------- */
-
-.friends-list {
-    position: relative;
-    top: 13%;
-    list-style: none;
-    padding: 10px;
-    margin: 0;
-    width: 85%;
-    height: 60%;
-    overflow-y: auto;
-}
-
-/* ---------------------------Friend List Item---------------------------- */
-
-.friend-item {
-    display: flex;
-    flex-direction: row;
-    height: 15%;
-    padding: 5px;
-    border-bottom: 1px solid #ccc;
-}
-
-.friend-name{
-    font-size: 18px;
-    margin: auto auto auto 5%;
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-}
-
-.friend-name:hover{
-    text-decoration: underline;
-}
-
-.friend-profile-pic{
-    height: 100%;    
-    border-radius: 50%;
-    margin-left: 1px;
-}
-
-.friend-item:last-child {
-    border-bottom: none;
-}
-
-.fa-message{
-    position: relative;
-    font-size: 18px;
-    color: black;
-    margin: 80% auto auto 20%;
-}
-
-/* ----------------------------Close Button------------------------------- */
-.fa-circle-xmark {
+    }
+    
+    #prevBtn:hover, #nextBtn:hover {
+    transform: scale(1.05); /* Slightly enlarge the button */
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.3);
+    }
+    
+    #prevBtn:active, #nextBtn:active{
+    transform: scale(0.95); /* Slightly shrink on click */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    
+    
+ /* Timer container styling */
+ .timer-container {
     position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 0;
-    cursor: pointer;
-    color: white;
-    font-size: 24px;
-    transition: transform 0.2s ease;
-}
+    translate: 0 40px;
+    right: 10vw;
+    width: max-content;
+    background: #ffffff;
+    padding: 10px 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
 
-.fa-circle-xmark:hover {
-    transform: scale(1.2);
-    color: red; 
-}
+  /* Timer display styling */
+  .timer {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+  }
 
-/* ------------------------------footer--------------------------------- */
+  /* Message styling */
+  .message {
+    margin-top: 5px;
+    font-size: 18px;
+    color: #666;
+  }
 
-#footer {
+/* Hide the default radio buttons */
+.option_s input[type="radio"] {
+    display: none;
+  }
+
+  /* Make the entire label clickable and provide left padding for the custom radio */
+  .option_s label {
     position: relative;
+    padding-left: 35px; /* space for the custom radio */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; /* spacing between options */
+  }
+
+  /* Create the custom radio circle using the label's pseudo-element */
+  .option_s label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(196, 196, 196); /* default grey circle */
+    border: 3.5px solid white; /* white border */
+    box-sizing: border-box;
+    margin-left: 10px;
+  }
+  
+
+  /* When the radio input is checked, change the circle to light green */
+  .option_s label:has(input:checked)::before {
+    background-color: rgba(8, 255, 53, 0.826);
+  }
+  .option_s label:has(input:checked) {
+    background-color: rgba(8, 255, 53, 0.826);
+    border-radius: 13px;
+  }
+  
+
+.faltu{
+    display: flex;
+    justify-content: right;align-items: center;
+    gap: 30px;
     margin-top: 20px;
+    /* margin-right: 10vw; */
+    margin-bottom: 30px;
+}
+  #submit{
+    font-size: 20px;
+    padding: 7px 13px;
+    color: white;
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  #footer {
+    position: relative;
     bottom: 0;
     background-color: #222;
     color: white;
@@ -552,107 +427,107 @@ html, body{
     padding: 2rem;
     gap: 2rem;
     z-index: 1000;
-  }
-  
-  .footer-1,
-  .footer-2,
-  .footer-3,
-  .footer-4 {
+    }
+    
+    .footer-1,
+    .footer-2,
+    .footer-3,
+    .footer-4 {
     flex: 1;
     min-width: 200px;
-  }
-  
-  .footer-1 h1 {
+    }
+    
+    .footer-1 h1 {
     font-size: 1.5rem;
     font-weight: bold;
     color: #00b4d8;
-  }
-  
-  .footer-links {
+    }
+    
+    .footer-links {
     text-align: left;
     color: #aaa;
-  }
-  
-  .footer-links h4 {
+    }
+    
+    .footer-links h4 {
     color: white;
     margin-bottom: 1rem;
-  }
-  
-  .footer-links ul {
+    }
+    
+    .footer-links ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .footer-links li {
+    }
+    
+    .footer-links li {
     margin-bottom: 0.5rem;
-  }
-  
-  .footer-links a {
+    }
+    
+    .footer-links a {
     color: #00b4d8;
     text-decoration: none;
     transition: color 0.3s ease;
-  }
-  
-  .footer-links a:hover {
+    }
+    
+    .footer-links a:hover {
     color: #90e0ef;
-  }
-  
-  .footer-2 h3,
-  .footer-2 h4 {
+    }
+    
+    .footer-2 h3,
+    .footer-2 h4 {
     margin-bottom: 0.5rem;
     color: #f0f0f0;
-  }
-  
-  .footer-3 iframe {
+    }
+    
+    .footer-3 iframe {
     border: none;
     border-radius: 8px;
     width: 100%;
     max-width: 400px;
     height: 200px;
     margin-top: 1rem;
-  }
-  
-  .footer-4 {
+    }
+    
+    .footer-4 {
     text-align: center;
-  }
-  
-  .footer-4 h3 {
+    }
+    
+    .footer-4 h3 {
     font-size: 1.1rem;
     margin-bottom: 1rem;
     color: #f0f0f0;
-  }
-  
-  .footer-4 h4 {
+    }
+    
+    .footer-4 h4 {
     font-size: 0.9rem;
     margin-bottom: 1rem;
     color: #aaa;
-  }
-  
-  .footer-4-2 {
+    }
+    
+    .footer-4-2 {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-  }
-  
-  .footer-icons {
+    }
+    
+    .footer-icons {
     width: 32px;
     height: 32px;
     fill: #00b4d8;
     transition: transform 0.3s ease, fill 0.3s ease;
-  }
-  
-  .footer-icons:hover {
+    }
+    
+    .footer-icons:hover {
     transform: scale(1.2);
     fill: #90e0ef;
-  }
-  
-  @media (max-width: 768px) {
+    }
+    
+    @media (max-width: 768px) {
     #footer {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
-  
+    
     .footer-1,
     .footer-2,
     .footer-3,
@@ -661,16 +536,50 @@ html, body{
         width: 100%;
         margin-bottom: 1.5rem;
     }
-  
+    
     .footer-3 iframe {
         max-width: 100%;
         height: 250px;
     }
-  
+    
     .footer-4-2 {
         gap: 1rem;
     }
-  }
+    }
+    
+    .about-us{
+    margin: 5%;
+    margin-bottom: 8.5%;
+    display: flex;
+    flex-direction: column;
+    }
+  
+@media (min-width:800px) {
+    .sidebar{
+        display: none;
+    }
+    .small_screen{
+        display: none;
+    }
+    #main{
+    /* margin-left: 5vw; */
+    /* margin-right: 5vw; */
+    }
+
+}
+@media (max-width:800px) {
+    .small_screen{
+        display: block;
+    }
+    /* .sidebar{
+        display: none;
+    } */
+    #main {
+        /* margin-left: 5vw; */
+        /* margin-right: 5vw; */
+    }
+}
+
 
 /* --------------------------Sidebar-Navbar----------------------------- */
 .sidebar-navbar{
@@ -925,245 +834,4 @@ html, body{
     .sidebar {
         display: none !important;
     }
-}
-
-/* -------------------------------Join quiz page--------------------------------- */
-
-.join-quiz-page{
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* -------------------------------Join quiz container----------------------------- */
-.join-quiz-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    height: 60%;
-    width: clamp(320px, 30%, 20000px);
-    background: linear-gradient(to bottom, black 30%, white 15%);
-    border-radius: 8%;
-}
-
-.join-quiz-title{
-    font-size: 4vh;
-    font-weight: 700;
-    margin-top: 4%;
-    color: white;
-}
-
-.join-quiz-input{
-    height: 20%;
-    display: flex;
-    font-size: clamp(20px, 1.6vw, 2000px);
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: clamp(280px, 80%, 20000px);
-    font-weight: 600;
-    margin-bottom: 0%;
-}
-
-.join-quiz-input input[type="text"] {
-    height: 100%;
-    border: solid;
-    background-color: rgb(230, 231, 231);
-    border: 1px solid rgb(174, 167, 167);
-    border-radius: 5px;
-    margin-top: 4%;
-}
-
-#quiz-code {
-    display: block; /* Centers the input field */
-    text-align: center; /* Centers the text cursor */
-    width: 200px; /* Set your desired width */
-    padding: 10px; /* Optional padding for better appearance */
-    font-size: 80%;
-}
-
-.not-found-message{
-    font-size: 2vh;
-    color: red;
-    margin-bottom: 10%;
-}
-
-  
-
-/* -----------------------------Join Button---------------------------------- */
-
-
-.join-quiz-button{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -20%;
-    height: 6vh;
-    width: clamp(200px, 14.5vw, 2000px); 
-    font-size: clamp(20px , 1.6vw , 200%);
-    font-weight: 600;
-    border: solid rgb(228, 204, 96);
-    border-radius: 3.9vh;
-    cursor: pointer;
-    background: hsla(207, 65%, 81%, 1);
-    background: linear-gradient(0deg, hsla(207, 65%, 81%, 1) 0%, hsla(212, 85%, 50%, 1) 80%);
-    background: -moz-linear-gradient(0deg, hsla(207, 65%, 81%, 1) 0%, hsla(212, 85%, 50%, 1) 80%);
-    background: -webkit-linear-gradient(0deg, hsla(207, 65%, 81%, 1) 0%, hsla(212, 85%, 50%, 1) 80%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B0D2EE", endColorstr="#1378EC", GradientType=1 );
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: rgb(255, 255, 255);
-}
-
-/* Scrollbar container */
-::-webkit-scrollbar {
-    width: 7px; 
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: none; 
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #b042c6; 
-    border-radius: 6px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #564bf0; 
-  }
-  
-/* --------------------------------past-quizzes-headline-------------------------- */
-
-.past-quizzes-headline{
-    font-size: clamp(30px, 2.5vw, 50px);
-    font-weight: 600;
-    margin-left: clamp(10px, 5.5vw, 200px);
-    margin-top: clamp(10px, 4vh, 200px);
-    margin-bottom: 10px;
-}
-
-.past-quizzes{
-    display: flex;
-    flex-direction: column;
-    overflow-x: auto;
-}
-
-.past-quizzes table {
-    width: clamp(350px, 80%, 20000px);
-    border-collapse: collapse;
-    margin-left: clamp(0px, 9vw, 200px);
-    margin-top: clamp(10px, 4vh, 200px);
-}
-  
-.past-quizzes th, .past-quizzes td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.past-quizzes table tr {
-    cursor: pointer;
-    background-color: #f0f0f0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    position: relative;
-}
-
-
-.past-quizzes table tr:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: rgb(66, 202, 255);
-    opacity: 0;
-    transition: opacity 0.3s ease, left 0.3s ease, top 0.3s ease;
-  }
-
-
-  
-  
-.past-quizzes th {
-    background-color: #000000;
-    color: #ffffff;
-    cursor: default;
-    transition: none;
-}
-
-.past-quizzes tr:hover {
-    background: linear-gradient(to right, rgb(196, 69, 196), rgb(66, 202, 255));
-    transform: scale(1.1);
-    color: rgb(228, 204, 96);
-    text-decoration: underline;
-}
-  
-#title-row{
-    transform: scale(1);
-    text-decoration: none;
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-  
-.pagination button {
-    cursor: pointer;
-    margin: 0 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #000000;
-    color: #f0f0f0;
-}
-
-
-.past-quizzes-search-box{
-    position: relative;
-    background-color: rgb(230, 231, 231);
-    padding-left: 5px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    margin: 0 auto;
-}
-
-/* ----------------------login-signup---------------------- */
-
-.login-signup{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1vw;
-    margin-left: 8%;
-}
-
-.separator2{
-    color: white;
-    font-size: 7vh;
-    font-weight: 200;
-}
-
-.login-button, .signup-button{
-    height: 4.35vh;
-    width: 7vw; 
-    font-size: clamp(50% , 1.3vw , 105%);
-    font-weight: 600;
-    border: solid rgb(228, 204, 96);
-    border-radius: 3.9vh;
-    cursor: pointer;
-    background-color: #000000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: rgb(255, 255, 255);
-    background: linear-gradient(145deg, transparent, transparent 40%, rgb(228, 204, 96) 50%, transparent 60%, transparent); 
-    background-size: 200% 200%; 
-    transition: background-position 0.2s;
 }

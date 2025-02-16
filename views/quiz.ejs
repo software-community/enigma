@@ -4,38 +4,249 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/quiz.css">
+    <!-- <link rel="stylesheet" href="public/css/login.css"> -->
+    <!-- <link rel="stylesheet" href="login.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
+    <!-- <div class="logo">
+        <a href="#"> <img src="WhatsApp Image 2025-01-04 at 16.44.56_83ef7c62.jpg" alt="enigma-logo"> </a>
+    </div> -->
 
-    <%- include('navbar') %>
-    <br><br>
-    <h1>Welcome <%=name%></h1>
-    <h2 id="quizname">Name : <%=quizname%></h2>
-    <br>
-    <p id="timer"></p>
-    <br>
-    <form action="">
+    <!-- banner on the top -->
+    <%-include('navbar') %>
+
+    <!-- <div class="Quizname"><h1>Quiz</h1></div> -->
     
-    <% for(let question of questions){%>
-        <h3>Question : <%=question%></h3>
-        <label for="<%=questions.indexOf(question)%>">Answer</label>
-        <input id="<%=questions.indexOf(question)%>" type="text">
-    <%}%>
+    <% if((hours*3600 + mins*60) > 0){ %>
+    <div class="timer-container">
+        <div class="timer" id="timer"></div>
+        <div class="message" id="message">Time Remaining</div>
+      </div>
+      <% } %>
 
-    <br><br>
-    <input id='submitbtn' type="submit" value="Submit" onsubmit="check()">
-    </form>
-    <br><br>
-    <p id="score" style="color: red;"></p>
-    <script>
-        let submitbtn = document.getElementById('submitbtn')
-        submitbtn.addEventListener('click',async (e)=>{
+
+    <!-- questions portal -->
+     <div id="yuhi">
+    <div id="main">
+
+        <!-- form element for final submission of test -->
+        <form action="">
+            <div id="add_here">
+              <!-- Questions will be dynamically rendered here -->
+            </div>
+            <div class="faltu">
+                <div class="nav">
+                    <button id="prevBtn" style="background-color: white; color: black;">Prev</button>
+                    <input type="submit" value="Submit quiz" id="submit">
+                    <button id="nextBtn" style="background-color: white; color: black;">Next</button>
+                    </div>
+              <!-- <div class="undo_selection">undo selection</div> -->
+            </div>
+          </form>
+        </div>
+
+    <script>  
+
+// Array of question objects
+
+const questions = JSON.parse('<%-JSON.stringify(questions)%>')
+const hours = Number.parseInt(JSON.parse('<%-JSON.stringify(hours)%>'))
+const mins = Number.parseInt(JSON.parse('<%-JSON.stringify(mins)%>'))
+const quizData = questions.map((pair)=>{
+  return {
+    ques_no: "Ques"+(questions.indexOf(pair)+1),
+    statement: pair.question,
+    options: [
+      pair.optionA,
+      pair.optionB,
+      pair.optionC,
+      pair.optionD
+    ]
+  }
+})
+let answers = questions.map(()=>{
+  return ""
+})
+// const quizData = [
+//   {
+//     ques_no: "Ques1",
+//     statement: "Lorem ipsum dolor sit ammilique incidunt optio sapiente enim dolorem debitis, quia in molestiae? Inventore, officia. Fuga hic ea cumque culpa?",
+//     options: [
+//       "all options below this are correct",
+//       "the option above this is correct",
+//       "the option below this is wrong",
+//       "all options above this are wrong"
+//     ]
+//   },
+//   {
+//     ques_no: "Ques2",
+//     statement: "What is the capital of France?",
+//     options: [
+//       "Berlin",
+//       "London",
+//       "Paris",
+//       "Madrid"
+//     ]
+//   },
+//   {
+//     ques_no: "Ques3",
+//     statement: "Which planet is known as the Red Planet?",
+//     options: [
+//       "Venus",
+//       "Mars",
+//       "Jupiter",
+//       "Saturn"
+//     ]
+//   }
+// ];
+
+// Current question index
+let currentQuestionIndex = 0;
+
+// Function to render a single question based on index
+function renderQuiz() {
+  const container = document.getElementById("add_here");
+  container.innerHTML = ""; // Clear previous question
+
+  const question = quizData[currentQuestionIndex];
+
+  // Create a container div for the question
+  const questionDiv = document.createElement("div");
+  questionDiv.className = "question";
+
+  // Create question number element
+  const quesNo = document.createElement("h1");
+  quesNo.className = "ques_no";
+  quesNo.textContent = question.ques_no;
+  questionDiv.appendChild(quesNo);
+
+  // Create question statement
+  const statementDiv = document.createElement("div");
+  statementDiv.className = "statement";
+  statementDiv.textContent = question.statement;
+  questionDiv.appendChild(statementDiv);
+
+  // Create options container
+  const optionsDiv = document.createElement("div");
+  optionsDiv.className = "option_s";
+
+  question.options.forEach((optionText, oIndex) => {
+    const optionId = `option_${currentQuestionIndex + 1}_${oIndex + 1}`;
+    const optionName = `opt_${currentQuestionIndex + 1}`;
+
+    const label = document.createElement("label");
+    label.setAttribute("for", optionId);
+
+    const optionDiv = document.createElement("div");
+    optionDiv.className = `option${oIndex + 1} option`;
+
+    const radioInput = document.createElement("input");
+    radioInput.type = "radio";
+    radioInput.id = optionId;
+    radioInput.name = optionName;
+    radioInput.className = "bait";
+    radioInput.addEventListener('change', () => {
+      let choiceMap = ['A','B','C','D'] 
+      let chosen_num = Number.parseInt((radioInput.id).slice(9))
+      console.log(Number.parseInt((radioInput.name).slice(4))-1)
+      console.log(choiceMap[chosen_num-1])
+      answers[Number.parseInt((radioInput.name).slice(4))-1] = choiceMap[chosen_num-1]
+      });
+
+    optionDiv.appendChild(radioInput);
+    optionDiv.appendChild(document.createTextNode(" " + optionText));
+
+    label.appendChild(optionDiv);
+    optionsDiv.appendChild(label);
+  });
+
+  questionDiv.appendChild(optionsDiv);
+  container.appendChild(questionDiv);
+}
+
+// Function to navigate between questions
+function showQuestion(index) {
+  if (index >= 0 && index < quizData.length) {
+    currentQuestionIndex = index;
+    renderQuiz(); // Rerender quiz with new question
+  }
+}
+
+// Set up navigation buttons
+function setupNavigation() {
+  document.getElementById("prevBtn").addEventListener("click", function (event) {
+    event.preventDefault();
+    if (currentQuestionIndex > 0) {
+      showQuestion(currentQuestionIndex - 1);
+    }
+  });
+
+  document.getElementById("nextBtn").addEventListener("click", function (event) {
+    event.preventDefault();
+    if (currentQuestionIndex < quizData.length - 1) {
+      showQuestion(currentQuestionIndex + 1);
+    }
+  });
+}
+
+// Initialize the quiz on page load
+document.addEventListener("DOMContentLoaded", function () {
+  renderQuiz();
+  setupNavigation();
+});
+
+// Function to start the timer
+
+    // Set the exam duration in seconds (e.g., 60 minutes = 3600 seconds)
+    if((hours*3600 + mins*60) > 0){
+    const examDuration = hours*3600 + mins*60; // Adjust this value as needed
+
+    function startExamTimer(duration, display) {
+    let timer = duration;
+    const intervalId = setInterval(() => {
+        // Calculate minutes and seconds
+        const minutes = Math.floor(timer / 60);
+        const seconds = timer % 60;
+
+        // Format time with leading zeros
+        display.textContent = 
+        (minutes < 10 ? "0" + minutes : minutes) + ":" +
+        (seconds < 10 ? "0" + seconds : seconds);
+
+        // Stop the timer when it reaches zero
+        if (--timer < 0) {
+        clearInterval(intervalId);
+        display.textContent = "00:00";
+        document.getElementById('message').textContent = "Time's up!";
+        // Optional: Add exam submission or auto-save logic here
+        }
+    }, 1000);
+    }
+
+    // Start the timer when the page loads
+    window.onload = function() {
+    setTimeout(()=>document.getElementById('submit').click(),(hours*3600 + mins*60)*1000)
+    const timerDisplay = document.getElementById('timer');
+    startExamTimer(examDuration, timerDisplay);
+    };
+  }
+
+    // document.getElementById('submit').addEventListener('click',(e)=>{
+    //   e.preventDefault()
+    //   console.log(answers)
+    // })
+
+    document.getElementById('submit').addEventListener('click',async (e)=>{
             e.preventDefault()
             let takenId = Date.now()
             let length = Number.parseInt('<%-questions.length%>')
-            let answers = []
-            for(let i=0;i<length;i++)
-                answers.push(document.getElementById(i).value)
             let response = await fetch('/quizes/check',{
                 method:"post",
                 headers:{
@@ -56,35 +267,8 @@
                   />`)
             document.body.appendChild(goToStats)
             goToStats.submit()
+            console.log("reached here")
         })
-        const hours = Number.parseInt(JSON.parse(' <%- JSON.stringify(hours) %>'))
-        const mins = Number.parseInt(JSON.parse(' <%- JSON.stringify(mins) %>'))
-        const seconds = hours*3600 + mins*60
-
-        if(seconds>0){
-            setTimeout(()=>submitbtn.click(),seconds*1000)
-            let hours_left = hours
-            let mins_left = mins
-            let seconds_left = 0
-            setInterval(()=>{
-                if(seconds_left==0){
-                    if(mins_left==0){
-                        hours_left--
-                        mins_left = 59
-                    }
-                    else
-                        mins_left--
-                    seconds_left = 59
-                }
-                else
-                    seconds_left--
-                document.getElementById('timer').innerHTML=`${hours_left < 10 ? '0'+hours_left : hours_left} : ${mins_left < 10 ? '0'+mins_left : mins_left} : ${seconds_left < 10 ? '0'+seconds_left : seconds_left}`
-            },1000)
-        }
     </script>
 </body>
-<script>
-
-
-</script>
 </html>

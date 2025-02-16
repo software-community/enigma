@@ -141,7 +141,7 @@
 
     <script>
             const quizesTaken = JSON.parse('<%-JSON.stringify(quizesTaken)%>')
-    
+    if(quizesTaken.length!=0){
     const quizData = quizesTaken.map((quizTaken)=>{
       return { quiz: quizTaken.quiz.name, schedule: "XX-XX-20XX", score: quizTaken.score, quizId:quizTaken.quiz.quizId }
     })
@@ -201,8 +201,12 @@
     document.getElementById("next_page1").addEventListener("click", nextPage1);
     document.getElementById("prev_page1").addEventListener("click", prevPage1);
     window.onload = populateQuizList;
+  }
+    
+    
     // code for hosted_table
     const quizesCreated = JSON.parse('<%-JSON.stringify(quizesCreated)%>')
+    if(quizesCreated.length!=0){
     const hostedData = quizesCreated.map((quiz)=>{
       return { quiz: quiz.name, schedule: quiz.date, participants:quiz.takers ? quiz.takers.length : 0, quizId:quiz.quizId }
     })
@@ -257,9 +261,10 @@
         }
     });
     renderHostedTable();
-
+  }
     //code for scheduled quizes
     const quizesScheduled = JSON.parse('<%-JSON.stringify(quizesScheduled)%>')
+    if(quizesScheduled.length!=0){
     const scheduledData = quizesScheduled.map((quiz)=>{
       return { quiz: quiz.name, schedule: quiz.date, participants:quiz.takers ? quiz.takers.length : 0, quizId:quiz.quizId }
     })
@@ -314,6 +319,7 @@
         }
     });
     renderScheduledTable();
+  }
             
             var dropdown=document.getElementById('dropdown') ;
 

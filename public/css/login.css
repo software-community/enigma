@@ -320,7 +320,7 @@
 
 
 
-.login-button{
+.login-button2{
   font-size: 15px;
   border-radius: 3.9vh;
   margin-right: 5px;
@@ -337,7 +337,7 @@
   transition: background-position 0.2s;
 }
 
-.login-button:hover{
+.login-button2:hover{
   background-position: 100% 0;
 
 }

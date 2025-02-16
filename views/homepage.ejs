@@ -15,8 +15,8 @@
 <body>
     
     <%- include('navbar') %>
-
-    <div class="mainline">
+    <br>
+    <!-- <div class="mainline">
         Upcoming Quizzes
     </div>
     
@@ -44,31 +44,78 @@
             </div>
         </div>
     </div>
-    <br>
+    <br> -->
     <div class="mainline2">
         Featured Quizzes
     </div>
-    <% if(featuredQuizes) { %>
+
     <div class="featuredQuizzes">
-        <% for(let quiz of featuredQuizes) { %>
-            <div id="fquiz<%=featuredQuizes.indexOf(quiz)+1%>" class="fquiz">
-                <div class="fquizTitleBox">
-                    <div class="fquizTitle"><%=quiz.quizname%></div>
-                    <div class="fquizDate">Held on XX-XX-20XX</div>
-                    <form id="<%=quiz.quizId%>" action="/quizes/startquiz" method="post" hidden>
-                        <input id="quizId" name="quizId" type="text" value="<%=quiz.quizId%>">
-                        <input id="quizname" name="quizname" type="text" value="<%=quiz.quizname%>">
-                    </form>
-                    <a href="quiz" onclick="document.getElementById('<%=quiz.quizId%>').submit(); return false;"><button class="takeQuiz">Take Quiz</button></a>
-                </div>
+        <% if(pastQuizes.length>=5) { %>
+        <% for(let i=0;i<5;i++) { let quiz = pastQuizes[i] %>
+        <div id="fquiz<%=pastQuizes.indexOf(quiz)+1%>" class="fquiz" style="background-image: url('/quizBanners/quiz-<%=quiz.quizId%>'), url('/quizBanners/quiz');background-size: cover;">
+            <div class="fquizTitleBox">
+                <!-- <img src="/quizBanners/<%='quiz-'+quiz.quizId%>" onerror="this.onerror=null; this.src='/quizBanners/quiz';" alt="profile" class="profile-pic"> -->
+                <div class="fquizTitle"><%=quiz.quizname%></div>
+                <div class="fquizDate">Held on <%=quiz.date%></div>
+                <form id="<%=quiz.quizId%>" action="/quizes/startquiz" method="post" hidden>
+                    <input id="quizId" name="quizId" type="text" value="<%=quiz.quizId%>">
+                    <input id="quizname" name="quizname" type="text" value="<%=quiz.quizname%>">
+                </form>
+                <a href="quiz" onclick="document.getElementById('<%=quiz.quizId%>').submit(); return false;"><button class="takeQuiz">Take Quiz</button></a>
             </div>
-            <% } %>
-    </div>
+        </div>
+        <% } %>
     <% } %>
+    </div>
     <script src="/script/script_dashboard.js"></script>
 
     <div class="separator2">
         |
     </div>
+
+    <div class="past-quizzes">
+        <div class="past-quizzes-headline">
+            Past Quizzes
+        </div>
+
+        <div class="past-quizzes-search-box">
+            <input type="text" id="userInput" name="userInput" placeholder="Search quiz">
+            <button id="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+    </div>
+        <table>
+          <thead>
+            <tr id="title-row">
+              <th id="Quiz title">Quiz</th>
+              <th id="type-of-quiz">Type of Quiz</th>
+              <th id="No-of-questions">Number of Questions</th>
+              <th id="Date-held-on">Date Held On</th>
+              <th id="Difficulty-level">Difficulty Level</th>
+              <th id="Average-score">Average Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if(pastQuizes) { %>
+                <% for(let quiz of pastQuizes) { %>
+                    <tr onclick="document.getElementById('<%=quiz.quizId%>').submit(); return false;"><td><%=quiz.quizname%></td><td>Single Choice Correct</td><td><%=quiz.length%></td><td><%=quiz.date%></td><td>Easy</td><td><%=quiz.avg%></td></tr>
+                    <%}}%>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <button id="prev-page">&lt</button>
+        <span id="page-info">Page 1 of 1</span>
+        <button id="next-page">&gt</button>
+      </div>
+
+      <%for(let quiz of pastQuizes){%>
+        <form id="<%=quiz.quizId%>" action="/quizes/startquiz" method="post" hidden>
+        <input id="quizId" name="quizId" type="text" value="<%=quiz.quizId%>">
+        <input id="quizname" name="quizname" type="text" value="<%=quiz.quizname%>">
+        </form>
+    <%}%>
+
+    <%-include('footer')%>
 </body>
 </html>

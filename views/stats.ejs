@@ -90,61 +90,60 @@
         const answers = myQuizTaken.answers
         let data = []
         for(let i=0;i<answers.length;i++)
-             data.push({ sn: i+1, time: Math.ceil(Math.random()*25), verdict: quiz.qna[i].answer == answers[i]? "correct" : "incorrect", statement: quiz.qna[i].question, option: "A, B, C, D", response: answers[i], answer: quiz.qna[i].answer })
+             data.push({ sn: i+1, time: Math.ceil(Math.random()*25), verdict: quiz.qna[i].correctOption == answers[i]? "correct" : "incorrect", statement: quiz.qna[i].question, option: `A) ${quiz.qna[i].optionA}, B) ${quiz.qna[i].optionB}, C) ${quiz.qna[i].optionC}, D) ${quiz.qna[i].optionD}`, response: answers[i], answer: quiz.qna[i].correctOption })
 
-
+        console.log(data)
         const sns = data.map(item => item.sn);
         const times = data.map(item => item.time);
         const backgroundColors = data.map(item => 
             item.verdict === "correct" ? 'rgba(95, 252, 0, .7)' : 'rgba(255, 20, 9, .6)'
         );
 
-
-        var ctx = document.getElementById('Time_plot').getContext('2d');
-        var plot = new Chart (ctx , {
-            type : 'bar', 
-            data : {
-                labels : sns, 
-                datasets : [
-                    {
-                        label: "Time taken ",
-                        data : times,
-                        backgroundColor : backgroundColors,
-                        borderWidth: .5,
-                    },{
-                        label: "Trend Line",
-                        type: 'line',
-                        data : times,
-                        borderColor : 'rgba(20, 30 , 240, 1)',
-                        borderWidth : 2.5,
-                        fill: false
-                    }
-                ]
-            }, 
-            options : {
-                responsive : false ,
-                plugins: {
-                    legend: {
-                        position: 'top'
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true, 
-                            text: 'Question number'
-                        }
-                    },
-                    y:{
-                        beginAtZero: true,
-                        title : {
-                            display : true,
-                            text : 'Time taken'
-                        }
-                    }
-                }
-            }
-        })
+        // var ctx = document.getElementById('Time_plot').getContext('2d');
+        // var plot = new Chart (ctx , {
+        //     type : 'bar', 
+        //     data : {
+        //         labels : sns, 
+        //         datasets : [
+        //             {
+        //                 label: "Time taken ",
+        //                 data : times,
+        //                 backgroundColor : backgroundColors,
+        //                 borderWidth: .5,
+        //             },{
+        //                 label: "Trend Line",
+        //                 type: 'line',
+        //                 data : times,
+        //                 borderColor : 'rgba(20, 30 , 240, 1)',
+        //                 borderWidth : 2.5,
+        //                 fill: false
+        //             }
+        //         ]
+        //     }, 
+        //     options : {
+        //         responsive : false ,
+        //         plugins: {
+        //             legend: {
+        //                 position: 'top'
+        //             }
+        //         },
+        //         scales: {
+        //             x: {
+        //                 title: {
+        //                     display: true, 
+        //                     text: 'Question number'
+        //                 }
+        //             },
+        //             y:{
+        //                 beginAtZero: true,
+        //                 title : {
+        //                     display : true,
+        //                     text : 'Time taken'
+        //                 }
+        //             }
+        //         }
+        //     }
+        // })
 
      
 

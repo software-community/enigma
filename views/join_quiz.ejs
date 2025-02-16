@@ -9,13 +9,22 @@
 <body>
 
     <%- include('navbar') %>
-    <br><br>
-    <form action="" method="post">
-        <label for="quizId">Quiz ID : </label>
-        <input type="text" name="quizId" id="quizId"><br><br>
-        <input id="submit" type="submit" value="Join">
-    </form>
-    <p id="error" style="color: red;"></p>
+    <br>
+    <div class="join-quiz-page">
+        <div class="join-quiz-container">
+            <div class="join-quiz-title">
+                Joining a quiz
+            </div>
+            <div class="join-quiz-input">
+                Enter your code:
+                <input type="text" id="quizId">
+            </div>
+            <div id="error" class="not-found-message">
+                
+              </div>
+            <input id="submit" type="submit" class="join-quiz-button" value="Join Quiz">
+        </div>
+    </div>
     <script>
         document.getElementById('submit').onclick = async (e)=>{
             e.preventDefault()
@@ -39,7 +48,7 @@
                 myform.submit()
             }
             else
-            document.getElementById('error').innerHTML = "Quiz Not Found"
+            document.getElementById('error').innerHTML = "No quiz found with this code"
         }
     </script>
 </body>

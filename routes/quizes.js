@@ -62,7 +62,7 @@ router.post("/check",async (req,res)=>{
     let score = 0
     for(let pair of myquiz.qna) {
       let index = myquiz.qna.indexOf(pair)
-      if(useranswers[myquiz.qna.indexOf(pair)])
+      if(useranswers[myquiz.qna.indexOf(pair)] != '')
         if(pair.correctOption == useranswers[myquiz.qna.indexOf(pair)]){
             score++
             await quizesCollection.updateOne({quizId: Number.parseInt(req.body.quizId)},{ $set: {[`qna.${index}.correctlyAnswered`]: myquiz.qna[index].correctlyAnswered+1}})
@@ -76,7 +76,7 @@ router.post("/check",async (req,res)=>{
     if(req.isAuthenticated())
       await client.db("mydb").collection("users").updateOne({username:req.body.name},{ $push: { taken: {takenId:req.body.takenId, quiz:myquiz, answers: useranswers, score, date: ((new Date()).toISOString()).slice(0,10)} } })
     
-    // res.send(score.toString())
+    res.send("good")
     console.log(req.body.name+" just gave "+myquiz.name+" quiz and got score "+score)
 })
 
@@ -146,7 +146,7 @@ router.post('/stats',async (req,res)=>{
     res.render('stats',{myQuizTaken, leaderboard, username:req.user.username})
   }
   else
-    res.redirect('../login')
+    res.redirect('../')
 })
 
 router.get('/join',(req,res)=>{

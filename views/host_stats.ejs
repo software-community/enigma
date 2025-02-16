@@ -38,20 +38,6 @@
     <!-- ranklist -->
      <div class="ranklist">
         <table id="list">
-            <tr>
-                <th>Name</th>
-                <th>Rank</th>
-                <th>Score</th> 
-            </tr>
-            <% if(myquiz.takers) { %>
-                <% for(let taker of myquiz.takers){%>
-                    <tr>
-                        <td><%=taker.name%></td>
-                        <td><%=(myquiz.takers).indexOf(taker)+1%></td>
-                        <td><%=taker.score%></td>
-                    </tr>
-                <%}%>
-                <%}%>
         </table>
 
         <!-- icons for navigation in rank list -->
@@ -78,6 +64,60 @@
         
 
         // code for ranklist
+        const takers = JSON.parse(`<%- JSON.stringify(myquiz.takers) %>`)
+        const rankList = []
+        for(let i=0;i<takers.length;i++){
+            rankList.push({ name: takers[i].name, rank: i+1, score: takers[i].score })
+        }
+        
+        const rowsPerPage = 10;
+        let currentPage = 0;
+        function populateRankList() {
+            const table = document.getElementById("list");
+            
+            // Clear existing rows except the header
+            table.innerHTML = `
+                <tr>
+                    <th>Name</th>
+                    <th>Rank</th>
+                    <th>Score</th>
+                </tr>
+            `;
+            const start = currentPage * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedList = rankList.slice(start, end);
+            // Populate table with data
+            paginatedList.forEach(player => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${player.name}</td>
+                <td>${player.rank}</td>
+                <td>${player.score}</td>
+            `;
+            table.appendChild(row);
+        });
+        updateButtonState();
+    }
+        function updateButtonState() {
+        document.getElementById("prev_page").style.opacity = currentPage === 0 ? "0.3" : "1";
+        document.getElementById("next_page").style.opacity = (currentPage + 1) * rowsPerPage >= rankList.length ? "0.5" : "1";
+    }
+        function nextPage() {
+        if ((currentPage + 1) * rowsPerPage < rankList.length) {
+                currentPage++;
+                populateRankList();
+            }
+        }
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                populateRankList();
+            }
+        }
+document.getElementById("next_page").addEventListener("click", nextPage);
+document.getElementById("prev_page").addEventListener("click", prevPage);
+        // Populate rank list on page load
+        window.onload = populateRankList;
 
         // code for adding questions into the page 
         const myquiz = JSON.parse(`<%- JSON.stringify(myquiz) %>`)
