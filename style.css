@@ -1134,3 +1134,36 @@ html, body{
     width: fit-content;
     margin: 0 auto;
 }
+
+/* ----------------------login-signup---------------------- */
+
+.login-signup{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    margin-left: 8%;
+}
+
+.separator2{
+    color: white;
+    font-size: 7vh;
+    font-weight: 200;
+}
+
+.login-button, .signup-button{
+    height: 4.35vh;
+    width: 7vw; 
+    font-size: clamp(50% , 1.3vw , 105%);
+    font-weight: 600;
+    border: solid rgb(228, 204, 96);
+    border-radius: 3.9vh;
+    cursor: pointer;
+    background-color: #000000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(145deg, transparent, transparent 40%, rgb(228, 204, 96) 50%, transparent 60%, transparent); 
+    background-size: 200% 200%; 
+    transition: background-position 0.2s;
+}

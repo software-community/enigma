@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="sidebar-navbar">
+        <a href="#" id="sidebar-button">
+            <div class="hamburger">
+                <i id="sb" class="fa-solid fa-bars"></i>
+            </div>
+        </a>
+
+        <div class="logo1">
+            <a href="index.html">
+                <img src="dashboard_assets/enigma-logo.jpg" alt="enigma">
+            </a>
+        </div>
+
+        <div class="profile">
+            <a href="#">
+                <img src="dashboard_assets/profile-pic.jpg" alt="profile" class="profile-pic1">
+            </a>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li class="quiz-buttons-li"><div class="createquiz">
+                <a href="#">
+                    <button class="s-create">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Create a quiz
+                    </button>
+                </a>
+            </div></li>
+
+            <li class="quiz-buttons-li"><div class="joinquiz">
+                <a href="join-quiz.html">
+                    <button class="s-join">
+                        <i class="fa-regular fa-clipboard"></i>
+                        Join a quiz                 
+                    </button>
+                </a>
+            </div></li>
+
+            <li class="s-dropdown">
+            <a href="#" id="dropdown-toggle">Socials <i class="fa-solid fa-chevron-down"></i></a>
+            <ul class="s-dropdown-menu">
+                <li><a href="#">Friends</a></li>
+                <li><a href="#">Leaderboard</a></li>
+                <li><a href="#">Club</a></li>
+            </ul>
+            </li>
+            <li><a href="#">
+                Login
+                </a>
+            </li>
+            <li><a href="#">
+                Signup
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="container" class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="dashboard_assets/enigma-logo.jpg" alt="enigma">
+            </a>
+        </div>
+
+        <div class="separator">
+            |
+        </div>
+
+        <div class="createquiz">
+            <a href="#">
+                <button class="create">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Create a quiz
+                </button>
+            </a>
+        </div>
+
+        <div class="joinquiz">
+            <a href="join-quiz.html">
+                <button class="join">
+                    <i class="fa-regular fa-clipboard"></i>
+                    Join a quiz                 
+                </button>
+            </a>
+        </div>
+
+        <div class="socials">
+            <nav>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <i class="fa-regular fa-comment"></i>
+                        Socials
+                        <ul class="dropdown">
+                            <li><a href="#">Friends</a></li>
+                            <li><a href="#">Leaderboard</a></li>
+                            <li><a href="#">Club</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="login-signup">
+            <button class="login-button">
+                Login
+            </button>
+            <div class="separator2">
+            |
+            </div>
+            <button class="signup-button">
+                Signup
+            </button>
+        </div>
+    </div>
+    <script src="script1.js"></script>
+</body>
+</html>
