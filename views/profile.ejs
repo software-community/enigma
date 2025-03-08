@@ -18,7 +18,11 @@
   <body>
     
     <%- include('navbar') %>
+    <!-- main contianer -->
+    <div id="main">
 
+      <!-- leftside container -->
+      <div id="left">
     <!-- lil bit profile for others to see -->
     <div id="profilecontainer">
     
@@ -51,6 +55,12 @@
         </h3>
       </div>
 
+    </div>
+  </div>
+
+    <!-- the right side container -->
+    <div id="right">
+
       <div style="margin-top: 20px" class="attended">
         <h1>prev attended quizes</h1>
 
@@ -75,7 +85,7 @@
         <% } else {%>
         <p>You have not given any quizes yet</p>
         <%}%>
-      </div>
+      <!-- </div> -->
 
       <div style="margin-top: 20px" class="attended">
         <h1>Previously hosted quizzes</h1>
@@ -101,7 +111,7 @@
         <% } else {%>
         <p>You have not created any quizes yet</p>
         <%}%>
-      </div>
+      <!-- </div> -->
 
       <div style="margin-top: 20px" class="attended">
         <h1>Scheduled Quizzes</h1>
@@ -128,7 +138,7 @@
         <% } else {%>
         <p>You have not scheduled any quizes yet</p>
         <%}%>
-      </div>
+      <!-- </div> -->
 
       <!-- delete acc -->
       <div>
@@ -137,7 +147,9 @@
           Doing this will remove all your data. This action is irreversible.
         </h5>
       </div>
-    </div>
+    <!-- </div> -->
+  </div>
+</div>
 
     <script>
             const quizesTaken = JSON.parse('<%-JSON.stringify(quizesTaken)%>')

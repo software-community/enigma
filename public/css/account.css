@@ -3,9 +3,27 @@
     padding: 0;
     box-sizing: border-box;
     overflow-x:hidden ;
+    scrollbar-width: none;
+}
+body{
+    background: hsla(294, 100%, 55%, 1);
+
+    background: linear-gradient(135deg, hsla(294, 100%, 55%, 1) 0%, hsla(197, 100%, 63%, 1) 100%);
+
+    background: -moz-linear-gradient(135deg, hsla(294, 100%, 55%, 1) 0%, hsla(197, 100%, 63%, 1) 100%);
+
+    background: -webkit-linear-gradient(135deg, hsla(294, 100%, 55%, 1) 0%, hsla(197, 100%, 63%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E81CFF", endColorstr="#40C9FF", GradientType=1 );
 }
 
-            
+#left{
+    background-color: rgba(255, 255, 255, 0.252);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    box-shadow: 1px 1px 10px 1px white;
+}
+
             /* navbar */
 
 .navbar{
@@ -114,8 +132,11 @@
     padding: 5px;
 } 
 
+
 #delete {
+    text-align: center;
     border: 2px solid #ff004c;
+    /* width: 100px; */
     padding: 5px 10px;
     margin: 30px 5px 0px 10px;
     border-radius: 25px 25px;
@@ -354,4 +375,33 @@
 .drop button {
     background-color: white;
     border: none;
+}
+
+@media (min-width: 860px) {
+    body{
+        overflow-x: hidden;
+        /* height: 100vh; */
+    }
+    #main{
+        display: grid;
+        grid-template-columns: 1.5fr 3.5fr;
+        /* overflow: scroll; */
+        height: 92vh;
+    }
+    #right{
+        scale: 0.9;
+        /* overflow-y:visible; */
+        scrollbar-width:none;
+    }
+    #main #left{
+        /* margin-top: 20vh; */
+        /* height: 1200px; */
+        /* height: max-content; */
+        scale: 0.9;
+        position: sticky !important; 
+        /* top: 10vh !important; */
+        /* background-color: black; */
+    }
+    
+    
 }
